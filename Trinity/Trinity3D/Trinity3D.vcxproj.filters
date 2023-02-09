@@ -19,6 +19,9 @@
     <Filter Include="Texture">
       <UniqueIdentifier>{12d035b6-758c-4cd2-aa76-b812248abe3c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Draw">
+      <UniqueIdentifier>{e0666e50-f4a2-4651-ad4c-97b0e65e67a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TrinityApp.h">
@@ -27,6 +30,9 @@
     <ClInclude Include="Texture2D.h">
       <Filter>Texture</Filter>
     </ClInclude>
+    <ClInclude Include="SmartDraw.h">
+      <Filter>Draw</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TrinityApp.cpp">
@@ -34,6 +40,9 @@
     </ClCompile>
     <ClCompile Include="Texture2D.cpp">
       <Filter>Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="SmartDraw.cpp">
+      <Filter>Draw</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

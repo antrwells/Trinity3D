@@ -41,13 +41,7 @@ void TrinityApp::DoFrame() {
 
     m_pImmediateContext->SetRenderTargets(1, &pRTV, pDSV, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
 
-    try {
-        m_pSwapChain->Present();
-    }
-    catch (...) {
-
-    }
-
+ 
 }
 
 void TrinityApp::Resize(int w, int h)
@@ -58,6 +52,8 @@ void TrinityApp::Resize(int w, int h)
    // winWidth = width;
    // winHeight = height;
     auto SC = m_pSwapChain->GetDesc();
+    m_Width = w;
+    m_Height = h;
     //m_pImGui.reset(new ImGuiImplWin32(curWin, m_pDevice, SC.ColorBufferFormat, SC.DepthBufferFormat));
     mResized = true;
 }

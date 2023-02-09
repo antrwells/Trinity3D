@@ -255,6 +255,8 @@ void QDirect3D12Widget::onFrame()
     if (m_bRenderActive) tick();
 
     m_App->DoFrame();
+    RenderScene();
+    m_App->Present();
     //return;
     return;
     beginScene();

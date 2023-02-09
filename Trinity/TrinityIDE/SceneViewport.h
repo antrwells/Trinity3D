@@ -4,6 +4,7 @@
 #include "ui_SceneViewport.h"
 #include "QDirect3D12Widget.h"
 #include "Texture2D.h"
+#include "SmartDraw.h"
 
 class SceneViewport : public QDirect3D12Widget
 {
@@ -16,10 +17,12 @@ public:
 
 private slots:
 	void LoadResources();
+	void RenderScene();
 
 private:
 	Ui::SceneViewportClass ui;
 	Texture2D* mTex1;
+	SmartDraw* mDraw;
 	
 };
 

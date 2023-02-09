@@ -2,7 +2,7 @@
 #include "SmartDraw.h"
 
 
-SmartDraw::SmartDraw(Application* app) {
+SmartDraw::SmartDraw(TrinityApp* app) {
 
 
     gApp = app;

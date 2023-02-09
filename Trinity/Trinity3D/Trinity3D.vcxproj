@@ -19,10 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="SmartDraw.h" />
     <ClInclude Include="Texture2D.h" />
     <ClInclude Include="TrinityApp.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SmartDraw.cpp" />
     <ClCompile Include="Texture2D.cpp" />
     <ClCompile Include="TrinityApp.cpp" />
   </ItemGroup>
