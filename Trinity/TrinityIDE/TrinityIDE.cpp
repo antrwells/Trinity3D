@@ -7,15 +7,20 @@ TrinityIDE::TrinityIDE(QWidget *parent)
     : QMainWindow(parent)
 {
     //ui.setupUi(this);
-    resize(800, 600);
+    resize(1200, 800);
 
     m_DockManager = new ads::CDockManager(this);
 
     //QPushButton* test = new QPushButton("Test!", this);
     //test->setGeometry(20, 20, 200, 30);
 
+ 
+
+    w_SceneView = new SceneViewport(NULL);
+    m_DockManager->addDockWidget(ads::CenterDockWidgetArea, w_SceneView);
+
     w_SceneGraph = new QSceneGraph(NULL);
-    m_DockManager->addDockWidget(ads::LeftDockWidgetArea,w_SceneGraph);
+    m_DockManager->addDockWidget(ads::LeftDockWidgetArea, w_SceneGraph);
 
     /*
     QLabel* l = new QLabel();

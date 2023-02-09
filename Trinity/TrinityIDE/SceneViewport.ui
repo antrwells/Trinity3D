@@ -1,0 +1,22 @@
+<UI version="4.0" >
+ <class>SceneViewportClass</class>
+ <widget class="QWidget" name="SceneViewportClass" >
+  <property name="objectName" >
+   <string notr="true">SceneViewportClass</string>
+  </property>
+  <property name="geometry" >
+   <rect>
+	<x>0</x>
+	<y>0</y>
+	<width>600</width>
+	<height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>SceneViewport</string>
+  </property>$centralwidget$
+ </widget>
+ <layoutDefault spacing="6" margin="11" />
+ <pixmapfunction></pixmapfunction>
+ <connections/>
+</UI>
