@@ -19,9 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Texture2D.h" />
     <ClInclude Include="TrinityApp.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Texture2D.cpp" />
     <ClCompile Include="TrinityApp.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -116,6 +118,12 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalDependencies>Diligent-GraphicsEngineD3D12-static.lib;Diligent-ShaderTools.lib;Diligent-GraphicsAccessories.lib;Diligent-Common.lib;Diligent-Win32Platform.lib;Diligent-GraphicsEngine.lib;Diligent-GraphicsEngineD3DBase.lib;Diligent-GraphicsEngineNextGenBase.lib;DiligentTools.lib;Diligent-TextureLoader.lib;Diligent-BasicPlatform.lib;LibJpeg.lib;LibTiff.lib;libpng16_staticd.lib;ZLib.lib;DiligentCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>C:\Trinity\DELibs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>

@@ -39,6 +39,15 @@ public:
     void DoFrame();
     void Resize(int w, int h);
 
+    static RefCntAutoPtr<IRenderDevice> GetDev() {
+        return s_pThis->GetDevice();
+    }
+    RefCntAutoPtr<IRenderDevice> GetDevice() {
+
+        return m_pDevice;
+
+    }
+    static TrinityApp* s_pThis;
 private:
 
 	HWND mWindow;

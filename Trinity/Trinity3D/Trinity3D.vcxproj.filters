@@ -16,15 +16,24 @@
     <Filter Include="App">
       <UniqueIdentifier>{11171a5e-5552-44f5-9410-a41660f176bb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Texture">
+      <UniqueIdentifier>{12d035b6-758c-4cd2-aa76-b812248abe3c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TrinityApp.h">
-      <Filter>Header Files</Filter>
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture2D.h">
+      <Filter>Texture</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TrinityApp.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>App</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture2D.cpp">
+      <Filter>Texture</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

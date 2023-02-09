@@ -1,5 +1,6 @@
 #include "TrinityApp.h"
 
+TrinityApp* TrinityApp::s_pThis = nullptr;
 
 TrinityApp::TrinityApp(HWND window)
 {
@@ -21,7 +22,7 @@ TrinityApp::TrinityApp(HWND window)
     Win32NativeWindow Window{ mWindow };
     pFactoryD3D12->CreateSwapChainD3D12(m_pDevice, m_pImmediateContext, SCDesc, FullScreenModeDesc{}, Window, &m_pSwapChain);
     m_pEngFac = pFactoryD3D12;
-
+    s_pThis = this;
 }
 
 void TrinityApp::DoFrame() {

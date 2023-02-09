@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Texture2D.h"
-
+#include "TrinityApp.h"
 
 Texture2D::Texture2D(const char* path,bool alpha) {
 
@@ -19,7 +19,7 @@ Texture2D::Texture2D(const char* path,bool alpha) {
 
     }
 
-    auto m_pDevice = Application::GetDev();
+    auto m_pDevice = TrinityApp::GetDev();
     TextureLoadInfo loadInfo;
     loadInfo.IsSRGB = false;
     if (alpha) {
@@ -53,6 +53,7 @@ Texture2D::Texture2D(RefCntAutoPtr<ITexture> texture)
     m_TextureSRV = Texture->GetDefaultView(TEXTURE_VIEW_SHADER_RESOURCE);
 }
 
+/*
 Texture2D::Texture2D(Application* app,int w, int h, bool alpha,const char* buf) {
 
     TextureDesc TexDesc;
@@ -88,6 +89,8 @@ Texture2D::Texture2D(RenderTarget2D* target) {
     m_TextureSRV = target->GetColorTexture()->GetDefaultView(TEXTURE_VIEW_SHADER_RESOURCE);
 
 }
+*/
+
 
 void Texture2D::Free() {
    
@@ -100,10 +103,12 @@ void Texture2D::Free() {
 
 }
 
+/*
 Texture2D::Texture2D(RenderTargetCube* target, int face)
 {
     Texture = target->GetColorTexture();
     m_TextureSRV = target->GetColorViewFace(face);
 }
+*/
 
 std::vector<Texture2D*> Texture2D::mCache;

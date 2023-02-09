@@ -3,6 +3,7 @@
 #include <QWidget>
 #include "ui_SceneViewport.h"
 #include "QDirect3D12Widget.h"
+#include "Texture2D.h"
 
 class SceneViewport : public QDirect3D12Widget
 {
@@ -12,6 +13,13 @@ public:
 	SceneViewport(QWidget *parent = nullptr);
 	~SceneViewport();
 
+
+private slots:
+	void LoadResources();
+
 private:
 	Ui::SceneViewportClass ui;
+	Texture2D* mTex1;
+	
 };
+

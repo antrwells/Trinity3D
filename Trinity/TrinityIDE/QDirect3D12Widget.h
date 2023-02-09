@@ -19,6 +19,10 @@ class QDirect3D12Widget : public ads::CDockWidget
 {
     Q_OBJECT
 
+signals:
+
+    void LoadResources();
+
 public:
     QDirect3D12Widget(QWidget * parent);
     ~QDirect3D12Widget();

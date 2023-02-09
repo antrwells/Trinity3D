@@ -129,6 +129,9 @@ bool QDirect3D12Widget::init()
 
     connect(&m_qTimer, &QTimer::timeout, this, &QDirect3D12Widget::onFrame);
 
+    int a = 5;
+    LoadResources();
+
     return true;
 }
 

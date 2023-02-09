@@ -6,10 +6,9 @@
 #    define PLATFORM_WIN32 1
 #endif
 
-#include "Graphics/GraphicsEngineD3D11/interface/EngineFactoryD3D11.h"
+
 #include "Graphics/GraphicsEngineD3D12/interface/EngineFactoryD3D12.h"
-#include "Graphics/GraphicsEngineOpenGL/interface/EngineFactoryOpenGL.h"
-#include "Graphics/GraphicsEngineVulkan/interface/EngineFactoryVk.h"
+
 
 #include "Graphics/GraphicsEngine/interface/RenderDevice.h"
 #include "Graphics/GraphicsEngine/interface/DeviceContext.h"
@@ -18,7 +17,7 @@
 #include "Common/interface/RefCntAutoPtr.hpp"
 #include "Graphics/GraphicsTools/interface/GraphicsUtilities.h"
 #include "TextureLoader/interface/TextureUtilities.h"
-#include "Application.h"
+
 
 #include "Graphics/GraphicsEngineD3D11/interface/EngineFactoryD3D11.h"
 #include "Graphics/GraphicsEngineD3D12/interface/EngineFactoryD3D12.h"
@@ -33,14 +32,8 @@
 #include "Common/interface/RefCntAutoPtr.hpp"
 
 #include "Common/interface/BasicMath.hpp"
-#if PLATFORM_WIN32
-#    define GLFW_EXPOSE_NATIVE_WIN32 1
-#endif
-//#include "GLFW/glfw3.h"
-//#include "GLFW/glfw3native.h"
-#include "Application.h"
-#include "RenderTarget2D.h"
-#include "RenderTargetCube.h"
+
+
 #include <vector>
 using namespace Diligent;
 
@@ -55,9 +48,10 @@ public:
 	Texture2D(const char* path,bool alpha = false);
 	Texture2D(RefCntAutoPtr<ITexture> texture, RefCntAutoPtr<ITextureView> view);
 	Texture2D(RefCntAutoPtr<ITexture> texure);
-	Texture2D(Application* app,int w, int h, bool alpha,const char* buf);
-	Texture2D(RenderTarget2D* target);
-	Texture2D(RenderTargetCube* cube, int face);
+	//Texture2D(Application* app,int w, int h, bool alpha,const char* buf);
+	//Texture2D(RenderTarget2D* target);
+	//Texture2D(RenderTargetCube* cube, int face);
+
 	void Free();
 	int GetWidth() {
 		return mWidth;
