@@ -29,6 +29,7 @@
     <ClInclude Include="NodeCamera.h" />
     <ClInclude Include="NodeEntity.h" />
     <ClInclude Include="NodeLight.h" />
+    <ClInclude Include="RayPicker.h" />
     <ClInclude Include="RenderTargetCube.h" />
     <ClInclude Include="SceneGraph.h" />
     <ClInclude Include="SmartDraw.h" />
@@ -48,6 +49,7 @@
     <ClCompile Include="NodeCamera.cpp" />
     <ClCompile Include="NodeEntity.cpp" />
     <ClCompile Include="NodeLight.cpp" />
+    <ClCompile Include="RayPicker.cpp" />
     <ClCompile Include="RenderTargetCube.cpp" />
     <ClCompile Include="SceneGraph.cpp" />
     <ClCompile Include="SmartDraw.cpp" />

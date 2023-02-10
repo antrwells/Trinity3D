@@ -7,6 +7,13 @@
 #include "SmartDraw.h"
 
 class NodeCamera;
+class NodeEntity;
+
+enum GizmoMode {
+
+	Translate,Rotate,Scale
+
+};
 
 class SceneViewport : public QDirect3D12Widget
 {
@@ -19,9 +26,21 @@ signals:
 public:
 	SceneViewport(QWidget *parent = nullptr);
 	~SceneViewport();
+	void SetMode(int mode)
+	{
+		mGizMode = (GizmoMode)mode;
+		if (mode == 0) {
+			mCurrentGizmo = mTranslateGizmo;
+		}
+		else if (mode == 1)
+		{
+			mCurrentGizmo = mRotateGizmo;
+		}
+	}
 
 protected:
 
+	void resizeEvent(QResizeEvent* event) override;
 	void mouseMoveEvent(QMouseEvent* event) override;
 	void mousePressEvent(QMouseEvent* event) override;
 	bool eventFilter(QObject* obj, QEvent* event) override;
@@ -109,6 +128,10 @@ private:
 	float mCamMoveX = 0;
 	float mCamMoveY = 0;
 	float mSpeedMod = 1.0f;
-	
+	NodeEntity* mTranslateGizmo;
+	NodeEntity* mRotateGizmo;
+	NodeEntity* mScaleGizmo;
+	NodeEntity* mCurrentGizmo;
+	GizmoMode mGizMode = GizmoMode::Translate;
 };
 

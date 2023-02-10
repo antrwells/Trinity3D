@@ -9,7 +9,7 @@ struct toolBar_Button {
 	QImage image;
 	int type = 0;
 	int x;
-
+	std::function<void()> act = NULL;
 };
 
 class ToolBarWidget : public QWidget
@@ -20,7 +20,7 @@ public:
 	ToolBarWidget(QWidget *parent = nullptr);
 	~ToolBarWidget();
 	void AddButton(std::string name);
-	void AddImageButton(QImage image)
+	void AddImageButton(QImage image, std::function<void()> act)
 	{
 
 		toolBar_Button* but = new toolBar_Button;
@@ -30,6 +30,7 @@ public:
 		
 		but->type = 1;
 		but->x = next_x;
+		but->act = act;
 		next_x += 56;
 		mButtons.push_back(but);
 

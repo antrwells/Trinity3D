@@ -17,7 +17,7 @@ constexpr int FPS_LIMIT    = 144.0f;
 constexpr int MS_PER_FRAME = (int)((1.0f / FPS_LIMIT) * 1000.0f);
 
 QDirect3D12Widget::QDirect3D12Widget(QWidget * parent)
-    : CDockWidget("DirectX12 Viewport",parent)
+    : CDockWidget("Viewport",parent)
     , m_iCurrFrameIndex(0)
     , m_pDevice(Q_NULLPTR)
     , m_pFactory(Q_NULLPTR)
@@ -57,6 +57,13 @@ QDirect3D12Widget::QDirect3D12Widget(QWidget * parent)
 }
 
 QDirect3D12Widget::~QDirect3D12Widget() {}
+
+
+void QDirect3D12Widget::ClearDepth() {
+
+    m_App->ClearDepth();
+
+}
 
 void QDirect3D12Widget::release()
 {

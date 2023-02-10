@@ -34,8 +34,17 @@ TrinityIDE::TrinityIDE(QWidget *parent)
     QImage moveImg("data/ui/moveIcon2.png");
     QImage rotImg("data/ui/rotateIcon.png");
 
-    w_Toolbar->AddImageButton(moveImg);
-    w_Toolbar->AddImageButton(rotImg);
+    auto move_act = [&]()
+    {
+        w_DockArea->SetViewportMode(0);
+    };
+
+    auto rotate_act = [&]() {
+        w_DockArea->SetViewportMode(1);
+    };
+
+    w_Toolbar->AddImageButton(moveImg,move_act);
+    w_Toolbar->AddImageButton(rotImg, rotate_act);
 
 
     w_DockArea = new DockAreaWidget(this);
@@ -79,7 +88,8 @@ void TrinityIDE::ViewportReady() {
 void TrinityIDE::resizeEvent(QResizeEvent* event) {
 
     w_Toolbar->resize(width(), 60);
-    w_DockArea->setGeometry(0, 26+60, width(), height() - 86);
+    //w_DockArea->setGeometry(0, 26+60, width(), height() - 86);
+    w_DockArea->resize(width(), height() - 86);
 
     //m_DockManager->setGeometry(0, 60, width(), height() - 60);
 

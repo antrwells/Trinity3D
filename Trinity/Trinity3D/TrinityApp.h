@@ -82,7 +82,7 @@ using namespace Diligent;
             int GetHeight() {
                 return m_Height;
             }
-
+            void ClearDepth();
             static TrinityApp* s_pThis;
         private:
 

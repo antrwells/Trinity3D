@@ -6,7 +6,7 @@
 QSceneGraph::QSceneGraph(QWidget *parent)
 	: CDockWidget("Scene Graph",parent)
 {
-	ui.setupUi(this);
+//	ui.setupUi(this);
 
 	QPalette myPal;
 

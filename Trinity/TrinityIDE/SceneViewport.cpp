@@ -2,6 +2,8 @@
 #include "TrinityGlobal.h"
 #include "SceneGraph.h"
 #include "Node3D.h"
+#include "NodeEntity.h"
+#include "RayPicker.h"
 #include "Importer.h"
 
 SceneViewport::SceneViewport(QWidget *parent)
@@ -34,8 +36,11 @@ void SceneViewport::LoadResources() {
 	auto imp = new Importer;
 
 	auto root = imp->ImportEntity("test/test2.fbx");
-
+	auto r2 = imp->ImportEntity("test/test2.fbx");
 	auto l1 = new NodeLight(true);
+
+	r2->SetPosition(float3(5, 0, 0));
+	root->SetPosition(float3(-5, 0, 0));
 
 	l1->SetPosition(float3(10, 5, -20));
 	l1->SetRange(250);
@@ -43,6 +48,8 @@ void SceneViewport::LoadResources() {
 
 	g1->AddNode(root);
 	g1->AddLight(l1);
+	g1->AddNode(r2);
+
 
 	auto cam = g1->GetCamera();
 
@@ -68,6 +75,18 @@ void SceneViewport::LoadResources() {
 		n1->AddNode(n3);
 	}
 
+	mTranslateGizmo =imp->ImportEntity("edit/gizmo/translate1.fbx");
+	mRotateGizmo = imp->ImportEntity("edit/gizmo/rotate1.fbx");
+	mCurrentGizmo = mTranslateGizmo;
+	auto red_tex = new Texture2D("edit/gizmo/red.png");
+	auto blue_tex = new Texture2D("edit/gizmo/blue.png");
+	auto green_tex = new Texture2D("edit/gizmo/green.png");
+	mTranslateGizmo->GetMesh(0)->GetMaterial()->SetColorMap(blue_tex);
+	mTranslateGizmo->GetMesh(1)->GetMaterial()->SetColorMap(red_tex);
+	mTranslateGizmo->GetMesh(2)->GetMaterial()->SetColorMap(green_tex);
+	mRotateGizmo->GetMesh(0)->GetMaterial()->SetColorMap(green_tex);
+	mRotateGizmo->GetMesh(1)->GetMaterial()->SetColorMap(blue_tex);
+	mRotateGizmo->GetMesh(2)->GetMaterial()->SetColorMap(red_tex);
 
 }
 
@@ -80,6 +99,15 @@ void SceneViewport::RenderScene() {
 	auto g1 = TrinityGlobal::CurrentScene;
 	g1->RenderShadowMaps();
 	g1->Render();
+
+	ClearDepth();
+
+	if (TrinityGlobal::ActiveNode != nullptr) {
+		mCurrentGizmo->SetPosition(TrinityGlobal::ActiveNode->GetPosition());
+
+		g1->RenderNodeBasic(mCurrentGizmo);
+	}
+
 
 	mEditCam->Move(float3(mCamMoveX*mSpeedMod, 0, mCamMoveY*mSpeedMod));
 
@@ -129,6 +157,30 @@ void SceneViewport::mousePressEvent(QMouseEvent* event) {
 			mRotateLock = false;
 		}
 	}
+	if (event->button() == Qt::LeftButton) {
+
+		if (event->type() == QEvent::MouseButtonPress)
+		{
+
+			auto scene = TrinityGlobal::CurrentScene;
+			auto res = scene->mRayPick->MousePick(mLastX, mLastY, width(), height(),scene->GetCamera());
+
+			if (res.hit) {
+
+				TrinityGlobal::ActiveNode = res.hit_node;
+				std::string name = res.hit_node->GetName();
+
+				std::string log = "Active Node:" + name;
+				qDebug(log.c_str());
+				
+
+			}
+
+
+
+		}
+
+	}
 }
 
 bool SceneViewport::eventFilter(QObject* obj, QEvent* event)
@@ -150,4 +202,14 @@ bool SceneViewport::eventFilter(QObject* obj, QEvent* event)
 		}
 	}
 	return QWidget::eventFilter(obj, event);
+}
+
+void SceneViewport::resizeEvent(QResizeEvent* event) {
+
+	int aa = 5;
+	if (TrinityGlobal::CurrentScene != nullptr) {
+		auto cam = TrinityGlobal::CurrentScene->GetCamera();
+		cam->SetViewport(0, 0, width(), height());
+		TrinityApp::GetApp()->Resize(width(), height());
+	}
 }

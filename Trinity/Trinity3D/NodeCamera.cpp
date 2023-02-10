@@ -74,7 +74,7 @@
 			//***
 
 			mProjectionMatrix = float4x4::Projection(Maths::Deg2Rad(mFOV), (float)(w) / (float)(h), mMinZ, mMaxZ, false);
-
+		
 
 			//float nv = Kinetic::Maths::Deg2Rad(mFOV);
 			//mProjectionMatrix = glm::perspective<float>(nv, (float)w / (float)h, mMinZ, mMaxZ);

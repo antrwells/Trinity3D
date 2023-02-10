@@ -89,5 +89,10 @@ void ToolBarWidget::mousePressEvent(QMouseEvent* event) {
 
 	if (event->button() == Qt::LeftButton)
 	{
+
+		if (mCurrentButton != nullptr) {
+			mCurrentButton->act();
+		}
+
 	}
 }

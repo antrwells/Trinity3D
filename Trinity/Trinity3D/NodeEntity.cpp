@@ -21,7 +21,8 @@
 		void NodeEntity::AddMesh(Mesh3D* mesh) {
 
 
-			//mesh->SetOwner(this);
+			mesh->SetOwner(this);
+
 			mMeshes.push_back(mesh);
 
 		}
@@ -196,13 +197,15 @@
 
 		void NodeEntity::SetPosition(float3 position) {
 
-	
+			Node3D::SetPosition(position);
+
+			//mPosition = position;
 
 		}
 
 		void NodeEntity::SetRotation(float pitch, float yaw, float roll) {
 
-
+			Node3D::SetRotation(pitch, yaw, roll);
 		}
 
 		void NodeEntity::SetPhysicsTris() {

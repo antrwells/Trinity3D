@@ -11,6 +11,10 @@ class DockAreaWidget : public QWidget
 public:
 	DockAreaWidget(QWidget *parent = nullptr);
 	~DockAreaWidget();
+	void SetViewportMode(int mode)
+	{
+		w_SceneView->SetMode(mode);
+	};
 
 protected:
 	void resizeEvent(QResizeEvent* event) override;

@@ -6,10 +6,34 @@
 #include "NodeLight.h"
 #include "NodeEntity.h"
 #include "TrinityApp.h"
+#include "RayPicker.h"
 
 #define HIT_GROUP_STRIDE  2
 
 
+void SceneGraph::RenderNodeBasic(NodeEntity* entity)
+{
+
+	if (entity->GetEnabled() == false) return;
+
+	//int a = 5;
+	//mRenderer->RenderSimple(entity, mCam);
+	bool first = true;
+	if (entity->GetMeshes().size() > 0) {
+
+
+		mRenderer->RenderSimple(entity, mCam);
+		first = false;
+
+	}
+
+	for (int i = 0; i < entity->ChildrenCount(); i++) {
+
+		RenderNodeBasic((NodeEntity*)entity->GetChild(i));
+
+	}
+
+}
 
 
 		void SceneGraph::ClearNodes() {
@@ -95,6 +119,7 @@
 			mShadowRenderer = new CubeRenderer(this, nullptr);
 			mRootNode->SetName("Scene Root");
 			mThis = this;
+			mRayPick = new RayPicker(this);
 		//	mRayPick = new RayPicker(this);
 		//	SceneGlobal::mCurrentScene = this;
 			mCams.push_back(mCam);

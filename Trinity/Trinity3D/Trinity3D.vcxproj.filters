@@ -40,6 +40,9 @@
     <Filter Include="Render">
       <UniqueIdentifier>{36fab7e3-b235-4924-9547-7d08c03d3730}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Picking">
+      <UniqueIdentifier>{fdd19ab1-2631-4d85-b2bd-e66b4e0fff0c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TrinityApp.h">
@@ -96,6 +99,9 @@
     <ClInclude Include="MeshRenderer.h">
       <Filter>Render</Filter>
     </ClInclude>
+    <ClInclude Include="RayPicker.h">
+      <Filter>Picking</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TrinityApp.cpp">
@@ -148,6 +154,9 @@
     </ClCompile>
     <ClCompile Include="MeshRenderer.cpp">
       <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="RayPicker.cpp">
+      <Filter>Picking</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

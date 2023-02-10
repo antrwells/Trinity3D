@@ -28,6 +28,9 @@ public:
     QDirect3D12Widget(QWidget * parent);
     ~QDirect3D12Widget();
 
+
+    void ClearDepth();
+    void ClearColor();
     void release();
     void resetEnvironment();
 

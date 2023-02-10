@@ -8,6 +8,8 @@
 
 
 
+
+
 		/*
 		struct TexItem {
 
@@ -276,7 +278,7 @@
 			//std::vector<NodeBillboard*> mParticles;
 
 			NodeCamera* mCam;
-
+			//RayPicker* mRayPick = nullptr;
 			MeshRenderer* mRenderer;
 			CubeRenderer* mShadowRenderer;
 		//	RefCntAutoPtr<ITopLevelAS> mTLAS;

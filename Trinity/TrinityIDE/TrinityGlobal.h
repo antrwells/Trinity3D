@@ -9,6 +9,6 @@ class TrinityGlobal
 public:
 
 	static SceneGraph* CurrentScene;
-
+	static Node3D* ActiveNode;
 };
 

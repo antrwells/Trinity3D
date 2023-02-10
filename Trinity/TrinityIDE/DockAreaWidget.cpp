@@ -1,4 +1,5 @@
 #include "DockAreaWidget.h"
+#include "TrinityGlobal.h"
 
 DockAreaWidget::DockAreaWidget(QWidget *parent)
 	: QWidget(parent)
@@ -25,4 +26,8 @@ void DockAreaWidget::resizeEvent(QResizeEvent* event) {
 
 	m_DockManager->setGeometry(0, 0, width(), height());
 
+	if (TrinityGlobal::CurrentScene != nullptr) {
+		auto cam = TrinityGlobal::CurrentScene->GetCamera();
+		cam->SetViewport(0, 0, w_SceneView->width(), w_SceneView->height());
+	}
 }

@@ -4,7 +4,7 @@
 RayPicker::RayPicker(SceneGraph* graph) {
 
 	mGraph = graph;
-	mIgnore = false;
+	mIgnore = nullptr;;
 
 }
 
