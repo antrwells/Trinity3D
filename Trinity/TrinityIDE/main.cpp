@@ -8,11 +8,11 @@ int main(int argc, char *argv[])
     QFile file("c:/trinity/themes/spybot.qss");
     file.open(QFile::ReadOnly);
     QString styleSheet = QLatin1String(file.readAll());
-    qApp->setStyleSheet(styleSheet);
+    //qApp->setStyleSheet(styleSheet);
    
     TrinityIDE w;
 
-    w.setStyleSheet(styleSheet);
+    //w.setStyleSheet(styleSheet);
    // qApp->setStyleSheet(styleSheet);
 
     w.show();

@@ -13,7 +13,7 @@
 
 using Microsoft::WRL::ComPtr;
 
-constexpr int FPS_LIMIT    = 60.0f;
+constexpr int FPS_LIMIT    = 144.0f;
 constexpr int MS_PER_FRAME = (int)((1.0f / FPS_LIMIT) * 1000.0f);
 
 QDirect3D12Widget::QDirect3D12Widget(QWidget * parent)

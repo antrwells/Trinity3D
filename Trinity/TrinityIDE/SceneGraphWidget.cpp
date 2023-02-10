@@ -9,6 +9,8 @@ SceneGraphWidget::SceneGraphWidget(QWidget* parent)
 {
 	setMouseTracking(true);
 	//ui.setupUi(this);
+	setAttribute(Qt::WA_PaintOnScreen, false);
+
 }
 
 
@@ -77,7 +79,10 @@ void SceneGraphWidget::DrawNode(Node3D* node, int& dx, int& dy, QPainter& p)
 void SceneGraphWidget::paintEvent(QPaintEvent* event) {
 
 	QPainter p(this);
-	p.setRenderHint(QPainter::Antialiasing);
+	p.setRenderHint(QPainter::Antialiasing, false);
+	p.setRenderHint(QPainter::TextAntialiasing, false);
+	p.setRenderHint(QPainter::VerticalSubpixelPositioning,false);
+
 	QPainterPath path;
 	path.addRect(QRectF(0, 0, width(), height()));
 	p.setPen(QPen(QColor(255, 255, 255), 8));

@@ -9,6 +9,12 @@ SceneViewport::SceneViewport(QWidget *parent)
 {
 	ui.setupUi(this);
 
+	setMouseTracking(true);
+
+	installEventFilter(this);
+	setAttribute(Qt::WA_PaintOnScreen, false);
+
+	
 	connect(this, &QDirect3D12Widget::LoadResources, this, &SceneViewport::LoadResources);
 	connect(this, &QDirect3D12Widget::RenderScene, this, &SceneViewport::RenderScene);
 }
@@ -31,7 +37,7 @@ void SceneViewport::LoadResources() {
 
 	auto l1 = new NodeLight(true);
 
-	l1->SetPosition(float3(0, 5, -20));
+	l1->SetPosition(float3(10, 5, -20));
 	l1->SetRange(250);
 
 
@@ -39,6 +45,10 @@ void SceneViewport::LoadResources() {
 	g1->AddLight(l1);
 
 	auto cam = g1->GetCamera();
+
+	mEditCam = cam;
+
+	mMoveX = mMoveY = mMoveZ = 0;
 
 	cam->SetPosition(float3(0, 5, -20));
 
@@ -71,7 +81,73 @@ void SceneViewport::RenderScene() {
 	g1->RenderShadowMaps();
 	g1->Render();
 
+	mEditCam->Move(float3(mCamMoveX*mSpeedMod, 0, mCamMoveY*mSpeedMod));
 
 
 }
 
+void SceneViewport::mouseMoveEvent(QMouseEvent* event)
+{
+	
+	int x, y;
+
+	x = event->x();
+	y = event->y();
+
+	if (first_Move) {
+		mLastX = x;
+		mLastY = y;
+		first_Move = false;
+	}
+
+	mMoveX = x - mLastX;
+	mMoveY = y - mLastY;
+	mLastX = x;
+	mLastY = y;
+
+
+	if (mRotateLock) {
+		mCamPitch -= mMoveY;
+		mCamYaw -= mMoveX;
+
+		mEditCam->SetRotation(mCamPitch, mCamYaw, 0);
+
+		update();
+	}
+
+}
+
+void SceneViewport::mousePressEvent(QMouseEvent* event) {
+
+	if (event->button() == Qt::RightButton)
+	{
+		if (event->type() == QEvent::MouseButtonPress)
+		{
+			mRotateLock = true;
+		}
+		else {
+			mRotateLock = false;
+		}
+	}
+}
+
+bool SceneViewport::eventFilter(QObject* obj, QEvent* event)
+{
+	if (event->type() == QEvent::MouseButtonRelease)
+	{
+		QMouseEvent* mouseEvent = static_cast<QMouseEvent*>(event);
+		if (mouseEvent->button() == Qt::RightButton)
+		{
+			// left mouse button was released
+			mRotateLock =false;
+		}
+		else if (mouseEvent->button() == Qt::RightButton)
+		{
+
+			//mRotateLock = fals
+				//e;
+			// right mouse button was released
+		}
+	}
+	return QWidget::eventFilter(obj, event);
+}
