@@ -94,15 +94,19 @@
   <ItemGroup>
     <QtRcc Include="Resource.qrc" />
     <QtRcc Include="TrinityIDE.qrc" />
+    <QtUic Include="DockAreaWidget.ui" />
     <QtUic Include="QSceneGraph.ui" />
     <QtUic Include="SceneGraphWidget.ui" />
     <QtUic Include="SceneViewport.ui" />
+    <QtUic Include="ToolBarWidget.ui" />
     <QtUic Include="TrinityIDE.ui" />
     <QtMoc Include="TrinityIDE.h" />
+    <ClCompile Include="DockAreaWidget.cpp" />
     <ClCompile Include="QDirect3D12Widget.cpp" />
     <ClCompile Include="QSceneGraph.cpp" />
     <ClCompile Include="SceneGraphWidget.cpp" />
     <ClCompile Include="SceneViewport.cpp" />
+    <ClCompile Include="ToolBarWidget.cpp" />
     <ClCompile Include="TrinityGlobal.cpp" />
     <ClCompile Include="TrinityIDE.cpp" />
     <ClCompile Include="main.cpp" />
@@ -120,6 +124,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="d3dx12.h" />
+    <QtMoc Include="ToolBarWidget.h" />
+    <QtMoc Include="DockAreaWidget.h" />
     <ClInclude Include="TrinityGlobal.h" />
     <QtMoc Include="QDirect3D12Widget.h" />
   </ItemGroup>

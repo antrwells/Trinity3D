@@ -64,6 +64,12 @@
     <ClCompile Include="TrinityGlobal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ToolBarWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DockAreaWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QSceneGraph.h">
@@ -78,6 +84,12 @@
     <QtMoc Include="QDirect3D12Widget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="ToolBarWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="DockAreaWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="QSceneGraph.ui">
@@ -87,6 +99,12 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="SceneViewport.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="ToolBarWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="DockAreaWidget.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

@@ -3,9 +3,12 @@
 #include <QtWidgets/QMainWindow>
 #include "ui_TrinityIDE.h"
 #include "DockManager.h"
-#include "QSceneGraph.h"
-#include "SceneViewport.h"
 
+#include "ToolBarWidget.h"
+#include "DockAreaWidget.h"
+#include <QMenuBar>
+#include <QMenu>
+#include <QAction>
 class TrinityIDE : public QMainWindow
 {
     Q_OBJECT
@@ -17,12 +20,19 @@ public:
 private slots:
     void ViewportReady();
 
-private:
+protected:
+    void resizeEvent(QResizeEvent* event) override;
 
-    ads::CDockManager* m_DockManager;
-    
-    QSceneGraph* w_SceneGraph;
-    SceneViewport* w_SceneView;
+private:
+    QMenuBar* menu;
+    QMenu* fileMenu;
+    QAction* newProjAction;
+    QAction* openProjAction;
+    QAction* saveProjAction;
+    QAction* exitAction;
+  
+    ToolBarWidget* w_Toolbar;
+    DockAreaWidget* w_DockArea;
 
     Ui::TrinityIDEClass ui;
 };

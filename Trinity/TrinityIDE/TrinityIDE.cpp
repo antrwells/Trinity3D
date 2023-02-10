@@ -3,6 +3,7 @@
 #include "qlabel.h"
 #include "TrinityGlobal.h"
 #include "SceneGraph.h"
+#include "DockAreaWidget.h"
 
 
 TrinityIDE::TrinityIDE(QWidget *parent)
@@ -10,20 +11,38 @@ TrinityIDE::TrinityIDE(QWidget *parent)
 {
     //ui.setupUi(this);
     resize(1200, 800);
+    menu = menuBar();
+    fileMenu = menu->addMenu("Project");
 
-    m_DockManager = new ads::CDockManager(this);
+    newProjAction = new QAction("New", this);
+    openProjAction = new QAction("Open", this);
+    saveProjAction = new QAction("Save", this);
+    exitAction = new QAction("Exit", this);
 
+    fileMenu->addAction(newProjAction);
+    fileMenu->addAction(openProjAction);
+    fileMenu->addAction(saveProjAction);
+    fileMenu->addSeparator();
+    fileMenu->addAction(exitAction);
+   
     //QPushButton* test = new QPushButton("Test!", this);
     //test->setGeometry(20, 20, 200, 30);
 
-   
+    w_Toolbar = new ToolBarWidget(this);
+    w_Toolbar->setGeometry(QRect(0, 26, width(), 60));
 
-    w_SceneView = new SceneViewport(NULL);
- //   connect(this, &SceneViewport::ViewportReady, this, &TrinityIDE::ViewportReady);
-    m_DockManager->addDockWidget(ads::CenterDockWidgetArea, w_SceneView);
+    QImage moveImg("data/ui/moveIcon2.png");
+    QImage rotImg("data/ui/rotateIcon.png");
 
-    w_SceneGraph = new QSceneGraph(NULL);
-    m_DockManager->addDockWidget(ads::LeftDockWidgetArea, w_SceneGraph);
+    w_Toolbar->AddImageButton(moveImg);
+    w_Toolbar->AddImageButton(rotImg);
+
+
+    w_DockArea = new DockAreaWidget(this);
+    w_DockArea->setGeometry(0, 26+60, width(), height() - 56);
+
+    return;
+
 
     //connect(this, &SceneViewport::ViewportReady, this, &TrinityIDE::ViewportReady)
 
@@ -54,6 +73,18 @@ TrinityIDE::TrinityIDE(QWidget *parent)
 void TrinityIDE::ViewportReady() {
 
     int aa = 5;
+
+}
+
+void TrinityIDE::resizeEvent(QResizeEvent* event) {
+
+    w_Toolbar->resize(width(), 60);
+    w_DockArea->setGeometry(0, 26+60, width(), height() - 86);
+
+    //m_DockManager->setGeometry(0, 60, width(), height() - 60);
+
+    // Handle the resize event here
+    QMainWindow::resizeEvent(event);
 
 }
 
