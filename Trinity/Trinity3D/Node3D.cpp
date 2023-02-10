@@ -10,9 +10,6 @@
 //#include "VarTypes.h"
 
 
-namespace Trinity {
-
-	namespace Scene{
 
 bool Node3D::mSysInit = false;
 
@@ -461,6 +458,3 @@ void Node3D::SetPlaying(bool play) {
 	}
 
 
-
-	}
-}

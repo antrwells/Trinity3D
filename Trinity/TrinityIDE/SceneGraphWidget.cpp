@@ -13,7 +13,7 @@ SceneGraphWidget::SceneGraphWidget(QWidget* parent)
 
 
 
-void SceneGraphWidget::DrawNode(Trinity::Scene::Node3D* node, int& dx, int& dy, QPainter& p)
+void SceneGraphWidget::DrawNode(Node3D* node, int& dx, int& dy, QPainter& p)
 {
 
 	auto name = node->GetName();
@@ -91,6 +91,8 @@ void SceneGraphWidget::paintEvent(QPaintEvent* event) {
 	int dx, dy;
 	dx = 10;
 	dy = 20;
+
+	dy = dy - mScrollLink->value();
 	DrawNode(scene->GetRoot(), dx, dy, p);
 
 	/*
@@ -108,7 +110,7 @@ void SceneGraphWidget::paintEvent(QPaintEvent* event) {
 	*/
 }
 
-void SceneGraphWidget::CheckNode(Trinity::Scene::Node3D* node, int& dx, int& dy, int mx, int my) {
+void SceneGraphWidget::CheckNode(Node3D* node, int& dx, int& dy, int mx, int my) {
 
 
 	if (mx >= 2 && my >= (dy - 14) && mx < ((width() - 4)) && my <= ((dy - 14) + 25))
@@ -151,8 +153,14 @@ void SceneGraphWidget::mousePressEvent(QMouseEvent* event) {
 			update();
 		}
 
+		update();
 	}
-
+	int max = 20;
+	auto scene = TrinityGlobal::CurrentScene;
+	GetMaxSize(scene->GetRoot(), max);
+	int bb = 0;
+	mScrollLink->setMaximum(max);
+	mScrollLink->setPageStep(height());
 }
 
 void SceneGraphWidget::mouseMoveEvent(QMouseEvent* event)
@@ -168,7 +176,16 @@ void SceneGraphWidget::mouseMoveEvent(QMouseEvent* event)
 	int dx, dy;
 	dx = 10;
 	dy = 20;
+	dy = dy - mScrollLink->value();
 	CheckNode(scene->GetRoot(), dx,dy, x, y);
+	int max = 20;
+	GetMaxSize(scene->GetRoot(), max);
+	int bb = 0;
+	mScrollLink->setMaximum(max);
+	mScrollLink->setPageStep(height());
+	
+
+
 	// Perform actions based on the mouse position
 	// ...
 
@@ -177,6 +194,24 @@ void SceneGraphWidget::mouseMoveEvent(QMouseEvent* event)
 
 	update();
 
+}
+
+void SceneGraphWidget::GetMaxSize(Node3D* node, int& my)
+{
+
+	if (node->mNodeOpen)
+	{
+
+		//		p.drawRect(QRect(dx + 6, dy - 3, 4, 4));
+		auto cc = node->ChildrenCount();
+		for (int i = 0; i < cc; i++) {
+			my = my + 25;
+			GetMaxSize(node->GetChild(i), my);
+		}
+	}
+	else {
+		my = my + 25;
+	}
 }
 
 SceneGraphWidget::~SceneGraphWidget()

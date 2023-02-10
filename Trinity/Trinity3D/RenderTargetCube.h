@@ -38,36 +38,38 @@
 #include "Common/interface/BasicMath.hpp"
 
 using namespace Diligent;
-class RenderTargetCube
-{
-public:
 
-	RenderTargetCube(int width, int height);
-	void Bind(int face);
-	void Release(int face);
-	RefCntAutoPtr<ITextureView> GetColorView() { return m_pColorRTV; }
-	RefCntAutoPtr<ITextureView> GetColorViewFace(int face) { return FaceView[face]; }
-	RefCntAutoPtr<ITextureView> GetDepthView() { return m_pDepthDSV; }
-	RefCntAutoPtr<ITexture> GetColorTexture() { return pRTColor; }
 
-	static RenderTargetCube* BoundTarget;
-	int GetWidth()
-	{
-		return mWidth;
-	}
-	int GetHeight() {
-		return mHeight;
-	}
+		class RenderTargetCube
+		{
+		public:
 
-private:
-	float4 mClearColor;
-	RefCntAutoPtr<ITexture> pRTColor;
-	RefCntAutoPtr<ITexture> pRTDepth;
-	RefCntAutoPtr<ITextureView> m_pColorRTV;
-	RefCntAutoPtr<ITextureView> m_pDepthDSV;
-	RefCntAutoPtr<ITextureView> FaceView[6];
-	RefCntAutoPtr<ITextureView> FaceDepthView[6];
-	int mWidth, mHeight;
+			RenderTargetCube(int width, int height);
+			void Bind(int face);
+			void Release(int face);
+			RefCntAutoPtr<ITextureView> GetColorView() { return m_pColorRTV; }
+			RefCntAutoPtr<ITextureView> GetColorViewFace(int face) { return FaceView[face]; }
+			RefCntAutoPtr<ITextureView> GetDepthView() { return m_pDepthDSV; }
+			RefCntAutoPtr<ITexture> GetColorTexture() { return pRTColor; }
 
-};
+			static RenderTargetCube* BoundTarget;
+			int GetWidth()
+			{
+				return mWidth;
+			}
+			int GetHeight() {
+				return mHeight;
+			}
+
+		private:
+			float4 mClearColor;
+			RefCntAutoPtr<ITexture> pRTColor;
+			RefCntAutoPtr<ITexture> pRTDepth;
+			RefCntAutoPtr<ITextureView> m_pColorRTV;
+			RefCntAutoPtr<ITextureView> m_pDepthDSV;
+			RefCntAutoPtr<ITextureView> FaceView[6];
+			RefCntAutoPtr<ITextureView> FaceDepthView[6];
+			int mWidth, mHeight;
+
+		};
 

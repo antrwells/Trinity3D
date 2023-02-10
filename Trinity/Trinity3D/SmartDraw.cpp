@@ -2,12 +2,9 @@
 #include "SmartDraw.h"
 
 
-using namespace Trinity::Texture;
 
-namespace Trinity {
-    namespace Draw {
 
-        SmartDraw::SmartDraw(Trinity::App::TrinityApp* app) {
+        SmartDraw::SmartDraw(TrinityApp* app) {
 
 
             gApp = app;
@@ -598,6 +595,3 @@ namespace Trinity {
 
             }
         }
-
-    }
-}

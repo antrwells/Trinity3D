@@ -25,8 +25,8 @@ private slots:
 
 private:
 	Ui::SceneViewportClass ui;
-	Trinity::Texture::Texture2D* mTex1;
-	Trinity::Draw::SmartDraw* mDraw;
+	Texture2D* mTex1;
+	SmartDraw* mDraw;
 
 	
 };

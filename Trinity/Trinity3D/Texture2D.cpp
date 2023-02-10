@@ -2,9 +2,7 @@
 #include "Texture2D.h"
 #include "TrinityApp.h"
 
-namespace Trinity {
 
-    namespace Texture {
 
 
         Texture2D::Texture2D(const char* path, bool alpha) {
@@ -24,7 +22,7 @@ namespace Trinity {
 
             }
 
-            auto m_pDevice = Trinity::App::TrinityApp::GetDev();
+            auto m_pDevice = TrinityApp::GetDev();
             TextureLoadInfo loadInfo;
             loadInfo.IsSRGB = false;
             if (alpha) {
@@ -118,6 +116,3 @@ namespace Trinity {
 
         std::vector<Texture2D*> Texture2D::mCache;
 
-    }
-
-}

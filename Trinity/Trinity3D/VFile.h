@@ -2,6 +2,9 @@
 #include<iostream>
 #include<ostream>
 #include<fstream>
+#ifndef PLATFORM_WIN32
+#    define PLATFORM_WIN32 1
+#endif
 #include "Common/interface/BasicMath.hpp"
 
 

@@ -1,21 +1,28 @@
 #pragma once
 #include "RenderTargetCube.h"
-#include "SceneGraph.h"
-class CubeRenderer
-{
-public:
+//#include "SceneGraph.h"
 
-	CubeRenderer(SceneGraph* graph, RenderTargetCube* cube);
-	void Render(float3 position);
-	void RenderDepth(float3 position,float maxZ);
-	void SetRenderTargetCube(RenderTargetCube* cube);
-	TextureCube* GetTextureCube();
+#include "TextureCube.h"
+class SceneGraph;
 
-private:
+		class CubeRenderer
+		{
+		public:
 
-	TextureCube* mTexCube = nullptr;
-	SceneGraph* mGraph;
-	RenderTargetCube* mRT;
+			CubeRenderer(SceneGraph* graph, RenderTargetCube* cube);
+			void Render(float3 position);
+			void RenderDepth(float3 position, float maxZ);
+			void SetRenderTargetCube(RenderTargetCube* cube);
+			TextureCube* GetTextureCube();
 
-};
+
+		private:
+
+			TextureCube* mTexCube = nullptr;
+			SceneGraph* mGraph
+				;
+			RenderTargetCube* mRT;
+
+
+		};
 

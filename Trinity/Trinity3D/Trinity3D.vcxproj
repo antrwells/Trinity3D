@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -19,22 +19,43 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CubeRenderer.h" />
+    <ClInclude Include="DataTypes.h" />
+    <ClInclude Include="Importer.h" />
+    <ClInclude Include="Material.h" />
+    <ClInclude Include="Mesh3D.h" />
+    <ClInclude Include="MeshRenderer.h" />
     <ClInclude Include="Node3D.h" />
     <ClInclude Include="NodeCamera.h" />
+    <ClInclude Include="NodeEntity.h" />
     <ClInclude Include="NodeLight.h" />
+    <ClInclude Include="RenderTargetCube.h" />
     <ClInclude Include="SceneGraph.h" />
     <ClInclude Include="SmartDraw.h" />
     <ClInclude Include="Texture2D.h" />
+    <ClInclude Include="TextureCube.h" />
     <ClInclude Include="TrinityApp.h" />
+    <ClInclude Include="VFile.h" />
+    <ClInclude Include="VString.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CubeRenderer.cpp" />
+    <ClCompile Include="Importer.cpp" />
+    <ClCompile Include="Material.cpp" />
+    <ClCompile Include="Mesh3D.cpp" />
+    <ClCompile Include="MeshRenderer.cpp" />
     <ClCompile Include="Node3D.cpp" />
     <ClCompile Include="NodeCamera.cpp" />
+    <ClCompile Include="NodeEntity.cpp" />
     <ClCompile Include="NodeLight.cpp" />
+    <ClCompile Include="RenderTargetCube.cpp" />
     <ClCompile Include="SceneGraph.cpp" />
     <ClCompile Include="SmartDraw.cpp" />
     <ClCompile Include="Texture2D.cpp" />
+    <ClCompile Include="TextureCube.cpp" />
     <ClCompile Include="TrinityApp.cpp" />
+    <ClCompile Include="VFile.cpp" />
+    <ClCompile Include="VString.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -120,19 +141,21 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\git\DiligentEngine\DiligentTools;C:\git\DiligentEngine\DiligentCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Trinity\Trinity3D\packages\AssimpCpp.5.0.1.6\build\native\include;C:\git\DiligentEngine\DiligentTools;C:\git\DiligentEngine\DiligentCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>Diligent-GraphicsEngineD3D12-static.lib;Diligent-ShaderTools.lib;Diligent-GraphicsAccessories.lib;Diligent-Common.lib;Diligent-Win32Platform.lib;Diligent-GraphicsEngine.lib;Diligent-GraphicsEngineD3DBase.lib;Diligent-GraphicsEngineNextGenBase.lib;DiligentTools.lib;Diligent-TextureLoader.lib;Diligent-BasicPlatform.lib;LibJpeg.lib;LibTiff.lib;libpng16_staticd.lib;ZLib.lib;DiligentCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Diligent-GraphicsEngineD3D12-static.lib;Diligent-ShaderTools.lib;Diligent-GraphicsAccessories.lib;Diligent-Common.lib;Diligent-Win32Platform.lib;Diligent-GraphicsEngine.lib;Diligent-GraphicsEngineD3DBase.lib;Diligent-GraphicsEngineNextGenBase.lib;DiligentTools.lib;Diligent-TextureLoader.lib;Diligent-BasicPlatform.lib;LibJpeg.lib;LibTiff.lib;libpng16_staticd.lib;ZLib.lib;assimp-vc142-mtd.lib;DiligentCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>C:\Trinity\DELibs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Trinity\Trinity3D\packages\AssimpCpp.5.0.1.6\build\native\lib\Debug;C:\Trinity\DELibs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

@@ -25,6 +25,21 @@
     <Filter Include="SceneGraph">
       <UniqueIdentifier>{ccc38013-9c65-46b5-8657-85b1d2f3230a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Import">
+      <UniqueIdentifier>{15a9966d-4bd2-40de-ba47-391df94eb191}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Material">
+      <UniqueIdentifier>{d45866cd-b9da-43c8-91b9-80f48ed0fb15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data">
+      <UniqueIdentifier>{f018dbb8-5cc1-4208-99c3-8759bcee639d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RenderTarget">
+      <UniqueIdentifier>{160ca582-ceb0-437b-b192-7cb28884fb05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Render">
+      <UniqueIdentifier>{36fab7e3-b235-4924-9547-7d08c03d3730}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TrinityApp.h">
@@ -48,6 +63,39 @@
     <ClInclude Include="NodeLight.h">
       <Filter>SceneGraph</Filter>
     </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Material</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeEntity.h">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh3D.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="DataTypes.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Importer.h">
+      <Filter>Import</Filter>
+    </ClInclude>
+    <ClInclude Include="VString.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VFile.h">
+      <Filter>Import</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureCube.h">
+      <Filter>Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderTargetCube.h">
+      <Filter>RenderTarget</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeRenderer.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshRenderer.h">
+      <Filter>Render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TrinityApp.cpp">
@@ -70,6 +118,36 @@
     </ClCompile>
     <ClCompile Include="NodeLight.cpp">
       <Filter>SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Material</Filter>
+    </ClCompile>
+    <ClCompile Include="NodeEntity.cpp">
+      <Filter>SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh3D.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Importer.cpp">
+      <Filter>Import</Filter>
+    </ClCompile>
+    <ClCompile Include="VString.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VFile.cpp">
+      <Filter>Import</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureCube.cpp">
+      <Filter>Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderTargetCube.cpp">
+      <Filter>RenderTarget</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeRenderer.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshRenderer.cpp">
+      <Filter>Render</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

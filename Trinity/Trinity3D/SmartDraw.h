@@ -26,8 +26,6 @@
 
 using namespace Diligent;
 
-namespace Trinity {
-	namespace Draw {
 
 		struct DrawInfo {
 
@@ -35,7 +33,7 @@ namespace Trinity {
 			float y[4];
 			float z = 0;
 			bool flip_uv = false;
-			Trinity::Texture::Texture2D* Tex = nullptr;
+			Texture2D* Tex = nullptr;
 			//Kinetic::Textures::Texture2D* Norm;
 			float r = 0, g = 0, b = 0, a = 0;
 
@@ -48,7 +46,7 @@ namespace Trinity {
 		struct DrawList {
 
 			std::vector<DrawInfo*> Draws;
-			Trinity::Texture::Texture2D* Tex = nullptr;
+			Texture2D* Tex = nullptr;
 			//Kinetic::Textures::Texture2D* Norm;
 
 
@@ -66,17 +64,17 @@ namespace Trinity {
 		{
 		public:
 
-			SmartDraw(App::TrinityApp* app);
+			SmartDraw(TrinityApp* app);
 			void CreateVertexBuffer(DrawList* list);
 			void CreateIndexBuffer(DrawList* list);
 
 			void Begin();
 			void DrawQuad(int x, int y, int w, int h, float r, float g, float b, float a);
-			void DrawTexture(int x, int y, int w, int h, Trinity::Texture::Texture2D* tex, float r, float g, float b, float a, bool flip_uv = false);
+			void DrawTexture(int x, int y, int w, int h, Texture2D* tex, float r, float g, float b, float a, bool flip_uv = false);
 			void End(RefCntAutoPtr<IPipelineState> pso, RefCntAutoPtr<IBuffer> consts, RefCntAutoPtr<IShaderResourceBinding> srb);
 			void End();
 			void End(float4x4 proj);
-			DrawList* GetDrawList(Trinity::Texture::Texture2D* tex) {
+			DrawList* GetDrawList(Texture2D* tex) {
 
 				for (int i = 0; i < Draws.size(); i++) {
 
@@ -101,7 +99,7 @@ namespace Trinity {
 
 
 		private:
-			App::TrinityApp* gApp;
+			TrinityApp* gApp;
 			std::vector<DrawList*> Draws;
 			float drawZ = 1.0f;
 			RefCntAutoPtr<IPipelineState>         m_pPSO;
@@ -116,6 +114,3 @@ namespace Trinity {
 			Uint32* indices;
 		};
 
-	}
-
-}

@@ -1,11 +1,11 @@
 #include "pch.h"
 #include "MeshRenderer.h"
-#include "Application.h"
+#include "TrinityApp.h"
 #include "Maths.h"
-#include "RenderTarget2D.h"
-#include "NodeActor.h"
-#include "Animator.h"
-#include "MeshLines.h"
+
+
+#include "TextureCube.h"
+
 
 struct ActorDepthConstants {
 
@@ -112,7 +112,8 @@ void MeshRenderer::CreateActorDepthGP() {
 
 
     GraphicsPipelineStateCreateInfo PSOCreateInfo;
-    Application* app = Application::GetApp();
+    TrinityApp* app = TrinityApp::GetApp();
+
 
     // Pipeline state name is used by the engine to report issues.
     // It is always a good idea to give objects descriptive names.
@@ -268,7 +269,7 @@ void MeshRenderer::CreateActorGP() {
 
 
     GraphicsPipelineStateCreateInfo PSOCreateInfo;
-    Application* app = Application::GetApp();
+    TrinityApp* app = TrinityApp::GetApp();
 
     // Pipeline state name is used by the engine to report issues.
     // It is always a good idea to give objects descriptive names.
@@ -524,7 +525,7 @@ void MeshRenderer::CreatePositionsGP() {
 
 
     GraphicsPipelineStateCreateInfo PSOCreateInfo;
-    Application* app = Application::GetApp();
+    TrinityApp* app = TrinityApp::GetApp();
 
     // Pipeline state name is used by the engine to report issues.
     // It is always a good idea to give objects descriptive names.
@@ -665,9 +666,9 @@ void MeshRenderer::CreatePositionsGP() {
 }
 
 
-void MeshRenderer::RenderPositions(NodeEntity* entity,NodeCamera* cam) {
+void MeshRenderer::RenderPositions(NodeEntity* entity, NodeCamera* cam) {
 
-    Application* gApp = Application::GetApp();
+    TrinityApp* gApp = TrinityApp::GetApp();
 
     auto m_pImmediateContext = gApp->GetContext();
 
@@ -766,7 +767,7 @@ void MeshRenderer::CreateNormalsGP() {
 
 
     GraphicsPipelineStateCreateInfo PSOCreateInfo;
-    Application* app = Application::GetApp();
+    TrinityApp* app = TrinityApp::GetApp();
 
     // Pipeline state name is used by the engine to report issues.
     // It is always a good idea to give objects descriptive names.
@@ -910,7 +911,7 @@ void MeshRenderer::CreateNormalsGP() {
 
 void MeshRenderer::RenderNormals(NodeEntity* entity, NodeCamera* cam)
 {
-    Application* gApp = Application::GetApp();
+    TrinityApp* gApp = TrinityApp::GetApp();
 
     auto m_pImmediateContext = gApp->GetContext();
 
@@ -1005,7 +1006,7 @@ void MeshRenderer::CreateSimpleGP() {
     BlendState.RenderTargets[0].DestBlend = BLEND_FACTOR_INV_SRC_ALPHA;
 
     GraphicsPipelineStateCreateInfo PSOCreateInfo;
-    Application* app = Application::GetApp();
+    TrinityApp* app = TrinityApp::GetApp();
 
     // Pipeline state name is used by the engine to report issues.
     // It is always a good idea to give objects descriptive names.
@@ -1147,7 +1148,7 @@ void MeshRenderer::CreateDepthGP() {
 
 
     GraphicsPipelineStateCreateInfo PSOCreateInfo;
-    Application* app = Application::GetApp();
+    TrinityApp* app = TrinityApp::GetApp();
 
     // Pipeline state name is used by the engine to report issues.
     // It is always a good idea to give objects descriptive names.
@@ -1289,7 +1290,7 @@ void MeshRenderer::CreateDepthGP() {
 
 void MeshRenderer::RenderDepth(NodeEntity* entity, NodeCamera* cam) {
 
-    Application* gApp = Application::GetApp();
+    TrinityApp* gApp = TrinityApp::GetApp();
 
     auto m_pImmediateContext = gApp->GetContext();
 
@@ -1404,8 +1405,7 @@ void MeshRenderer::CreateLitGP() {
 
 
     GraphicsPipelineStateCreateInfo PSOCreateInfo;
-    Application* app = Application::GetApp();
-
+    TrinityApp* app = TrinityApp::GetApp();
     // Pipeline state name is used by the engine to report issues.
     // It is always a good idea to give objects descriptive names.
     PSOCreateInfo.PSODesc.Name = "Mesh3D - LitGP PSO";
@@ -1423,7 +1423,7 @@ void MeshRenderer::CreateLitGP() {
     // Primitive topology defines what kind of primitives will be rendered by this pipeline state
     PSOCreateInfo.GraphicsPipeline.PrimitiveTopology = PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
     // Cull back faces
-    PSOCreateInfo.GraphicsPipeline.RasterizerDesc.CullMode = CULL_MODE_BACK;
+    PSOCreateInfo.GraphicsPipeline.RasterizerDesc.CullMode = CULL_MODE_NONE;
     PSOCreateInfo.GraphicsPipeline.BlendDesc = BlendState;
 
     // Enable depth testing
@@ -1652,8 +1652,7 @@ float angX = 0;
 
 void MeshRenderer::RenderLit(NodeEntity* entity, NodeCamera* cam, NodeLight* light,bool firstPass) {
 
-    Application* gApp = Application::GetApp();
-
+    TrinityApp* gApp = TrinityApp::GetApp();
     auto m_pImmediateContext = gApp->GetContext();
   
     auto shadow = new TextureCube(light->GetShadowCube());
@@ -1793,8 +1792,7 @@ void MeshRenderer::RenderLit(NodeEntity* entity, NodeCamera* cam, NodeLight* lig
         {
             auto mesh = entity->GetMesh(i);
 
-            Application* gApp = Application::GetApp();
-
+            TrinityApp* gApp = TrinityApp::GetApp();
             auto tex_view = mesh->GetMaterial()->GetColorMap()->GetView();
             auto norm_view = mesh->GetMaterial()->GetNormalMap()->GetView();
             auto spec_view = mesh->GetMaterial()->GetSpecularMap()->GetView();
@@ -1918,7 +1916,7 @@ void MeshRenderer::RenderSimple(NodeEntity* entity, NodeCamera* cam) {
     {
         auto mesh = entity->GetMesh(i);
 
-        Application* gApp = Application::GetApp();
+        TrinityApp* gApp = TrinityApp::GetApp();
 
         auto tex_view = mesh->GetMaterial()->GetColorMap()->GetView();
 
@@ -1981,6 +1979,7 @@ void MeshRenderer::RenderSimple(NodeEntity* entity, NodeCamera* cam) {
 }
 
 
+/*
 void MeshRenderer::RenderActor(NodeActor* actor, NodeCamera* cam, NodeLight* light, bool firstpass)
 {
     Application* gApp = Application::GetApp();
@@ -2371,6 +2370,7 @@ void MeshRenderer::RenderActorDepth(NodeActor* actor, NodeCamera* cam) {
 
 
 }
+*/
 
 void MeshRenderer::CreateMeshLinesGP() {
 
@@ -2380,8 +2380,7 @@ void MeshRenderer::CreateMeshLinesGP() {
     BlendState.RenderTargets[0].DestBlend = BLEND_FACTOR_INV_SRC_ALPHA;
 
     GraphicsPipelineStateCreateInfo PSOCreateInfo;
-    Application* app = Application::GetApp();
-
+    TrinityApp* app = TrinityApp::GetApp();
     // Pipeline state name is used by the engine to report issues.
     // It is always a good idea to give objects descriptive names.
     PSOCreateInfo.PSODesc.Name = "MeshLines - GP PSO";
@@ -2491,7 +2490,7 @@ void MeshRenderer::CreateMeshLinesGP() {
 
 }
 
-
+/*
 void MeshRenderer::RenderMeshLines(MeshLines* mesh,NodeCamera* cam ) {
 
  
@@ -2553,3 +2552,4 @@ void MeshRenderer::RenderMeshLines(MeshLines* mesh,NodeCamera* cam ) {
     m_pImmediateContext->DrawIndexed(DrawAttrs);
 
 }
+*/

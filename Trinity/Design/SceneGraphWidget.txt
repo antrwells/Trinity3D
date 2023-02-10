@@ -1,1 +1,3 @@
-FLoating contents preview window over nodes with children nodes.
+- FLoating contents preview window over nodes with children nodes.
+
+- Floating image of the node as taken by the engine.

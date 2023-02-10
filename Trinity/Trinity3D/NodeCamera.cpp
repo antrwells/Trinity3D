@@ -5,9 +5,7 @@
 #include "TrinityApp.h"
 #include "Texture2D.h"
 
-namespace Trinity {
 
-	namespace Scene {
 
 
 		/// <summary>
@@ -60,7 +58,7 @@ namespace Trinity {
 		NodeCamera::NodeCamera() {
 
 			//		mProjectionMatrix = 
-			SetViewport(0, 0, Trinity::App::TrinityApp::GetApp()->GetWidth(), Trinity::App::TrinityApp::GetApp()->GetHeight());
+			SetViewport(0, 0, TrinityApp::GetApp()->GetWidth(), TrinityApp::GetApp()->GetHeight());
 			mType = NodeType::Camera;
 			mName = "Game Camera";
 			//if (mLensDefualt == nullptr) {
@@ -101,8 +99,3 @@ namespace Trinity {
 			return mProjectionMatrix;
 
 		}
-
-
-	}
-
-}

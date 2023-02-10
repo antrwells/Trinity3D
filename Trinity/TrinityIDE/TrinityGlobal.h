@@ -1,14 +1,14 @@
 #pragma once
 #include "SceneGraph.h"
 
-//class Trinity::Scene::SceneGraph;
+//class SceneGraph;
 
 
 class TrinityGlobal
 {
 public:
 
-	static Trinity::Scene::SceneGraph* CurrentScene;
+	static SceneGraph* CurrentScene;
 
 };
 

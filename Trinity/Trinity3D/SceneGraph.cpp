@@ -4,12 +4,12 @@
 #include "VString.h"
 #include "NodeCamera.h"
 #include "NodeLight.h"
+#include "NodeEntity.h"
+#include "TrinityApp.h"
 
 #define HIT_GROUP_STRIDE  2
 
-namespace Trinity {
 
-	namespace Scene {
 
 
 		void SceneGraph::ClearNodes() {
@@ -91,8 +91,8 @@ namespace Trinity {
 
 			mRootNode = new Node3D();
 			mCam = new NodeCamera;
-		//	mRenderer = new MeshRenderer;
-			//mShadowRenderer = new CubeRenderer(this, nullptr);
+			mRenderer = new MeshRenderer;
+			mShadowRenderer = new CubeRenderer(this, nullptr);
 			mRootNode->SetName("Scene Root");
 			mThis = this;
 		//	mRayPick = new RayPicker(this);
@@ -354,9 +354,9 @@ namespace Trinity {
 				if (mLights[i]->GetEnabled() == false) continue;
 				if (mLights[i]->GetCastShadows()) {
 
-				//	mShadowRenderer->SetRenderTargetCube(mLights[i]->GetShadowCube());
+					mShadowRenderer->SetRenderTargetCube(mLights[i]->GetShadowCube());
 
-			//		mShadowRenderer->RenderDepth(mLights[i]->GetPosition(), mLights[i]->GetRange());
+					mShadowRenderer->RenderDepth(mLights[i]->GetPosition(), mLights[i]->GetRange());
 				}
 			}
 			//	printf("DS:%d\n",(int)(et - bt));
@@ -364,9 +364,69 @@ namespace Trinity {
 		}
 
 
+		void SceneGraph::RenderNodeDepth(NodeEntity* entity)
+		{
+			if (entity->GetEnabled() == false) return;
+			bool first = true;
+			if (entity->GetMeshes().size() > 0) {
+
+
+				mRenderer->RenderDepth(entity, mCam);
+				first = false;
+
+			}
+
+			for (int i = 0; i < entity->ChildrenCount(); i++) {
+
+				RenderNodeDepth((NodeEntity*)entity->GetChild(i));
+
+			}
+
+		}
+
 
 		void SceneGraph::RenderDepth() {
+			const float ClearColor[] = { 1,1,1, 0.0f };
 
+
+			if (RenderTargetCube::BoundTarget != nullptr)//|| RenderTarget2D::BoundTarget != nullptr)
+			{
+
+			}
+			else {
+				auto con = TrinityApp::GetApp()->GetContext();
+				auto* pRTV = TrinityApp::GetApp()->GetSwap()->GetCurrentBackBufferRTV();
+				// Let the engine perform required state transitions
+				con->ClearRenderTarget(pRTV, ClearColor, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
+				//con->ClearDepthStencil(pDSV, CLEAR_DEPTH_FLAG, 1.f, 0, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
+			}
+
+			for (int i = 0; i < mRootNode->ChildrenCount(); i++)
+			{
+				auto node = mRootNode->GetChild(i);
+
+				if (node->GetType() == NodeType::Entity)
+				{
+
+					auto entity = (NodeEntity*)mRootNode->GetChild(i);
+
+					if (entity->IsHidden()) continue;
+					if (entity->GetEnabled() == false) continue;
+
+					RenderNodeDepth((NodeEntity*)entity);
+				}
+				if (node->GetType() == NodeType::Actor)
+				{
+					///TOFIX
+					/*
+					auto actor = (NodeActor*)mRootNode->GetChild(i);
+					if (actor->IsHidden()) continue;
+					if (actor->GetEnabled() == false) continue;
+					RenderNodeActorDepth(actor);
+					*/
+
+				}
+			}
 
 			/*
 			const float ClearColor[] = { 1,1,1, 0.0f };
@@ -561,6 +621,50 @@ namespace Trinity {
 		SceneGraph* SceneGraph::mMainScene = nullptr;
 
 
-	}
+		void SceneGraph::Render() {
 
-}
+			for (int i = 0; i < mRootNode->ChildrenCount(); i++)
+			{
+				auto node = mRootNode->GetChild(i);
+
+				if (node->GetType() == NodeType::Entity) {
+
+					auto entity = (NodeEntity*)mRootNode->GetChild(i);
+
+					if (entity->IsHidden()) continue;
+					if (entity->GetEnabled() == false) continue;
+
+					RenderNodeLit((NodeEntity*)entity);
+				}
+				if (node->GetType() == NodeType::Actor) {
+
+					if (node->GetEnabled() == false) continue;
+					//RenderNodeActorLit((NodeActor*)node);
+
+				}
+			}
+
+
+
+		}
+
+		void SceneGraph::RenderNodeLit(NodeEntity* entity) {
+
+			bool first = true;
+			if (entity->GetEnabled() == false) return;
+			if (entity->GetMeshes().size() > 0) {
+				for (int i = 0; i < mLights.size(); i++)
+				{
+					if (mLights[i]->GetEnabled() == false) continue;
+					mRenderer->RenderLit(entity, mCam, mLights[i], first);
+					first = false;
+				}
+			}
+
+			for (int i = 0; i < entity->ChildrenCount(); i++) {
+
+				RenderNodeLit((NodeEntity*)entity->GetChild(i));
+
+			}
+
+		}

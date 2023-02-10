@@ -1,8 +1,6 @@
 #include "TrinityApp.h"
 
-namespace Trinity {
 
-    namespace App {
 
         TrinityApp* TrinityApp::s_pThis = nullptr;
 
@@ -62,6 +60,3 @@ namespace Trinity {
             mResized = true;
         }
 
-    }
-
-}

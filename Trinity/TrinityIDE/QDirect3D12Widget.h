@@ -135,7 +135,7 @@ private:
 
     D3DCOLORVALUE m_BackColor;
 
-    Trinity::App::TrinityApp* m_App;
+    TrinityApp* m_App;
 
 };
 

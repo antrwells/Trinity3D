@@ -18,7 +18,7 @@ QSceneGraph::QSceneGraph(QWidget *parent)
 	w_SceneGraph = new SceneGraphWidget(this);
 	w_SceneGraph->setGeometry(this->geometry());
 	w_Scrollbar = new QScrollBar(this);
-	
+	w_SceneGraph->SetScroller(w_Scrollbar);
 
 	
 }

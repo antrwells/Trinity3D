@@ -1,9 +1,5 @@
-﻿  Node3D.cpp
-  NodeCamera.cpp
-  NodeLight.cpp
-  SceneGraph.cpp
-C:\Trinity\Trinity3D\SceneGraph.cpp(455,25): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-  Generating Code...
+﻿  MeshRenderer.cpp
+C:\Trinity\Trinity3D\Material.h(126,28): warning C4305: 'initializing': truncation from 'double' to 'float'
 Diligent-TextureLoader.lib(BCTools.obj) : warning LNK4006: "void __cdecl Diligent::DecompressBC1Block(unsigned char const *,unsigned char *,unsigned int)" (?DecompressBC1Block@Diligent@@YAXPEBEPEAEI@Z) already defined in DiligentTools.lib(BCTools.obj); second definition ignored
 Diligent-TextureLoader.lib(BCTools.obj) : warning LNK4006: "void __cdecl Diligent::DecompressBC3Block(unsigned char const *,unsigned char *)" (?DecompressBC3Block@Diligent@@YAXPEBEPEAE@Z) already defined in DiligentTools.lib(BCTools.obj); second definition ignored
 Diligent-TextureLoader.lib(BCTools.obj) : warning LNK4006: "void __cdecl Diligent::DecompressBC4Block(unsigned char const *,unsigned char *,unsigned int)" (?DecompressBC4Block@Diligent@@YAXPEBEPEAEI@Z) already defined in DiligentTools.lib(BCTools.obj); second definition ignored
@@ -1742,4 +1738,6 @@ DiligentCore.lib(BasicFileSystem.obj) : warning LNK4006: "public: static class s
 DiligentCore.lib(BasicFileSystem.obj) : warning LNK4006: "public: static class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __cdecl Diligent::BasicFileSystem::GetRelativePath(char const *,bool,char const *,bool)" (?GetRelativePath@BasicFileSystem@Diligent@@SA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PEBD_N01@Z) already defined in Diligent-BasicPlatform.lib(BasicFileSystem.obj); second definition ignored
 DiligentCore.lib(BasicFileSystem.obj) : warning LNK4006: "public: static class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __cdecl Diligent::BasicFileSystem::FileDialog(struct Diligent::FileDialogAttribs const &)" (?FileDialog@BasicFileSystem@Diligent@@SA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBUFileDialogAttribs@2@@Z) already defined in Diligent-BasicPlatform.lib(BasicFileSystem.obj); second definition ignored
 DiligentCore.lib(BasicFileSystem.obj) : warning LNK4006: "protected: static class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > Diligent::BasicFileSystem::m_strWorkingDirectory" (?m_strWorkingDirectory@BasicFileSystem@Diligent@@1V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@A) already defined in Diligent-BasicPlatform.lib(BasicFileSystem.obj); second definition ignored
+Importer.obj : warning LNK4006: "public: unsigned int __cdecl aiMaterial::GetTextureCount(enum aiTextureType)const " (?GetTextureCount@aiMaterial@@QEBAIW4aiTextureType@@@Z) already defined in assimp-vc142-mtd.lib(assimp-vc142-mtd.dll); second definition ignored
+Importer.obj : warning LNK4006: "public: enum aiReturn __cdecl aiMaterial::GetTexture(enum aiTextureType,unsigned int,struct aiString *,enum aiTextureMapping *,unsigned int *,float *,enum aiTextureOp *,enum aiTextureMapMode *)const " (?GetTexture@aiMaterial@@QEBA?AW4aiReturn@@W4aiTextureType@@IPEAUaiString@@PEAW4aiTextureMapping@@PEAIPEAMPEAW4aiTextureOp@@PEAW4aiTextureMapMode@@@Z) already defined in assimp-vc142-mtd.lib(assimp-vc142-mtd.dll); second definition ignored
   Trinity3D.vcxproj -> C:\Trinity\Trinity3D\x64\Debug\Trinity3D.lib

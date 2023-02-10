@@ -1,14 +1,12 @@
 #pragma once
 #include <vector>
 #include "Node3D.h"
-
+#include "CubeRenderer.h"
+#include "MeshRenderer.h"
 
 #include "VFile.h"
 
 
-namespace Trinity {
-
-	namespace Scene {
 
 		/*
 		struct TexItem {
@@ -180,9 +178,9 @@ namespace Trinity {
 			/// <param name="nb"></param>
 		//	void AddParticle(NodeBillboard* nb);
 			void RenderNodeNormals(NodeEntity* entity);
-
+			void RenderNodeLit(NodeEntity* node);
 			void RenderNodeBasic(NodeEntity* entity);
-			void RenderNodeLit(NodeEntity* entity);
+		
 		//	void RenderNodeActorLit(NodeActor* actor);
 		//	void RenderNodeActorDepth(NodeActor* actor);
 			void RenderNodeDepth(NodeEntity* entity);
@@ -279,8 +277,8 @@ namespace Trinity {
 
 			NodeCamera* mCam;
 
-			//MeshRenderer* mRenderer;
-			//CubeRenderer* mShadowRenderer;
+			MeshRenderer* mRenderer;
+			CubeRenderer* mShadowRenderer;
 		//	RefCntAutoPtr<ITopLevelAS> mTLAS;
 		//	RefCntAutoPtr<IBuffer>             m_ScratchBuffer;
 		//	RefCntAutoPtr<IBuffer>             m_InstanceBuffer;
@@ -290,5 +288,3 @@ namespace Trinity {
 			//Cinematic* mCurrentCine = nullptr;
 		};
 
-	}
-}

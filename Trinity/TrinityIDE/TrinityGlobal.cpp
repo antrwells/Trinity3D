@@ -1,3 +1,3 @@
 #include "TrinityGlobal.h"
 
-Trinity::Scene::SceneGraph* TrinityGlobal::CurrentScene = nullptr;
+SceneGraph* TrinityGlobal::CurrentScene = nullptr;

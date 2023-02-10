@@ -19,9 +19,6 @@ class NodeEntity;
 using namespace Diligent;
 
 
-namespace Trinity {
-
-	namespace Scene {
 
 		enum NodeType {
 			Entity, Node, Camera, Light, Other, Actor
@@ -344,5 +341,3 @@ namespace Trinity {
 		}
 		;
 
-	}
-}

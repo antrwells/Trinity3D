@@ -31,8 +31,6 @@ using namespace Diligent;
 
 #include <d3d12.h>
 
-namespace Trinity {
-    namespace App {
 
         class TrinityApp
         {
@@ -101,5 +99,3 @@ namespace Trinity {
 
         };
 
-    }
-}

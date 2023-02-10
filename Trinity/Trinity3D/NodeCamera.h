@@ -4,9 +4,7 @@
 class Texture2D;
 
 
-namespace Trinity {
 
-    namespace Scene {
 
         /// <summary>
         /// The NodeCamera class is how you manipulate the applications view of the scene.
@@ -86,7 +84,3 @@ namespace Trinity {
 
         };
 
-
-    }
-
-}

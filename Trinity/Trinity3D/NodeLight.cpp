@@ -3,9 +3,6 @@
 #include "NodeCamera.h"
 #include "SceneGraph.h"
 
-namespace Trinity {
-
-	namespace Scene {
 
 
 		NodeLight::NodeLight(bool shadowFB) {
@@ -27,7 +24,7 @@ namespace Trinity {
 			//mShadowCube = new CubeRenderer()
 			mName = "LightSource";
 			mType = NodeType::Light;
-			//mShadowCube = new RenderTargetCube(512, 512);
+			mShadowCube = new RenderTargetCube(512, 512);
 			mICone = 12;
 
 			mOCone = 12;
@@ -38,5 +35,3 @@ namespace Trinity {
 
 		NodeLight* NodeLight::Active = nullptr;
 
-	}
-}

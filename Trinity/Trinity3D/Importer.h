@@ -1,6 +1,7 @@
 #pragma once
-#include "NodeEntity.h"
-#include "NodeActor.h"
+
+class NodeEntity;
+
 
 /// <summary>
 /// The import namespace covers the engine's functionality to import 3D models. 
@@ -10,20 +11,23 @@
 	/// <summary>
 	/// The importer class can import static and animated entities.
 	/// </summary>
-	class Importer
-	{
-	public:
-
-		NodeEntity* ImportAI(const char* path, bool optimize = true);
-		NodeActor* ImportActor(const char* path);
-	
+	/// 
+	/// 
 
 
+		class Importer
+		{
+		public:
 
-	private:
+			NodeEntity* ImportEntity(const char* path, bool optimize = true);
+			//NodeActor* ImportActor(const char* path);
 
 
-	};
 
+
+		private:
+
+
+		};
 
 

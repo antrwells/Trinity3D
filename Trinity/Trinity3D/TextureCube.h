@@ -1,18 +1,21 @@
 #pragma once 
 #include "RenderTargetCube.h"
-class TextureCube
-{
-public:
 
-	TextureCube(RenderTargetCube* rt);
 
-	RefCntAutoPtr<ITextureView> GetView() { return m_pColorRTV; };
+		class TextureCube
+		{
+		public:
 
-private:
+			TextureCube(RenderTargetCube* rt);
 
-	RefCntAutoPtr<ITexture> pRTColor;
-	//RefCntAutoPtr<ITexture> pRTDepth;
+			RefCntAutoPtr<ITextureView> GetView() { return m_pColorRTV; };
 
-	RefCntAutoPtr<ITextureView> m_pColorRTV;
+		private:
 
-};
+			RefCntAutoPtr<ITexture> pRTColor;
+			//RefCntAutoPtr<ITexture> pRTDepth;
+
+			RefCntAutoPtr<ITextureView> m_pColorRTV;
+
+		};
+

@@ -41,9 +41,7 @@ using namespace Diligent;
 //#include "Common/interface/BasicMath.hpp"
 
 
-namespace Trinity {
 
-	namespace Texture {
 
 		class Texture2D
 		{
@@ -85,6 +83,3 @@ namespace Trinity {
 			std::string mPath;
 			static std::vector<Texture2D*> mCache;
 		};
-
-	}
-}

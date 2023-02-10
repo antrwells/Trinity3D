@@ -1,9 +1,8 @@
 #pragma once
 #include "Node3D.h"
 
-namespace Trinity {
+#include "RenderTargetCube.h"
 
-	namespace Scene {
 
 		enum LightType {
 			PointLight, SpotLight, DirectionalLight
@@ -141,6 +140,10 @@ namespace Trinity {
 				mOCone = cone.y;
 			}
 
+			RenderTargetCube* GetShadowCube() {
+				return mShadowCube;
+			}
+
 			bool GetCastShadows() {
 				return mCastShadows;
 			}
@@ -156,7 +159,7 @@ namespace Trinity {
 			bool mCastShadows = true;
 			//Kinetic::Framebuffer::FramebufferCube* ShadowFB;
 			bool mQueueRemove = false;
-	
+			RenderTargetCube* mShadowCube = nullptr;
 			LightType mLightType = PointLight;
 			float mICone, mOCone;
 
@@ -164,5 +167,4 @@ namespace Trinity {
 
 
 
-	}
-}
+	
