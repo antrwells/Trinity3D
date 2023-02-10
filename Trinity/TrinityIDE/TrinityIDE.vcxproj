@@ -103,6 +103,7 @@
     <ClCompile Include="QSceneGraph.cpp" />
     <ClCompile Include="SceneGraphWidget.cpp" />
     <ClCompile Include="SceneViewport.cpp" />
+    <ClCompile Include="TrinityGlobal.cpp" />
     <ClCompile Include="TrinityIDE.cpp" />
     <ClCompile Include="main.cpp" />
     <None Include="TrinityIDE.ico" />
@@ -119,6 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="d3dx12.h" />
+    <ClInclude Include="TrinityGlobal.h" />
     <QtMoc Include="QDirect3D12Widget.h" />
   </ItemGroup>
   <ItemGroup>

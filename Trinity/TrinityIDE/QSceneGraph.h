@@ -4,6 +4,7 @@
 #include "ui_QSceneGraph.h"
 #include "DockManager.h"
 #include "SceneGraphWidget.h"
+#include "qscrollbar.h"
 
 class QSceneGraph : public ads::CDockWidget
 {
@@ -16,9 +17,11 @@ public:
 protected:
 
 	virtual void paintEvent(QPaintEvent* event);
+    virtual void resizeEvent(QResizeEvent* event);
 
 private:
 
+	QScrollBar* w_Scrollbar;
 	SceneGraphWidget* w_SceneGraph;
 	Ui::QSceneGraphClass ui;
 };

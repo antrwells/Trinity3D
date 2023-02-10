@@ -61,6 +61,9 @@
     <ClCompile Include="QDirect3D12Widget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TrinityGlobal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QSceneGraph.h">
@@ -89,6 +92,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="d3dx12.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TrinityGlobal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -10,6 +10,10 @@ class SceneViewport : public QDirect3D12Widget
 {
 	Q_OBJECT
 
+signals:
+
+	void ViewportReady();
+
 public:
 	SceneViewport(QWidget *parent = nullptr);
 	~SceneViewport();
@@ -21,8 +25,9 @@ private slots:
 
 private:
 	Ui::SceneViewportClass ui;
-	Texture2D* mTex1;
-	SmartDraw* mDraw;
+	Trinity::Texture::Texture2D* mTex1;
+	Trinity::Draw::SmartDraw* mDraw;
+
 	
 };
 

@@ -1,6 +1,8 @@
 #include "TrinityIDE.h"
 #include "qpushbutton.h"
 #include "qlabel.h"
+#include "TrinityGlobal.h"
+#include "SceneGraph.h"
 
 
 TrinityIDE::TrinityIDE(QWidget *parent)
@@ -14,13 +16,17 @@ TrinityIDE::TrinityIDE(QWidget *parent)
     //QPushButton* test = new QPushButton("Test!", this);
     //test->setGeometry(20, 20, 200, 30);
 
- 
+   
 
     w_SceneView = new SceneViewport(NULL);
+ //   connect(this, &SceneViewport::ViewportReady, this, &TrinityIDE::ViewportReady);
     m_DockManager->addDockWidget(ads::CenterDockWidgetArea, w_SceneView);
 
     w_SceneGraph = new QSceneGraph(NULL);
     m_DockManager->addDockWidget(ads::LeftDockWidgetArea, w_SceneGraph);
+
+    //connect(this, &SceneViewport::ViewportReady, this, &TrinityIDE::ViewportReady)
+
 
     /*
     QLabel* l = new QLabel();
@@ -43,6 +49,12 @@ TrinityIDE::TrinityIDE(QWidget *parent)
     DockWidget2->setWidget(l2);
     m_DockManager->addDockWidget(ads::BottomDockWidgetArea, DockWidget2);
     */
+}
+
+void TrinityIDE::ViewportReady() {
+
+    int aa = 5;
+
 }
 
 TrinityIDE::~TrinityIDE()

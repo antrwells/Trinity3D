@@ -119,7 +119,7 @@ bool QDirect3D12Widget::init()
 {
 
 
-    m_App = new TrinityApp(m_hWnd);
+    m_App = new Trinity::App::TrinityApp(m_hWnd);
 
     m_bStarted = true;
 
@@ -131,6 +131,7 @@ bool QDirect3D12Widget::init()
 
     int a = 5;
     LoadResources();
+    
 
     return true;
 }

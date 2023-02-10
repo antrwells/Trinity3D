@@ -22,6 +22,9 @@
     <Filter Include="Draw">
       <UniqueIdentifier>{e0666e50-f4a2-4651-ad4c-97b0e65e67a2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SceneGraph">
+      <UniqueIdentifier>{ccc38013-9c65-46b5-8657-85b1d2f3230a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TrinityApp.h">
@@ -33,6 +36,18 @@
     <ClInclude Include="SmartDraw.h">
       <Filter>Draw</Filter>
     </ClInclude>
+    <ClInclude Include="SceneGraph.h">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="Node3D.h">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeCamera.h">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeLight.h">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TrinityApp.cpp">
@@ -43,6 +58,18 @@
     </ClCompile>
     <ClCompile Include="SmartDraw.cpp">
       <Filter>Draw</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneGraph.cpp">
+      <Filter>SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="Node3D.cpp">
+      <Filter>SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="NodeCamera.cpp">
+      <Filter>SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="NodeLight.cpp">
+      <Filter>SceneGraph</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

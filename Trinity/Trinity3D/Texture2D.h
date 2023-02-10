@@ -41,46 +41,50 @@ using namespace Diligent;
 //#include "Common/interface/BasicMath.hpp"
 
 
+namespace Trinity {
 
-class Texture2D
-{
-public:
-	Texture2D(const char* path,bool alpha = false);
-	Texture2D(RefCntAutoPtr<ITexture> texture, RefCntAutoPtr<ITextureView> view);
-	Texture2D(RefCntAutoPtr<ITexture> texure);
-	//Texture2D(Application* app,int w, int h, bool alpha,const char* buf);
-	//Texture2D(RenderTarget2D* target);
-	//Texture2D(RenderTargetCube* cube, int face);
+	namespace Texture {
 
-	void Free();
-	int GetWidth() {
-		return mWidth;
+		class Texture2D
+		{
+		public:
+			Texture2D(const char* path, bool alpha = false);
+			Texture2D(RefCntAutoPtr<ITexture> texture, RefCntAutoPtr<ITextureView> view);
+			Texture2D(RefCntAutoPtr<ITexture> texure);
+			//Texture2D(Application* app,int w, int h, bool alpha,const char* buf);
+			//Texture2D(RenderTarget2D* target);
+			//Texture2D(RenderTargetCube* cube, int face);
+
+			void Free();
+			int GetWidth() {
+				return mWidth;
+			}
+			int GetHeight() {
+				return mHeight;
+			}
+			RefCntAutoPtr<ITextureView> GetView() {
+				return m_TextureSRV;
+			}
+			RefCntAutoPtr<ITexture> GetTexture() {
+				return Texture;
+			}
+			IDeviceObject* GetViewPTR() {
+
+				return Texture->GetDefaultView(TEXTURE_VIEW_SHADER_RESOURCE);
+
+			}
+			std::string GetPath() {
+				return mPath;
+			}
+		private:
+
+			RefCntAutoPtr<ITexture> Texture;
+			RefCntAutoPtr<ITextureView>           m_TextureSRV;
+			int mWidth;
+			int mHeight;
+			std::string mPath;
+			static std::vector<Texture2D*> mCache;
+		};
+
 	}
-	int GetHeight() {
-		return mHeight;
-	}
-	RefCntAutoPtr<ITextureView> GetView() {
-		return m_TextureSRV;
-	}
-	RefCntAutoPtr<ITexture> GetTexture() {
-		return Texture;
-	}
-	IDeviceObject* GetViewPTR() {
-
-		return Texture->GetDefaultView(TEXTURE_VIEW_SHADER_RESOURCE);
-
-	}
-	std::string GetPath() {
-		return mPath;
-	}
-private:
-
-	RefCntAutoPtr<ITexture> Texture;
-	RefCntAutoPtr<ITextureView>           m_TextureSRV;
-	int mWidth;
-	int mHeight;
-	std::string mPath;
-	static std::vector<Texture2D*> mCache;
-};
-
-
+}

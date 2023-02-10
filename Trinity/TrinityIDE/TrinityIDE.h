@@ -14,6 +14,9 @@ public:
     TrinityIDE(QWidget *parent = nullptr);
     ~TrinityIDE();
 
+private slots:
+    void ViewportReady();
+
 private:
 
     ads::CDockManager* m_DockManager;

@@ -19,11 +19,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Node3D.h" />
+    <ClInclude Include="NodeCamera.h" />
+    <ClInclude Include="NodeLight.h" />
+    <ClInclude Include="SceneGraph.h" />
     <ClInclude Include="SmartDraw.h" />
     <ClInclude Include="Texture2D.h" />
     <ClInclude Include="TrinityApp.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Node3D.cpp" />
+    <ClCompile Include="NodeCamera.cpp" />
+    <ClCompile Include="NodeLight.cpp" />
+    <ClCompile Include="SceneGraph.cpp" />
     <ClCompile Include="SmartDraw.cpp" />
     <ClCompile Include="Texture2D.cpp" />
     <ClCompile Include="TrinityApp.cpp" />

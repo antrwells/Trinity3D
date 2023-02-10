@@ -17,21 +17,18 @@ QSceneGraph::QSceneGraph(QWidget *parent)
 
 	w_SceneGraph = new SceneGraphWidget(this);
 	w_SceneGraph->setGeometry(this->geometry());
+	w_Scrollbar = new QScrollBar(this);
+	
 
 	
 }
 
 void QSceneGraph::paintEvent(QPaintEvent* event) {
 
-	QPainter p(this);
-	p.setRenderHint(QPainter::Antialiasing);
-	QPainterPath path;
-	path.addRect(QRectF(0, 0, width(), height()));
-	p.setPen(QPen(QColor(30, 30, 30), 4));
-	//p.setPen(pen);
+	CDockWidget::paintEvent(event);
 
-	p.fillPath(path,QColor(30,30,30));
-	p.drawPath(path);
+
+	//p.drawPath(path);
 	/*
 	QPainter painter(this);
 	painter.setRenderHint(QPainter::Antialiasing, true);
@@ -47,6 +44,21 @@ void QSceneGraph::paintEvent(QPaintEvent* event) {
 	*/
 }
 
+void QSceneGraph::resizeEvent(QResizeEvent* event)
+{
+	QSize size = event->size();
+	int width = size.width();
+	int height = size.height();
+
+	w_SceneGraph->resize(width-15,height);
+	w_Scrollbar->setGeometry(width - 15,0, 15, height);
+
+	// Perform actions based on the new size of the widget
+	// ...
+
+	// Don't forget to call the base implementation
+	QWidget::resizeEvent(event);
+}
 
 QSceneGraph::~QSceneGraph()
 {}
