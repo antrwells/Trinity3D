@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "MeshLines.h"
-#include "Application.h"
+#include "TrinityApp.h"
+
 
 MeshLines::MeshLines() {
 
@@ -27,7 +28,7 @@ void MeshLines::CreateBuffers() {
 	VBData.pData = mVertices.data();
 	VBData.DataSize = ds;
 
-	Application::GetApp()->GetDevice()->CreateBuffer(VertBuffDesc, &VBData, &m_VertexBuffer);
+	TrinityApp::GetApp()->GetDevice()->CreateBuffer(VertBuffDesc, &VBData, &m_VertexBuffer);
 
 	BufferViewDesc ViewDesc;
 	ViewDesc.ViewType = BUFFER_VIEW_SHADER_RESOURCE;
@@ -55,7 +56,7 @@ void MeshLines::CreateBuffers() {
 
 	IBData.pData = mLines.data();
 	IBData.DataSize = ds;
-	Application::GetApp()->GetDevice()->CreateBuffer(IndBuffDesc, &IBData, &m_IndexBuffer);
+	TrinityApp::GetApp()->GetDevice()->CreateBuffer(IndBuffDesc, &IBData, &m_IndexBuffer);
 
 
 

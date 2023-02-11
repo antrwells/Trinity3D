@@ -34,7 +34,7 @@
             m_pImmediateContext->SetRenderTargets(1, &pRTV, pDSV, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
 
             // Clear the back buffer
-            const float ClearColor[] = { 0.1,0.1,0.1, 0.0f };
+            const float ClearColor[] = { 0.0,0.0,0.0, 0.0f };
             // Let the engine perform required state transitions
             m_pImmediateContext->ClearRenderTarget(pRTV, ClearColor, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
             m_pImmediateContext->ClearDepthStencil(pDSV, CLEAR_DEPTH_FLAG, 1.f, 0, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);

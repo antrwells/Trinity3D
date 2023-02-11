@@ -255,6 +255,11 @@
 			static SceneGraph* GetMainScene();
 
 			void LoadCine(const char* path);
+
+			MeshRenderer* GetRenderer() {
+				return mRenderer;
+			}
+
 		private:
 			static SceneGraph* mMainScene;
 

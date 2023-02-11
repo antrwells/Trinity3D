@@ -2,7 +2,7 @@
 #include "MeshRenderer.h"
 #include "TrinityApp.h"
 #include "Maths.h"
-
+#include "MeshLines.h"
 
 #include "TextureCube.h"
 
@@ -2490,12 +2490,11 @@ void MeshRenderer::CreateMeshLinesGP() {
 
 }
 
-/*
+
 void MeshRenderer::RenderMeshLines(MeshLines* mesh,NodeCamera* cam ) {
 
  
-    Application* gApp = Application::GetApp();
-
+    TrinityApp* gApp = TrinityApp::GetApp();
 
 
     auto m_pImmediateContext = gApp->GetContext();
@@ -2552,4 +2551,3 @@ void MeshRenderer::RenderMeshLines(MeshLines* mesh,NodeCamera* cam ) {
     m_pImmediateContext->DrawIndexed(DrawAttrs);
 
 }
-*/

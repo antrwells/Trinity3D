@@ -57,7 +57,7 @@ class MeshLines;
 			void CreateNormalsGP();
 			void CreatePositionsGP();
 			void CreateMeshLinesGP();
-		//	void RenderMeshLines(MeshLines* mesh, NodeCamera* cam);
+			void RenderMeshLines(MeshLines* mesh, NodeCamera* cam);
 		//	void RenderActorDepth(NodeActor* actor, NodeCamera* cam);
 		//	void RenderActor(NodeActor* actor, NodeCamera* cam, NodeLight* light, bool firstPass);
 			void RenderPositions(NodeEntity* entity, NodeCamera* cam);

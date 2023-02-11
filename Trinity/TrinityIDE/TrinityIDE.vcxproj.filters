@@ -67,7 +67,10 @@
     <ClCompile Include="ToolBarWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DockAreaWidget.cpp">
+    <ClCompile Include="DockArea.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ContentBrowserWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -87,7 +90,10 @@
     <QtMoc Include="ToolBarWidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="DockAreaWidget.h">
+    <QtMoc Include="DockArea.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="ContentBrowserWidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
@@ -105,6 +111,9 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="DockAreaWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="ContentBrowserWidget.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

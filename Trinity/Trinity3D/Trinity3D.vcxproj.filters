@@ -102,6 +102,12 @@
     <ClInclude Include="RayPicker.h">
       <Filter>Picking</Filter>
     </ClInclude>
+    <ClInclude Include="MeshLines.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="DirCollection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TrinityApp.cpp">
@@ -157,6 +163,12 @@
     </ClCompile>
     <ClCompile Include="RayPicker.cpp">
       <Filter>Picking</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshLines.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="DirCollection.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

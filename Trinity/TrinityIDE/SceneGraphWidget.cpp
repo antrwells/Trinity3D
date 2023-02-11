@@ -85,11 +85,15 @@ void SceneGraphWidget::paintEvent(QPaintEvent* event) {
 
 	QPainterPath path;
 	path.addRect(QRectF(0, 0, width(), height()));
-	p.setPen(QPen(QColor(255, 255, 255), 8));
+	p.setPen(QPen(QColor(255, 255, 255), 1));
 	//p.setPen(pen);
 
 	p.fillPath(path, QColor(30, 30, 30));
 	p.drawPath(path);
+
+	if (TrinityGlobal::ActiveNode != nullptr) {
+		mActiveNode = TrinityGlobal::ActiveNode;
+	}
 
 	auto scene = TrinityGlobal::CurrentScene;
 	//mCurrentNode = scene->GetRoot();
@@ -113,6 +117,7 @@ void SceneGraphWidget::paintEvent(QPaintEvent* event) {
 	//	width() - 2 * distance, height() - 2 * distance),
 	//	10, 10);
 	*/
+	update();
 }
 
 void SceneGraphWidget::CheckNode(Node3D* node, int& dx, int& dy, int mx, int my) {
@@ -151,10 +156,12 @@ void SceneGraphWidget::mousePressEvent(QMouseEvent* event) {
 			else {
 				mActiveNode->mNodeOpen = true;
 			}
+			TrinityGlobal::ActiveNode = mCurrentNode;
 			update();
 		}
 		else {
 			mActiveNode = nullptr;
+			TrinityGlobal::ActiveNode = nullptr;
 			update();
 		}
 
@@ -186,9 +193,12 @@ void SceneGraphWidget::mouseMoveEvent(QMouseEvent* event)
 	int max = 20;
 	GetMaxSize(scene->GetRoot(), max);
 	int bb = 0;
+	max = max - (height() - 20);
+	if (max < 20) max = 20;
 	mScrollLink->setMaximum(max);
 	mScrollLink->setPageStep(height());
 	
+
 
 
 	// Perform actions based on the mouse position

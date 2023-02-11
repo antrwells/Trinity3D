@@ -1,8 +1,9 @@
 #pragma once
-#include "Common/interface/BasicMath.hpp"
 #ifndef PLATFORM_WIN32
 #    define PLATFORM_WIN32 1
 #endif
+#include "Common/interface/BasicMath.hpp"
+
 
 #include "Graphics/GraphicsEngineD3D11/interface/EngineFactoryD3D11.h"
 #include "Graphics/GraphicsEngineD3D12/interface/EngineFactoryD3D12.h"

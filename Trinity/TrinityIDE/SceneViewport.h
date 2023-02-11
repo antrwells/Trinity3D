@@ -8,10 +8,17 @@
 
 class NodeCamera;
 class NodeEntity;
+class MeshLines;
 
 enum GizmoMode {
 
 	Translate,Rotate,Scale
+
+};
+
+enum GizmoSpace {
+
+	Global,Local
 
 };
 
@@ -36,10 +43,28 @@ public:
 		{
 			mCurrentGizmo = mRotateGizmo;
 		}
+		else if (mode == 2) {
+			mCurrentGizmo = mScaleGizmo;
+		}
+	}
+	void SetSpace(int mode) {
+
+		if (mode == 0) {
+
+			mGizmoSpace = GizmoSpace::Local;
+
+		}
+		if (mode == 1)
+		{
+
+			mGizmoSpace = GizmoSpace::Global;
+		}
+
 	}
 
 protected:
 
+	void createGrid();
 	void resizeEvent(QResizeEvent* event) override;
 	void mouseMoveEvent(QMouseEvent* event) override;
 	void mousePressEvent(QMouseEvent* event) override;
@@ -114,6 +139,7 @@ private slots:
 	void LoadResources();
 	void RenderScene();
 
+
 private:
 	Ui::SceneViewportClass ui;
 	Texture2D* mTex1;
@@ -133,5 +159,15 @@ private:
 	NodeEntity* mScaleGizmo;
 	NodeEntity* mCurrentGizmo;
 	GizmoMode mGizMode = GizmoMode::Translate;
+	GizmoSpace mGizmoSpace = GizmoSpace::Global;
+	//
+	bool gLock_x, gLock_y, gLock_z;
+	bool gLock = false;
+	bool mLeftDown = false;
+	float mTranslateRatio = 0.02f;
+	float mRotateRatio = 0.22f;
+	float mScaleRatio = 0.07f;
+	MeshLines* mEditGrid = nullptr;
+
 };
 

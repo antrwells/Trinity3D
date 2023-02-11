@@ -5,7 +5,7 @@
 #include "DockManager.h"
 
 #include "ToolBarWidget.h"
-#include "DockAreaWidget.h"
+#include "DockArea.h"
 #include <QMenuBar>
 #include <QMenu>
 #include <QAction>
@@ -19,6 +19,13 @@ public:
 
 private slots:
     void ViewportReady();
+    void act_move();
+    void act_rotate();
+    void act_scale();
+    void act_LocalSpace(int id);
+    void saveLayout();
+    void loadLayout();
+
 
 protected:
     void resizeEvent(QResizeEvent* event) override;
@@ -30,9 +37,11 @@ private:
     QAction* openProjAction;
     QAction* saveProjAction;
     QAction* exitAction;
+    QAction* saveLayoutAction;
+    QAction* loadLayoutAction;
   
     ToolBarWidget* w_Toolbar;
-    DockAreaWidget* w_DockArea;
-
+    DockArea* w_DockArea;
+    QToolBar* toolBar;
     Ui::TrinityIDEClass ui;
 };

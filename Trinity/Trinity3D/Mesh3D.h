@@ -41,6 +41,7 @@ class Node3D;
 				mChanged = true;
 			}
 			bool Changed() {
+				return true;
 				if (mChanged) {
 					mChanged = false;
 					return true;
