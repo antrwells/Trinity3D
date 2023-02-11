@@ -73,6 +73,9 @@
     <ClCompile Include="ContentBrowserWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ImportMediaForm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QSceneGraph.h">
@@ -96,6 +99,9 @@
     <QtMoc Include="ContentBrowserWidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="ImportMediaForm.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="QSceneGraph.ui">
@@ -114,6 +120,12 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="ContentBrowserWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="ImportMediaForm.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="DirectXHost.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

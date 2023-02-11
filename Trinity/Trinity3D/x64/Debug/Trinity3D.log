@@ -1,4 +1,6 @@
-﻿  DirCollection.cpp
+﻿  CubeRenderer.cpp
+C:\Trinity\Trinity3D\Material.h(126,28): warning C4305: 'initializing': truncation from 'double' to 'float'
+  DirCollection.cpp
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\xstring(2824,53): warning C4244: 'argument': conversion from 'wchar_t' to 'const _Elem', possible loss of data
           with
           [
@@ -28,6 +30,78 @@ C:\Trinity\Trinity3D\DirCollection.h(45): message : see reference to function te
               _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
               _Alloc=std::allocator<char>
           ]
+  Importer.cpp
+C:\Trinity\Trinity3D\Material.h(126,28): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Material.cpp
+C:\Trinity\Trinity3D\Material.h(126,28): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Mesh3D.cpp
+C:\Trinity\Trinity3D\Material.h(126,28): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Trinity\Trinity3D\Mesh3D.cpp(45,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  MeshLines.cpp
+  MeshRenderer.cpp
+C:\Trinity\Trinity3D\Material.h(126,28): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Node3D.cpp
+  NodeCamera.cpp
+  NodeEntity.cpp
+C:\Trinity\Trinity3D\Material.h(126,28): warning C4305: 'initializing': truncation from 'double' to 'float'
+  NodeLight.cpp
+C:\Trinity\Trinity3D\Material.h(126,28): warning C4305: 'initializing': truncation from 'double' to 'float'
+  RayPicker.cpp
+C:\Trinity\Trinity3D\Material.h(126,28): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Trinity\Trinity3D\RayPicker.cpp(241,24): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  RenderTargetCube.cpp
+  SceneGraph.cpp
+C:\Trinity\Trinity3D\Material.h(126,28): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Trinity\Trinity3D\SceneGraph.cpp(540,3): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  SmartDraw.cpp
+C:\Trinity\Trinity3D\SmartDraw.cpp(153,42): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Trinity\Trinity3D\SmartDraw.cpp(232,27): warning C4101: 'verts': unreferenced local variable
+C:\Trinity\Trinity3D\SmartDraw.cpp(273,42): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Trinity\Trinity3D\SmartDraw.cpp(380,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Trinity\Trinity3D\SmartDraw.cpp(381,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Trinity\Trinity3D\SmartDraw.cpp(382,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Trinity\Trinity3D\SmartDraw.cpp(383,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Trinity\Trinity3D\SmartDraw.cpp(385,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Trinity\Trinity3D\SmartDraw.cpp(386,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Trinity\Trinity3D\SmartDraw.cpp(387,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Trinity\Trinity3D\SmartDraw.cpp(388,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Trinity\Trinity3D\SmartDraw.cpp(411,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Trinity\Trinity3D\SmartDraw.cpp(412,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Trinity\Trinity3D\SmartDraw.cpp(413,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Trinity\Trinity3D\SmartDraw.cpp(414,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Trinity\Trinity3D\SmartDraw.cpp(416,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Trinity\Trinity3D\SmartDraw.cpp(417,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Trinity\Trinity3D\SmartDraw.cpp(418,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Trinity\Trinity3D\SmartDraw.cpp(419,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Trinity\Trinity3D\SmartDraw.cpp(476,66): warning C4267: '=': conversion from 'size_t' to 'Diligent::Uint32', possible loss of data
+C:\Trinity\Trinity3D\SmartDraw.cpp(508,94): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Trinity\Trinity3D\SmartDraw.cpp(508,75): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Trinity\Trinity3D\SmartDraw.cpp(532,60): warning C4267: '=': conversion from 'size_t' to 'Diligent::Uint32', possible loss of data
+C:\Trinity\Trinity3D\SmartDraw.cpp(565,94): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Trinity\Trinity3D\SmartDraw.cpp(565,75): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Trinity\Trinity3D\SmartDraw.cpp(588,66): warning C4267: '=': conversion from 'size_t' to 'Diligent::Uint32', possible loss of data
+  Texture2D.cpp
+  TextureCube.cpp
+  TrinityApp.cpp
+  VFile.cpp
+  VString.cpp
+  Generating Code...
 Diligent-TextureLoader.lib(BCTools.obj) : warning LNK4006: "void __cdecl Diligent::DecompressBC1Block(unsigned char const *,unsigned char *,unsigned int)" (?DecompressBC1Block@Diligent@@YAXPEBEPEAEI@Z) already defined in DiligentTools.lib(BCTools.obj); second definition ignored
 Diligent-TextureLoader.lib(BCTools.obj) : warning LNK4006: "void __cdecl Diligent::DecompressBC3Block(unsigned char const *,unsigned char *)" (?DecompressBC3Block@Diligent@@YAXPEBEPEAE@Z) already defined in DiligentTools.lib(BCTools.obj); second definition ignored
 Diligent-TextureLoader.lib(BCTools.obj) : warning LNK4006: "void __cdecl Diligent::DecompressBC4Block(unsigned char const *,unsigned char *,unsigned int)" (?DecompressBC4Block@Diligent@@YAXPEBEPEAEI@Z) already defined in DiligentTools.lib(BCTools.obj); second definition ignored

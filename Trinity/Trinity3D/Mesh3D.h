@@ -275,8 +275,97 @@ class Node3D;
 				mesh->SetName(GetName());
 				return mesh;
 			}
+			void ReadMesh(VFile* file, bool actor = false)
+			{
+				int vc = file->ReadInt();
+				for (int i = 0; i < vc; i++)
+				{
+					Vertex vert;
+					vert.position = file->ReadVec3();
+					vert.normal = file->ReadVec3();
+					vert.bi_normal = file->ReadVec3();
+					vert.tangent = file->ReadVec3();
+					vert.texture_coord = file->ReadVec3();
+					vert.m_BoneIDS = file->ReadVec4();
+					vert.m_Weights = file->ReadVec4();
+					vert.color = file->ReadVec4();
+					mVertices.push_back(vert);
+					//if (actor) {
+					//	AddVertex(vert, true);
+					//}
+					//else {
+					//	AddVertex(vert, false);
+					//}
+				}
+				int tc = file->ReadInt();
+				for (int i = 0; i < tc; i++)
+				{
+					Tri t;
+					t.v0 = file->ReadInt();
+					t.v1 = file->ReadInt();
+					t.v2 = file->ReadInt();
+					mTris.push_back(t);
+				}
 
-		
+				mMaterial = new Material;
+
+				mMaterial->SetDiffuse(file->ReadVec3());
+				mMaterial->SetSpecular(file->ReadVec3());
+
+				mMaterial->SetColorMap(new Texture2D(file->ReadString()));
+				mMaterial->SetNormalMap(new Texture2D(file->ReadString()));
+				mMaterial->SetSpecularMap(new Texture2D(file->ReadString()));
+
+				CreateBuffers();
+
+			}
+			void WriteMesh(VFile* file)
+			{
+
+
+
+				file->WriteInt((int)mVertices.size());
+				for (int i = 0; i < mVertices.size(); i++) {
+					auto v = mVertices[i];
+					file->WriteVec3(v.position);
+					file->WriteVec3(v.normal);
+					file->WriteVec3(v.bi_normal);
+					file->WriteVec3(v.tangent);
+					file->WriteVec3(v.texture_coord);
+					file->WriteVec4(v.m_BoneIDS);
+					file->WriteVec4(v.m_Weights);
+					file->WriteVec4(v.color);
+
+				}
+
+				file->WriteInt((int)mTris.size());
+				for (int i = 0; i < mTris.size(); i++) {
+
+					auto t = mTris[i];
+
+					file->WriteInt(t.v0);
+					file->WriteInt(t.v1);
+					file->WriteInt(t.v2);
+
+				}
+
+				auto mat = mMaterial;
+
+				file->WriteVec3(mat->GetDiffuse());
+				file->WriteVec3(mat->GetSpecular());
+
+				auto c_path = mat->GetColorMap()->GetPath();
+				auto n_path = mat->GetNormalMap()->GetPath();
+				auto s_path = mat->GetSpecularMap()->GetPath();
+
+				file->WriteString(c_path.c_str());
+				file->WriteString(n_path.c_str());
+				file->WriteString(s_path.c_str());
+
+
+
+
+			}
 
 		private:
 

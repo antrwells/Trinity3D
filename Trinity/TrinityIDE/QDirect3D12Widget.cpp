@@ -503,15 +503,21 @@ void QDirect3D12Widget::resizeEvent(QResizeEvent * event)
     QWidget::resizeEvent(event);
 }
 
+HWND p_hWnd;
 bool QDirect3D12Widget::event(QEvent * event)
 {
     switch (event->type())
     {
         // Workaround for https://bugreports.qt.io/browse/QTBUG-42183 to get key strokes.
         // To make sure that we always have focus on the widget when we enter the rect area.
+    case QEvent::Leave:
+    case QEvent::FocusOut:
+    case QEvent::FocusAboutToChange:
+        ::SetFocus(p_hWnd);
+        break;
         case QEvent::Enter:
         case QEvent::FocusIn:
-        case QEvent::FocusAboutToChange:
+        //case QEvent::FocusAboutToChange:
             if (::GetFocus() != m_hWnd)
             {
                 QWidget * nativeParent = this;
@@ -527,8 +533,11 @@ bool QDirect3D12Widget::event(QEvent * event)
 
                 if (nativeParent && nativeParent != this &&
                     ::GetFocus() == reinterpret_cast<HWND>(nativeParent->winId()))
+                {
+                    p_hWnd = ::GetFocus();// == reinterpret_cast<HWND>(nativeParent->winId()))
                     ::SetFocus(m_hWnd);
-            }
+                }
+                }
             break;
         case QEvent::KeyPress:
             emit keyPressed((QKeyEvent *)event);

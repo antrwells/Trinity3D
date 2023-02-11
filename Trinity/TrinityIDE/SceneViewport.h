@@ -5,6 +5,12 @@
 #include "QDirect3D12Widget.h"
 #include "Texture2D.h"
 #include "SmartDraw.h"
+#include "qdrag.h"
+#include <QDrag>
+#include "qmimedata.h"
+#include "TrinityGlobal.h"
+#include "SceneGraph.h"
+
 
 class NodeCamera;
 class NodeEntity;
@@ -63,6 +69,36 @@ public:
 	}
 
 protected:
+	void dragEnterEvent(QDragEnterEvent* event)
+	{
+		if (event->mimeData()->hasText()) {
+			event->acceptProposedAction();
+		}
+	}
+
+	void dragMoveEvent(QDragMoveEvent* event)
+	{
+		if (event->mimeData()->hasText()) {
+			event->acceptProposedAction();
+		}
+	}
+
+	void dropEvent(QDropEvent* event)
+	{
+		if (event->mimeData()->hasText()) {
+			//setText(event->mimeData()->text());
+			event->acceptProposedAction();
+
+			auto scene = TrinityGlobal::CurrentScene;
+
+			//auto node = scene->ReadNodeFromFile(std::string(event->mimeData()->text().toStdString()));
+
+//			scene->AddNode(node);
+
+
+
+		}
+	}
 
 	void createGrid();
 	void resizeEvent(QResizeEvent* event) override;

@@ -31,7 +31,7 @@
     <Import Project="$(QtMsBuild)\qt_defaults.props" />
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
-    <QtInstall>6.6.0_msvc2019_64</QtInstall>
+    <QtInstall>6.4.2_msvc2019_64</QtInstall>
     <QtModules>core;gui;widgets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
@@ -60,10 +60,10 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\git\DiligentEngine\DiligentCore;C:\git\DiligentEngine\DiligentTools;C:\Trinity\Trinity3D;C:\git\ads\Qt-Advanced-Docking-System\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\git\DiligentEngine\DiligentCore;C:\git\DiligentEngine\DiligentTools;C:\Trinity\Trinity3D;C:\git\Qt-Advanced-Docking-System-master\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\Trinity\TrinityIDE\x64\Debug;C:\git\ads\build-ads-Desktop_Qt_6_6_0_MSVC2019_64bit-Debug\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Trinity\TrinityIDE\x64\Debug;C:\git\build-ads-Desktop_Qt_6_4_2_MSVC2019_64bit-Debug\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>qtadvanceddockingd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -95,7 +95,9 @@
     <QtRcc Include="Resource.qrc" />
     <QtRcc Include="TrinityIDE.qrc" />
     <QtUic Include="ContentBrowserWidget.ui" />
+    <QtUic Include="DirectXHost.ui" />
     <QtUic Include="DockAreaWidget.ui" />
+    <QtUic Include="ImportMediaForm.ui" />
     <QtUic Include="QSceneGraph.ui" />
     <QtUic Include="SceneGraphWidget.ui" />
     <QtUic Include="SceneViewport.ui" />
@@ -104,6 +106,7 @@
     <QtMoc Include="TrinityIDE.h" />
     <ClCompile Include="ContentBrowserWidget.cpp" />
     <ClCompile Include="DockArea.cpp" />
+    <ClCompile Include="ImportMediaForm.cpp" />
     <ClCompile Include="QDirect3D12Widget.cpp" />
     <ClCompile Include="QSceneGraph.cpp" />
     <ClCompile Include="SceneGraphWidget.cpp" />
@@ -129,6 +132,7 @@
     <ClInclude Include="d3dx12.h" />
     <QtMoc Include="ToolBarWidget.h" />
     <QtMoc Include="DockArea.h" />
+    <QtMoc Include="ImportMediaForm.h" />
     <ClInclude Include="TrinityGlobal.h" />
     <QtMoc Include="QDirect3D12Widget.h" />
   </ItemGroup>

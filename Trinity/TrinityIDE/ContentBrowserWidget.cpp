@@ -1,6 +1,10 @@
 #include "ContentBrowserWidget.h"
 #include "qpainter.h"
 #include "qpainterpath.h"
+#include <QFileDialog>
+#include "qfileinfo.h"
+#include "qdrag.h"
+#include "qmimedata.h"
 
 ContentBrowserWidget::ContentBrowserWidget(QWidget *parent)
 	: ads::CDockWidget("Content Browser", parent)
@@ -8,8 +12,14 @@ ContentBrowserWidget::ContentBrowserWidget(QWidget *parent)
 //	ui.setupUi(this);
 	folderIcon = QImage("t3d/folderIcon.png");
 	fileIcon = QImage("t3d/fileIcon.png");
+	file3DIcon = QImage("t3d/3dicon.png");
 	w_Scrollbar = new QScrollBar(this);
+	setMouseTracking(true);
 	connect(w_Scrollbar, &QScrollBar::valueChanged, this, &ContentBrowserWidget::updateWidget);
+	//installEventFilter(this);
+	setContextMenuPolicy(Qt::CustomContextMenu);
+	connect(this, &ContentBrowserWidget::customContextMenuRequested, this, &ContentBrowserWidget::showContextMenu);
+//	setAcceptDrops(true);
 }
 
 ContentBrowserWidget::~ContentBrowserWidget()
@@ -36,14 +46,14 @@ void ContentBrowserWidget::paintEvent(QPaintEvent* event) {
 	int dx = 20;
 	int dy = 20 - w_Scrollbar->value();
 
-	for (int i = 0; i < currentDir.enteries.size(); i++) {
+	for (int i = 0; i < mItems.size(); i++) {
 
-		auto entry = currentDir.enteries[i];
+		auto item = mItems[i];
 
-		if (entry.folder) {
 
-			p.setOpacity(0.75);  // sets the opacity to 75%
-			p.setCompositionMode(QPainter::CompositionMode_Screen);  // sets the composition mode to Screen
+		if (item->isFolder) {
+
+
 
 			//if (but == mCurrentButton) {
 				//p.fillRect(but->x + 4, 10 + 4, 54 - 8, height() - 28, QColor(80, 80, 80));
@@ -51,9 +61,23 @@ void ContentBrowserWidget::paintEvent(QPaintEvent* event) {
 	//		else {
 		//		p.fillRect(but->x + 4, 10 + 4, 54 - 8, height() - 28, QColor(40, 40, 40));
 		//	}
-			p.drawImage(QRect(dx, dy, 64, 64), folderIcon);
 
-			p.drawText(QPointF(dx + 5, dy + 74), entry.name.c_str());
+			p.setOpacity(0.75);  // sets the opacity to 75%
+			p.setCompositionMode(QPainter::CompositionMode_Screen);  // sets the composition mode to Screen
+
+		
+
+			p.drawImage(QRect(dx, dy, 64, 64), item->icon);
+			if (item == mCurrentItem) {
+				p.drawImage(QRect(dx, dy, 64, 64),item->icon);
+				
+				//p.fillRect(dx, dy, 64, 64, QColor(120, 120, 120));
+			}
+			else {
+				//p.fillRect(dx, dy, 64, 64, QColor(40, 40, 40));
+			}
+
+			p.drawText(QPointF(dx + 5, dy + 74), item->name.c_str());
 
 
 
@@ -63,15 +87,15 @@ void ContentBrowserWidget::paintEvent(QPaintEvent* event) {
 				dx = 20;
 				dy = dy + 84;
 			}
+
 		}
 	}
 
+	for (int i = 0; i < mItems.size(); i++) {
 
-	for (int i = 0; i < currentDir.enteries.size(); i++) {
+		auto item = mItems[i];
 
-		auto entry = currentDir.enteries[i];
-
-		if (!entry.folder) {
+		if (!item->isFolder) {
 
 			p.setOpacity(0.75);  // sets the opacity to 75%
 			p.setCompositionMode(QPainter::CompositionMode_Screen);  // sets the composition mode to Screen
@@ -82,9 +106,18 @@ void ContentBrowserWidget::paintEvent(QPaintEvent* event) {
 	//		else {
 		//		p.fillRect(but->x + 4, 10 + 4, 54 - 8, height() - 28, QColor(40, 40, 40));
 		//	}
-			p.drawImage(QRect(dx, dy, 64, 64), fileIcon);
 
-			p.drawText(QPointF(dx + 5, dy + 74), entry.name.c_str());
+
+			p.drawImage(QRect(dx, dy, 64, 64), item->icon);
+			if (item == mCurrentItem) {
+				p.drawImage(QRect(dx, dy, 64, 64), item->icon);
+			}
+			else {
+				//p.fillRect(dx, dy, 64, 64, QColor(40, 40, 40));
+			}
+
+
+			p.drawText(QPointF(dx + 5, dy + 74), item->name.c_str());
 
 
 
@@ -100,11 +133,11 @@ void ContentBrowserWidget::paintEvent(QPaintEvent* event) {
 	 dx = 20;
 	 dy = 20;
 
-	for (int i = 0; i < currentDir.enteries.size(); i++) {
+	 for (int i = 0; i < mItems.size(); i++) {
 
-		auto entry = currentDir.enteries[i];
+		 auto item = mItems[i];
 
-		if (entry.folder) {
+		if (item->isFolder) {
 
 			
 
@@ -120,11 +153,11 @@ void ContentBrowserWidget::paintEvent(QPaintEvent* event) {
 	}
 
 
-	for (int i = 0; i < currentDir.enteries.size(); i++) {
+	 for (int i = 0; i < mItems.size(); i++) {
 
-		auto entry = currentDir.enteries[i];
+		 auto item = mItems[i];
 
-		if (!entry.folder) {
+		if (!item->isFolder) {
 
 			
 
@@ -148,9 +181,51 @@ void ContentBrowserWidget::paintEvent(QPaintEvent* event) {
 
 }
 
+std::string getFileExtension(const std::string& filePath) {
+	size_t dotPos = filePath.rfind('.');
+	if (dotPos == std::string::npos) {
+		return "";
+	}
+	return filePath.substr(dotPos + 1);
+}
+
 void ContentBrowserWidget::Browse(std::string path) {
 
+	mCurrentPath = path;
+
 	currentDir = DirCollection(path.c_str());
+
+	for (int i = 0; i < currentDir.enteries.size(); i++) {
+
+		auto e = currentDir.enteries[i];
+
+		ContentItem* item = new ContentItem;
+
+		std::string ext = getFileExtension(e.name);
+
+		if (e.folder || ext == "vmesh")
+		{
+
+			item->name = e.name;
+			item->path = e.full;
+			item->isFolder = e.folder;
+			item->drawx = 0;
+			item->drawy = 0;
+			
+			if (ext == "vmesh")
+			{
+				item->icon = file3DIcon;
+			}
+			else {
+			//	item->icon = fileIcon;
+				item->icon = folderIcon;
+			}
+
+
+
+			mItems.push_back(item);
+		}
+	}
 
 }
 
@@ -170,3 +245,135 @@ void ContentBrowserWidget::resizeEvent(QResizeEvent* event)
 	// Don't forget to call the base implementation
 	QWidget::resizeEvent(event);
 }
+
+void ContentBrowserWidget::mouseMoveEvent(QMouseEvent* event)
+{
+
+
+	if (isDrag) {
+		
+		if ((event->pos() - dragStartPos).manhattanLength() < QApplication::startDragDistance()) {
+			//isDrag = false;
+			return;
+			//return;
+
+		}
+		//return;
+
+		QDrag* drag = new QDrag(this);
+		QMimeData* mimeData = new QMimeData;
+
+		mimeData->setText(QString(mCurrentItem->path.c_str()));
+		drag->setMimeData(mimeData);
+	
+		
+		Qt::DropAction act=  drag->exec();
+
+
+		isDrag = false;
+		return;
+	}
+
+	int x = event->x();
+	int y = event->y();
+
+	int dx = 20;
+	int dy = 20 - w_Scrollbar->value();
+	mCurrentEntry = nullptr;
+	mCurrentName = "";
+	mCurrentItem = nullptr;
+
+	for (int i = 0; i < mItems.size(); i++) {
+
+		auto item = mItems[i];
+
+		if (item->isFolder) {
+
+		
+
+			//p.drawText(QPointF(dx + 5, dy + 74), entry.name.c_str());
+
+			if (x >= (dx) && x <= (dx + 64) && y > dy && y < dy + 64)
+			{
+				mCurrentItem = item;
+			}
+
+
+			dx = dx + 84;
+
+			if (dx + 64 > width()) {
+				dx = 20;
+				dy = dy + 84;
+			}
+		}
+	}
+
+
+	for (int i = 0; i < mItems.size(); i++) {
+
+		auto item = mItems[i];
+
+		if (!item->isFolder) {
+
+		
+			if (x >= (dx) && x <= (dx + 64) && y > dy && y < dy + 64)
+			{
+
+				//mCurrentName = std::string(entry.full);
+				mCurrentItem = item;
+			}
+
+
+			dx = dx + 84;
+
+			if (dx + 64 > width()) {
+				dx = 20;
+				dy = dy + 84;
+			}
+		}
+	}
+	update();
+
+}
+
+void ContentBrowserWidget::mousePressEvent(QMouseEvent* event) {
+
+	if (mCurrentItem != nullptr) {
+		if (event->button() == Qt::LeftButton) {
+			dragStartPos = event->pos();
+			isDrag = true;
+		}
+	}
+
+}
+
+void ContentBrowserWidget::Refreash() {
+
+
+
+}
+
+void ContentBrowserWidget::ImportFile() {
+
+	QString fileName = QFileDialog::getOpenFileName(this, "Open File", "", "Media Files (*.fbx);;All Files (*)");
+	if (!fileName.isEmpty()) {
+
+		QFileInfo fileInfo(fileName);
+		QString fileExtension = fileInfo.suffix();
+
+		auto ss = fileExtension.toStdString();
+
+		if (ss == std::string("fbx")) {
+
+			Import3DForm* form = new Import3DForm;
+			form->SetPath(fileInfo.filePath().toStdString());
+			form->show();
+		}
+	}
+
+}
+
+
+
+
+std::string ContentBrowserWidget::mCurrentPath = "";

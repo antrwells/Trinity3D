@@ -193,8 +193,7 @@ void SceneGraphWidget::mouseMoveEvent(QMouseEvent* event)
 	int max = 20;
 	GetMaxSize(scene->GetRoot(), max);
 	int bb = 0;
-	max = max - (height() - 20);
-	if (max < 20) max = 20;
+
 	mScrollLink->setMaximum(max);
 	mScrollLink->setPageStep(height());
 	

@@ -15,12 +15,14 @@ SceneViewport::SceneViewport(QWidget *parent)
 
 	setMouseTracking(true);
 
+
 	installEventFilter(this);
-	setAttribute(Qt::WA_PaintOnScreen, false);
+	//setAttribute(Qt::WA_PaintOnScreen, false);
 
 	
 	connect(this, &QDirect3D12Widget::LoadResources, this, &SceneViewport::LoadResources);
 	connect(this, &QDirect3D12Widget::RenderScene, this, &SceneViewport::RenderScene);
+	setAcceptDrops(true);
 }
 
 SceneViewport::~SceneViewport()
@@ -48,9 +50,9 @@ void SceneViewport::LoadResources() {
 	l1->SetRange(250);
 
 
-	g1->AddNode(root);
+//	g1->AddNode(root);
 	g1->AddLight(l1);
-	g1->AddNode(r2);
+//	g1->AddNode(r2);
 
 
 	auto cam = g1->GetCamera();
@@ -388,6 +390,9 @@ void SceneViewport::mousePressEvent(QMouseEvent* event) {
 
 bool SceneViewport::eventFilter(QObject* obj, QEvent* event)
 {
+	if (obj != this) {
+		return QWidget::eventFilter(obj, event);
+	}
 	if (event->type() == QEvent::MouseButtonRelease)
 	{
 		QMouseEvent* mouseEvent = static_cast<QMouseEvent*>(event);

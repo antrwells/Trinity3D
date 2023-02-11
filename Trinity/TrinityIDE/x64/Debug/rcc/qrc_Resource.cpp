@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Resource object code
 **
-** Created by: The Resource Compiler for Qt version 6.6.0
+** Created by: The Resource Compiler for Qt version 6.4.2
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -38,18 +38,9 @@ int QT_RCC_MANGLE_NAMESPACE(qCleanupResources_Resource)()
     return 1;
 }
 
-#ifdef __clang__
-#   pragma clang diagnostic push
-#   pragma clang diagnostic ignored "-Wexit-time-destructors"
-#endif
-
 namespace {
    struct initializer {
        initializer() { QT_RCC_MANGLE_NAMESPACE(qInitResources_Resource)(); }
        ~initializer() { QT_RCC_MANGLE_NAMESPACE(qCleanupResources_Resource)(); }
    } dummy;
 }
-
-#ifdef __clang__
-#   pragma clang diagnostic pop
-#endif

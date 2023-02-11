@@ -222,21 +222,31 @@
 			void LoadGraph(std::string path);
 
 
-			void ReadNode(VFile* file, Node3D* node);
 
 
-			void WriteTransform(VFile* file, Node3D* node);
 
-			void ReadTransform(VFile* file, Node3D* node);
+
+			void WriteTransform(VFile* file, Node3D* node) {
+
+				file->WriteVec3(node->GetPosition());
+				file->WriteVec3(node->GetScale());
+				file->WriteMatrix(node->GetRotation4x4());
+
+			}
+			void ReadTransform(VFile* file, Node3D* node) {
+
+				node->SetPosition(file->ReadVec3());
+				node->SetScale(file->ReadVec3());
+				node->SetRotation(file->ReadMatrix());
+
+
+			}
 
 			void SaveGraph(std::string path);
-			
-			Node3D* ReadNodeHeader(VFile* file);
+	
 
 
-			void SaveNodeHeader(VFile* file, Node3D* node);
-
-			void SaveNode(VFile* file, Node3D* node);
+		
 
 
 			static SceneGraph* mThis;
@@ -259,6 +269,294 @@
 			MeshRenderer* GetRenderer() {
 				return mRenderer;
 			}
+
+			//load/save
+			void SaveNodeHeader(VFile* file, Node3D* node) {
+
+				file->WriteInt((int)node->GetType());
+				file->WriteString(node->GetName());
+				file->WriteBool(node->GetEnabled());
+				WriteTransform(file, node);
+
+			}
+
+			void SaveNodeToFile(std::string path, Node3D* node) {
+
+				VFile* file = new VFile(path.c_str(), FileMode::Write);
+				SaveNodeHeader(file,node);
+				SaveNode(file, node);
+
+				file->Close();
+
+			}
+
+			void SaveNode(VFile* file, Node3D* node)
+			{
+
+				switch (node->GetType())
+				{
+				case NodeType::Actor:
+				{
+
+					/*
+					auto ent = (NodeActor*)node;
+
+					file->WriteInt((int)ent->GetMeshes().size());
+					for (int i = 0; i < ent->GetMeshes().size(); i++) {
+
+						ent->GetMesh(i)->WriteMesh(file);
+
+
+					}
+
+					ent->WriteScripts(file);
+					file->WriteInt((int)ent->GetPhysicsType());
+
+					//write anims
+					ent->WriteAnimations(file);
+
+					file->WriteInt((int)node->ChildrenCount());
+					for (int i = 0; i < node->ChildrenCount(); i++) {
+
+						auto sub = node->GetChild(i);
+						SaveNodeHeader(file, sub);
+						SaveNode(file, sub);
+						//mChildren[i]->WriteNode(file);
+
+					}
+					*/
+				}
+
+
+				break;
+				case NodeType::Node:
+				{
+				//	node->WriteScripts(file);
+
+					file->WriteInt((int)node->ChildrenCount());
+					for (int i = 0; i < node->ChildrenCount(); i++) {
+
+						auto sub = node->GetChild(i);
+						SaveNodeHeader(file, sub);
+						SaveNode(file, sub);
+						//mChildren[i]->WriteNode(file);
+
+					}
+
+				}
+				break;
+				case NodeType::Entity:
+				{
+					auto ent = (NodeEntity*)node;
+
+					file->WriteInt((int)ent->GetMeshes().size());
+					for (int i = 0; i < ent->GetMeshes().size(); i++) {
+
+						ent->GetMesh(i)->WriteMesh(file);
+
+
+					}
+
+				//	ent->WriteScripts(file);
+				//	file->WriteInt((int)ent->GetPhysicsType());
+
+					file->WriteInt((int)node->ChildrenCount());
+					for (int i = 0; i < node->ChildrenCount(); i++) {
+
+						auto sub = node->GetChild(i);
+						SaveNodeHeader(file, sub);
+						SaveNode(file, sub);
+						//mChildren[i]->WriteNode(file);
+
+					}
+				}
+				break;
+				case NodeType::Light:
+				{
+					auto l = (NodeLight*)node;
+
+					file->WriteVec3(l->GetDiffuse());
+					file->WriteVec3(l->GetSpecular());
+					file->WriteFloat(l->GetRange());
+					file->WriteBool(l->GetCastShadows());
+
+					//node->WriteScripts(file);
+
+					file->WriteInt((int)node->ChildrenCount());
+					for (int i = 0; i < node->ChildrenCount(); i++) {
+
+						auto sub = node->GetChild(i);
+						SaveNodeHeader(file, sub);
+						SaveNode(file, sub);
+						//mChildren[i]->WriteNode(file);
+
+					}
+				}
+				break;
+				}
+
+
+			}
+			Node3D* ReadNodeHeader(VFile* file) {
+
+				Node3D* res = nullptr;
+				NodeType type = (NodeType)file->ReadInt();
+				switch (type) {
+				case NodeType::Actor:
+				//	res = new NodeActor;
+					break;
+				case NodeType::Node:
+					res = new Node3D;
+					break;
+				case NodeType::Entity:
+					res = new NodeEntity;
+					break;
+				case NodeType::Light:
+					res = new NodeLight;
+					mLights.push_back((NodeLight*)res);
+					break;
+				case NodeType::Camera:
+					res = new NodeCamera;
+					mCams.push_back((NodeCamera*)res);
+					if (mCam == nullptr) {
+						mCam = (NodeCamera*)res;
+					}
+					//mCams.push_back((NodeCamera*)res);
+
+					break;
+				}
+
+				res->SetName(file->ReadString());
+				res->SetEnabled(file->ReadBool());
+				ReadTransform(file, res);
+				return res;
+			}
+
+
+			Node3D* ReadNodeFromFile(std::string path) {
+
+				VFile* file = new VFile(path.c_str(), FileMode::Read);
+
+
+				auto res = ReadNodeHeader(file);
+				ReadNode(file,res);
+
+				file->Close();
+
+				return mRootNode;
+
+			}
+			
+
+			void ReadNode(VFile* file, Node3D* node)
+			{
+				switch (node->GetType()) {
+				case NodeType::Node:
+				{
+			//		node->ReadScripts(file);
+
+					int cc = file->ReadInt();
+					for (int i = 0; i < cc; i++) {
+
+						auto sub = ReadNodeHeader(file);
+						ReadNode(file, sub);
+						node->AddNode(sub);
+
+					}
+				}
+				break;
+				case NodeType::Actor:
+				{
+					/*
+					auto ent = (NodeActor*)node;
+
+					int mc = file->ReadInt();
+					for (int i = 0; i < mc; i++) {
+
+						Mesh3D* mesh = new Mesh3D();
+						mesh->ReadMesh(file, true);
+						ent->AddMesh(mesh);
+						mesh->SetOwner(node);
+
+
+					}
+
+					node->ReadScripts(file);
+					ent->SetPhysicsType((PhysicsType)file->ReadInt());
+
+					ent->ReadAnimations(file);
+					ent->GetAnimator()->ResetBones();
+
+					int cc = file->ReadInt();
+					for (int i = 0; i < cc; i++) {
+
+						auto sub = ReadNodeHeader(file);
+						ReadNode(file, sub);
+						node->AddNode(sub);
+
+					}
+					*/
+				}
+				break;
+				case NodeType::Entity:
+				{
+					auto ent = (NodeEntity*)node;
+
+					int mc = file->ReadInt();
+					for (int i = 0; i < mc; i++) {
+
+						Mesh3D* mesh = new Mesh3D();
+						mesh->ReadMesh(file);
+						ent->AddMesh(mesh);
+						mesh->SetOwner(node);
+
+
+					}
+
+					//node->ReadScripts(file);
+				//	ent->SetPhysicsType((PhysicsType)file->ReadInt());
+
+
+
+					int cc = file->ReadInt();
+					for (int i = 0; i < cc; i++) {
+
+						auto sub = ReadNodeHeader(file);
+						ReadNode(file, sub);
+						node->AddNode(sub);
+
+					}
+
+				}
+				break;
+				case NodeType::Light:
+				{
+					auto l = (NodeLight*)node;
+					l->SetDiffuse(file->ReadVec3());
+					l->SetSpecular(file->ReadVec3());
+					l->SetRange(file->ReadFloat());
+					l->SetCastShadows(file->ReadBool());
+
+					//l->ReadScripts(file);
+
+
+
+					int cc = file->ReadInt();
+					for (int i = 0; i < cc; i++) {
+
+						auto sub = ReadNodeHeader(file);
+						ReadNode(file, sub);
+						node->AddNode(sub);
+
+
+					}
+				}
+				break;
+				case NodeType::Camera:
+					break;
+				}
+			}
+
 
 		private:
 			static SceneGraph* mMainScene;

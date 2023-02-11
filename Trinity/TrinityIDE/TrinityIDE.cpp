@@ -100,7 +100,7 @@ TrinityIDE::TrinityIDE(QWidget *parent)
     */
 
     w_DockArea = new DockArea(this);
-    w_DockArea->setGeometry(0, 26+60, width(), height() - 56);
+    w_DockArea->setGeometry(0, 26+34, width(), height() -(26+34));
 
    
 
@@ -143,7 +143,7 @@ void TrinityIDE::resizeEvent(QResizeEvent* event) {
 
     //w_Toolbar->resize(width(), 60);
     //w_DockArea->setGeometry(0, 26+60, width(), height() - 86);
-    w_DockArea->resize(width(), height() - 86);
+    w_DockArea->resize(width(), height() - 60);
 
     //m_DockManager->setGeometry(0, 60, width(), height() - 60);
 
