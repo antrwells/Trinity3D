@@ -151,8 +151,7 @@ PropType ClassProperty::GetType() {
 	{
 		return PropType::Byte;
 	}
-	exit(25);
-
+	return PropType::Unknown;
 	return PropType::Int32;
 
 }
@@ -181,5 +180,6 @@ std::string PropTypeEnglish(PropType type) {
 		return "Byte";
 
 	}
+	return "Unknown";
 
 }

@@ -12,7 +12,7 @@ class ClassMono;
 
 enum PropType {
 	
-	Int32,Int64,Single,Double,Int16,Byte,Array,List,Object
+	Int32,Int64,Single,Double,Int16,Byte,Array,List,Object,Unknown
 
 
 };

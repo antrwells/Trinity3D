@@ -1,9 +1,17 @@
 ﻿using System;
+using TrinityNET;
 
-
-namespace TestLib
+namespace Game
 {
-    public class Class1
+    public class TVMod : TrinityObject
+    {
+        public int Other
+        {
+            get;
+            set;
+        }
+    }
+    public class TestMod : TrinityObject
     {
 
         public int MyValue
@@ -29,6 +37,7 @@ namespace TestLib
         {
             Console.WriteLine("Testing!");
             MyValue = 25;
+            Link.CheckTest(25);
         }
 
     }

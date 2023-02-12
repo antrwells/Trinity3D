@@ -7,6 +7,7 @@
 #include "Importer.h"
 #include "VString.h"
 #include "MeshLines.h"
+#include "NodeEditorWidget.h"
 
 SceneViewport::SceneViewport(QWidget *parent)
 	: QDirect3D12Widget(parent)
@@ -341,6 +342,7 @@ void SceneViewport::mousePressEvent(QMouseEvent* event) {
 			if (res.hit) {
 
 				TrinityGlobal::ActiveNode = res.hit_node;
+				NodeEditorWidget::sThis->SetNode(res.hit_node);
 				std::string name = res.hit_node->GetName();
 
 				std::string log = "Active Node:" + name;

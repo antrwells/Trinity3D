@@ -52,7 +52,7 @@ void QSceneGraph::resizeEvent(QResizeEvent* event)
 
 	w_SceneGraph->resize(width-15,height);
 	w_Scrollbar->setGeometry(width - 15,0, 15, height);
-
+	
 	// Perform actions based on the new size of the widget
 	// ...
 

@@ -7,6 +7,11 @@
 #include "DockManager.h"
 #include "qcombobox.h"
 #include "qfile.h"
+#include "MonoRT.h"
+#include "MonoDLL.h"
+#include "ClassMono.h"
+#include "ConsoleOutputWidget.h"
+#include <vector>
 
 TrinityIDE::TrinityIDE(QWidget *parent)
     : QMainWindow(parent)
@@ -99,10 +104,31 @@ TrinityIDE::TrinityIDE(QWidget *parent)
     w_Toolbar->AddImageButton(rotImg, rotate_act);
     */
 
+    mProjectPath = "c:\\content\\";
+
     w_DockArea = new DockArea(this);
     w_DockArea->setGeometry(0, 26+34, width(), height() -(26+34));
 
-   
+    auto dll_path = mProjectPath + std::string("gamenet.dll");
+
+    TrinityGlobal::Mono = new MonoRT;
+    TrinityGlobal::MonoGame = TrinityGlobal::Mono->LoadDll(dll_path);
+
+    std::string class_info;
+
+    auto clist = TrinityGlobal::MonoGame->GetClasses();
+    class_info = std::to_string(clist.size()) + " Classes";
+
+
+    ConsoleOutputWidget::LogMessage("Welcome to Trinity3D.");
+    ConsoleOutputWidget::LogMessage("Game contains:" + class_info);
+    for (int i = 0; i < clist.size(); i++) {
+        if (i == 0) continue;
+        auto name = clist[i]->GetName();
+        ConsoleOutputWidget::LogMessage("Class:" + name);
+    }
+
+    TrinityGlobal::MonoClasses = clist;
 
     return;
 

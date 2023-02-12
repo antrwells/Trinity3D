@@ -21,9 +21,22 @@ int main()
 
     MonoRT* rt = new MonoRT;
 
-    MonoDLL* dll = rt->LoadDll("TestLib.dll");
+    MonoDLL* dll = rt->LoadDll("GameNet.dll/GameNet.dll");
 
-    auto cls = dll->GetClass("TestLib", "Class1");
+    auto classes = dll->GetClasses();
+
+    for (int i = 0; i < classes.size(); i++) {
+
+        printf("Class:");
+        printf(classes[i]->GetName().c_str());
+        printf("\n");
+        printf("Extends:");
+        printf(classes[i]->GetParentName().c_str());
+        printf("\n");
+
+    }
+
+    auto cls = dll->GetClass("Game", "TestMod");
 
     auto inst = cls->CreateInstance();
 
@@ -48,7 +61,7 @@ int main()
     printf("\n");
 
     printf("---------------------\n");
-    auto plist = inst->GetProperties();
+    auto plist = inst->GetProperties(true);
     for (int i = 0; i < plist.size(); i++) {
         auto name = plist[i]->GetName();
         auto type = PropTypeEnglish(plist[i]->GetType());

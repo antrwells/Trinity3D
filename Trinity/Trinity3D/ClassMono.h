@@ -21,7 +21,9 @@ public:
 	ClassMono* CreateInstance();
 	MonoObject* GetObject();
 	ClassProperty* GetProperty(std::string name);
-	std::vector<ClassProperty*> GetProperties();
+	std::vector<ClassProperty*> GetProperties(bool parents);
+	std::string GetName();
+	std::string GetParentName();
 
 private:
 

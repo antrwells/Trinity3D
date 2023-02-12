@@ -5,6 +5,8 @@
 #include "QSceneGraph.h"
 #include "SceneViewport.h"
 #include "ContentBrowserWidget.h"
+#include "NodeEditorWidget.h"
+#include "ConsoleOutputWidget.h"
 #include <string>
 #include "qsettings.h"
 class DockArea : public QWidget
@@ -35,5 +37,7 @@ private:
 	QSceneGraph* w_SceneGraph;
 	SceneViewport* w_SceneView;
 	ContentBrowserWidget* w_ContentBrowser;
+	NodeEditorWidget* w_NodeEditor;
+	ConsoleOutputWidget* w_Console;
 	QSettings settings;
 };

@@ -94,19 +94,25 @@
   <ItemGroup>
     <QtRcc Include="Resource.qrc" />
     <QtRcc Include="TrinityIDE.qrc" />
+    <QtUic Include="ConsoleOutputWidget.ui" />
     <QtUic Include="ContentBrowserWidget.ui" />
     <QtUic Include="DirectXHost.ui" />
     <QtUic Include="DockAreaWidget.ui" />
     <QtUic Include="ImportMediaForm.ui" />
+    <QtUic Include="NodeEditorWidget.ui" />
+    <QtUic Include="PropEditor.ui" />
     <QtUic Include="QSceneGraph.ui" />
     <QtUic Include="SceneGraphWidget.ui" />
     <QtUic Include="SceneViewport.ui" />
     <QtUic Include="ToolBarWidget.ui" />
     <QtUic Include="TrinityIDE.ui" />
     <QtMoc Include="TrinityIDE.h" />
+    <ClCompile Include="ConsoleOutputWidget.cpp" />
     <ClCompile Include="ContentBrowserWidget.cpp" />
     <ClCompile Include="DockArea.cpp" />
     <ClCompile Include="ImportMediaForm.cpp" />
+    <ClCompile Include="NodeEditorWidget.cpp" />
+    <ClCompile Include="PropEditor.cpp" />
     <ClCompile Include="QDirect3D12Widget.cpp" />
     <ClCompile Include="QSceneGraph.cpp" />
     <ClCompile Include="SceneGraphWidget.cpp" />
@@ -129,10 +135,13 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="ContentBrowserWidget.h" />
+    <QtMoc Include="ConsoleOutputWidget.h" />
     <ClInclude Include="d3dx12.h" />
     <QtMoc Include="ToolBarWidget.h" />
     <QtMoc Include="DockArea.h" />
     <QtMoc Include="ImportMediaForm.h" />
+    <QtMoc Include="NodeEditorWidget.h" />
+    <QtMoc Include="PropEditor.h" />
     <ClInclude Include="TrinityGlobal.h" />
     <QtMoc Include="QDirect3D12Widget.h" />
   </ItemGroup>

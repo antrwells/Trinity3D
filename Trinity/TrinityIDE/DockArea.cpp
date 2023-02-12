@@ -31,17 +31,25 @@ DockArea::DockArea(QWidget *parent)
 	//w_SceneGraph->resize(50, w_SceneGraph->height());
 	//w_SceneGraph->setFixedWidth(50);
 
+	w_NodeEditor = new NodeEditorWidget(NULL);
+	auto w4 = m_DockManager->addDockWidget(ads::RightDockWidgetArea, w_NodeEditor);
 
 	auto w2 = m_DockManager->addDockWidget(ads::LeftDockWidgetArea, w_SceneGraph);
 	w_ContentBrowser = new ContentBrowserWidget(NULL);
 	auto w3 = m_DockManager->addDockWidget(ads::BottomDockWidgetArea, w_ContentBrowser);
 //	w3->setMaximumHeight(150);
 
+	w_Console = new ConsoleOutputWidget(NULL);
+	auto w5 = m_DockManager->addDockWidgetTabToArea(w_Console,w3) ;// ddDockWidget(ads::BottomDockWidgetArea, w_Console);
+
+
+
+
 
 
 	QSplitter* splitter = qobject_cast<QSplitter*>(w1->parentWidget());
 	QList<int> splitterSizes;
-	splitterSizes << 150 << width() - 150;
+	splitterSizes << 150 << width() - 300 << 200;
 	splitter->setSizes(splitterSizes);
 
 

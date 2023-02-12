@@ -58,20 +58,58 @@ ClassProperty* ClassMono::GetProperty(std::string name) {
 
 }
 
-std::vector<ClassProperty*> ClassMono::GetProperties() {
+std::vector<ClassProperty*> ClassMono::GetProperties(bool parents) {
 
     std::vector<ClassProperty*> list;
 
-    void* iter = NULL;
-    MonoProperty* property;
 
-    while ((property = mono_class_get_properties(m_class, &iter))) {
+    if (parents == false) {
+        void* iter = NULL;
+        MonoProperty* property;
 
-        auto cp = new ClassProperty(this, property);
-        list.push_back(cp);
+        while ((property = mono_class_get_properties(m_class, &iter))) {
+
+            auto cp = new ClassProperty(this, property);
+            list.push_back(cp);
+
+        }
+
+    }
+    else {
+
+        MonoClass* tmpClass = m_class;
+        while (tmpClass != nullptr) {
+            MonoProperty* prop;
+            void* iter = NULL;
+            while ((prop = mono_class_get_properties(tmpClass, &iter))) {
+                auto cp = new ClassProperty(this, prop);
+                list.push_back(cp);
+               // std::cout << mono_type_get_name(propType) << std::endl;
+            }
+            tmpClass = mono_class_get_parent(tmpClass);
+        }
 
     }
 
+
     return list;
 
+}
+
+std::string ClassMono::GetName() {
+
+    return std::string(mono_class_get_name(m_class));
+
+}
+
+std::string ClassMono::GetParentName() {
+
+    MonoClass* parent_class = mono_class_get_parent(m_class);
+    if (parent_class != nullptr) {
+        const char* parent_class_name = mono_class_get_name(parent_class);
+        return std::string(parent_class_name);
+    }
+    else {
+        return std::string("None");
+    }
 }

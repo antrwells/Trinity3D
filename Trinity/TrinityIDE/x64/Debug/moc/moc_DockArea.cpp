@@ -8,6 +8,7 @@
 
 #include <memory>
 #include "../../../DockArea.h"
+#include <QtGui/qtextcursor.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'DockArea.h' doesn't include <QObject>."

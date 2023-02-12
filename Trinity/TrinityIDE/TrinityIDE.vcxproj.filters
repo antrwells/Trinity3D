@@ -76,6 +76,15 @@
     <ClCompile Include="ImportMediaForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="NodeEditorWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleOutputWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PropEditor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QSceneGraph.h">
@@ -102,6 +111,15 @@
     <QtMoc Include="ImportMediaForm.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="NodeEditorWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="ConsoleOutputWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="PropEditor.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="QSceneGraph.ui">
@@ -126,6 +144,15 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="DirectXHost.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="NodeEditorWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="ConsoleOutputWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="PropEditor.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

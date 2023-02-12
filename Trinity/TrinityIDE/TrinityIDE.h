@@ -39,7 +39,7 @@ private:
     QAction* exitAction;
     QAction* saveLayoutAction;
     QAction* loadLayoutAction;
-  
+    std::string mProjectPath;
     ToolBarWidget* w_Toolbar;
     DockArea* w_DockArea;
     QToolBar* toolBar;
