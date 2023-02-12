@@ -267,7 +267,7 @@ void main(in  PSInput  PSIn,
 
     float3 tSpec = g_TextureSpec.Sample(g_TextureSpec_sampler,PSIn.Uv).rgb;
 
-    ffcol.rgb += float3(spec*PSIn.lightSpec.x,spec*PSIn.lightSpec.y,spec*PSIn.lightSpec.z) * PSIn.matSpec * tSpec;
+    ffcol.rgb += float3(spec*PSIn.lightSpec.x,spec*PSIn.lightSpec.y,spec*PSIn.lightSpec.z) * PSIn.matSpec*tSpec;
 
 
 

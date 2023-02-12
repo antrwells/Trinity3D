@@ -19,6 +19,12 @@ NodeType Node3D::GetType() {
 
 }
 
+Node3D* Node3D::GetParent() {
+
+	return mRootNode;
+
+}
+
 float3x3 Node3D::GetRotation() {
 
 	auto r1 = mRotation[0];
@@ -161,9 +167,13 @@ void Node3D::RemoveNode(Node3D* node) {
 
 	}
 	mChildren = new_list;
+	node->SetParent(nullptr);
 
 }
 
+void Node3D::SetParent(Node3D* parent) {
+	mRootNode = nullptr;
+}
 
 void Node3D::SetHidden(bool hidden) {
 	mHidden = hidden;

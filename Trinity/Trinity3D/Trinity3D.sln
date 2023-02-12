@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Trinity3D", "Trinity3D.vcxp
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TrinityIDE", "..\TrinityIDE\TrinityIDE.vcxproj", "{064E4B37-3E8D-4F65-837D-9AB0502CA4E3}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MonoTest", "..\MonoTest\MonoTest.vcxproj", "{E4B771EF-0FD5-416D-B998-4BB6E26BB5D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{064E4B37-3E8D-4F65-837D-9AB0502CA4E3}.Release|x64.Build.0 = Release|x64
 		{064E4B37-3E8D-4F65-837D-9AB0502CA4E3}.Release|x86.ActiveCfg = Release|x64
 		{064E4B37-3E8D-4F65-837D-9AB0502CA4E3}.Release|x86.Build.0 = Release|x64
+		{E4B771EF-0FD5-416D-B998-4BB6E26BB5D2}.Debug|x64.ActiveCfg = Debug|x64
+		{E4B771EF-0FD5-416D-B998-4BB6E26BB5D2}.Debug|x64.Build.0 = Debug|x64
+		{E4B771EF-0FD5-416D-B998-4BB6E26BB5D2}.Debug|x86.ActiveCfg = Debug|Win32
+		{E4B771EF-0FD5-416D-B998-4BB6E26BB5D2}.Debug|x86.Build.0 = Debug|Win32
+		{E4B771EF-0FD5-416D-B998-4BB6E26BB5D2}.Release|x64.ActiveCfg = Release|x64
+		{E4B771EF-0FD5-416D-B998-4BB6E26BB5D2}.Release|x64.Build.0 = Release|x64
+		{E4B771EF-0FD5-416D-B998-4BB6E26BB5D2}.Release|x86.ActiveCfg = Release|Win32
+		{E4B771EF-0FD5-416D-B998-4BB6E26BB5D2}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

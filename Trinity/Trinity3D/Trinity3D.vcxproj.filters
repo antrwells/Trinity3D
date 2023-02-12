@@ -43,6 +43,9 @@
     <Filter Include="Picking">
       <UniqueIdentifier>{fdd19ab1-2631-4d85-b2bd-e66b4e0fff0c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mono">
+      <UniqueIdentifier>{80a3badd-f58a-4f3f-8194-690a833907ef}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TrinityApp.h">
@@ -108,6 +111,21 @@
     <ClInclude Include="DirCollection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MonoRT.h">
+      <Filter>Mono</Filter>
+    </ClInclude>
+    <ClInclude Include="MonoDLL.h">
+      <Filter>Mono</Filter>
+    </ClInclude>
+    <ClInclude Include="ClassMono.h">
+      <Filter>Mono</Filter>
+    </ClInclude>
+    <ClInclude Include="ClassMethod.h">
+      <Filter>Mono</Filter>
+    </ClInclude>
+    <ClInclude Include="ClassProperty.h">
+      <Filter>Mono</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TrinityApp.cpp">
@@ -169,6 +187,21 @@
     </ClCompile>
     <ClCompile Include="DirCollection.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MonoRT.cpp">
+      <Filter>Mono</Filter>
+    </ClCompile>
+    <ClCompile Include="MonoDLL.cpp">
+      <Filter>Mono</Filter>
+    </ClCompile>
+    <ClCompile Include="ClassMono.cpp">
+      <Filter>Mono</Filter>
+    </ClCompile>
+    <ClCompile Include="ClassMethod.cpp">
+      <Filter>Mono</Filter>
+    </ClCompile>
+    <ClCompile Include="ClassProperty.cpp">
+      <Filter>Mono</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -443,7 +443,7 @@
 
 				file->Close();
 
-				return mRootNode;
+				return res;
 
 			}
 			

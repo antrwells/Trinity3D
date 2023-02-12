@@ -1,107 +1,6 @@
-﻿  CubeRenderer.cpp
-C:\Trinity\Trinity3D\Material.h(126,28): warning C4305: 'initializing': truncation from 'double' to 'float'
-  DirCollection.cpp
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\xstring(2824,53): warning C4244: 'argument': conversion from 'wchar_t' to 'const _Elem', possible loss of data
-          with
-          [
-              _Elem=char
-          ]
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\xstring(2664): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<wchar_t*>(_Iter,const _Iter)' being compiled
-          with
-          [
-              _Iter=wchar_t *
-          ]
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\xstring(2664): message : see reference to function template instantiation 'void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct_from_iter<wchar_t*>(_Iter,const _Iter)' being compiled
-          with
-          [
-              _Iter=wchar_t *
-          ]
-C:\Trinity\Trinity3D\DirCollection.h(45): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
-          with
-          [
-              _Elem=wchar_t,
-              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
-              _Alloc=std::allocator<char>
-          ]
-C:\Trinity\Trinity3D\DirCollection.h(45): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>,0>(_Iter,_Iter,const _Alloc &)' being compiled
-          with
-          [
-              _Elem=wchar_t,
-              _Iter=std::_String_iterator<std::_String_val<std::_Simple_types<wchar_t>>>,
-              _Alloc=std::allocator<char>
-          ]
-  Importer.cpp
-C:\Trinity\Trinity3D\Material.h(126,28): warning C4305: 'initializing': truncation from 'double' to 'float'
-  Material.cpp
-C:\Trinity\Trinity3D\Material.h(126,28): warning C4305: 'initializing': truncation from 'double' to 'float'
-  Mesh3D.cpp
-C:\Trinity\Trinity3D\Material.h(126,28): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Trinity\Trinity3D\Mesh3D.cpp(45,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-  MeshLines.cpp
-  MeshRenderer.cpp
-C:\Trinity\Trinity3D\Material.h(126,28): warning C4305: 'initializing': truncation from 'double' to 'float'
-  Node3D.cpp
-  NodeCamera.cpp
-  NodeEntity.cpp
-C:\Trinity\Trinity3D\Material.h(126,28): warning C4305: 'initializing': truncation from 'double' to 'float'
-  NodeLight.cpp
-C:\Trinity\Trinity3D\Material.h(126,28): warning C4305: 'initializing': truncation from 'double' to 'float'
-  RayPicker.cpp
-C:\Trinity\Trinity3D\Material.h(126,28): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Trinity\Trinity3D\RayPicker.cpp(241,24): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  RenderTargetCube.cpp
-  SceneGraph.cpp
-C:\Trinity\Trinity3D\Material.h(126,28): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Trinity\Trinity3D\SceneGraph.cpp(540,3): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-  SmartDraw.cpp
-C:\Trinity\Trinity3D\SmartDraw.cpp(153,42): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Trinity\Trinity3D\SmartDraw.cpp(232,27): warning C4101: 'verts': unreferenced local variable
-C:\Trinity\Trinity3D\SmartDraw.cpp(273,42): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Trinity\Trinity3D\SmartDraw.cpp(380,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Trinity\Trinity3D\SmartDraw.cpp(381,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Trinity\Trinity3D\SmartDraw.cpp(382,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Trinity\Trinity3D\SmartDraw.cpp(383,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Trinity\Trinity3D\SmartDraw.cpp(385,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Trinity\Trinity3D\SmartDraw.cpp(386,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Trinity\Trinity3D\SmartDraw.cpp(387,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Trinity\Trinity3D\SmartDraw.cpp(388,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Trinity\Trinity3D\SmartDraw.cpp(411,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Trinity\Trinity3D\SmartDraw.cpp(412,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Trinity\Trinity3D\SmartDraw.cpp(413,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Trinity\Trinity3D\SmartDraw.cpp(414,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Trinity\Trinity3D\SmartDraw.cpp(416,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Trinity\Trinity3D\SmartDraw.cpp(417,26): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Trinity\Trinity3D\SmartDraw.cpp(418,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Trinity\Trinity3D\SmartDraw.cpp(419,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Trinity\Trinity3D\SmartDraw.cpp(476,66): warning C4267: '=': conversion from 'size_t' to 'Diligent::Uint32', possible loss of data
-C:\Trinity\Trinity3D\SmartDraw.cpp(508,94): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\Trinity\Trinity3D\SmartDraw.cpp(508,75): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\Trinity\Trinity3D\SmartDraw.cpp(532,60): warning C4267: '=': conversion from 'size_t' to 'Diligent::Uint32', possible loss of data
-C:\Trinity\Trinity3D\SmartDraw.cpp(565,94): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\Trinity\Trinity3D\SmartDraw.cpp(565,75): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\Trinity\Trinity3D\SmartDraw.cpp(588,66): warning C4267: '=': conversion from 'size_t' to 'Diligent::Uint32', possible loss of data
-  Texture2D.cpp
-  TextureCube.cpp
-  TrinityApp.cpp
-  VFile.cpp
-  VString.cpp
-  Generating Code...
+﻿  ClassProperty.cpp
+C:\Trinity\Trinity3D\ClassProperty.cpp(37,13): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Trinity\Trinity3D\ClassProperty.cpp(185): warning C4715: 'PropTypeEnglish': not all control paths return a value
 Diligent-TextureLoader.lib(BCTools.obj) : warning LNK4006: "void __cdecl Diligent::DecompressBC1Block(unsigned char const *,unsigned char *,unsigned int)" (?DecompressBC1Block@Diligent@@YAXPEBEPEAEI@Z) already defined in DiligentTools.lib(BCTools.obj); second definition ignored
 Diligent-TextureLoader.lib(BCTools.obj) : warning LNK4006: "void __cdecl Diligent::DecompressBC3Block(unsigned char const *,unsigned char *)" (?DecompressBC3Block@Diligent@@YAXPEBEPEAE@Z) already defined in DiligentTools.lib(BCTools.obj); second definition ignored
 Diligent-TextureLoader.lib(BCTools.obj) : warning LNK4006: "void __cdecl Diligent::DecompressBC4Block(unsigned char const *,unsigned char *,unsigned int)" (?DecompressBC4Block@Diligent@@YAXPEBEPEAEI@Z) already defined in DiligentTools.lib(BCTools.obj); second definition ignored
@@ -1840,6 +1739,74 @@ DiligentCore.lib(BasicFileSystem.obj) : warning LNK4006: "public: static class s
 DiligentCore.lib(BasicFileSystem.obj) : warning LNK4006: "public: static class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __cdecl Diligent::BasicFileSystem::GetRelativePath(char const *,bool,char const *,bool)" (?GetRelativePath@BasicFileSystem@Diligent@@SA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PEBD_N01@Z) already defined in Diligent-BasicPlatform.lib(BasicFileSystem.obj); second definition ignored
 DiligentCore.lib(BasicFileSystem.obj) : warning LNK4006: "public: static class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __cdecl Diligent::BasicFileSystem::FileDialog(struct Diligent::FileDialogAttribs const &)" (?FileDialog@BasicFileSystem@Diligent@@SA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBUFileDialogAttribs@2@@Z) already defined in Diligent-BasicPlatform.lib(BasicFileSystem.obj); second definition ignored
 DiligentCore.lib(BasicFileSystem.obj) : warning LNK4006: "protected: static class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > Diligent::BasicFileSystem::m_strWorkingDirectory" (?m_strWorkingDirectory@BasicFileSystem@Diligent@@1V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@A) already defined in Diligent-BasicPlatform.lib(BasicFileSystem.obj); second definition ignored
+libmono-static-sgen.lib(zutil.obj) : warning LNK4006: z_errmsg already defined in DiligentTools.lib(zutil.obj); second definition ignored
+libmono-static-sgen.lib(zutil.obj) : warning LNK4006: zlibVersion already defined in DiligentTools.lib(zutil.obj); second definition ignored
+libmono-static-sgen.lib(zutil.obj) : warning LNK4006: zlibCompileFlags already defined in DiligentTools.lib(zutil.obj); second definition ignored
+libmono-static-sgen.lib(zutil.obj) : warning LNK4006: zError already defined in DiligentTools.lib(zutil.obj); second definition ignored
+libmono-static-sgen.lib(zutil.obj) : warning LNK4006: zcalloc already defined in DiligentTools.lib(zutil.obj); second definition ignored
+libmono-static-sgen.lib(zutil.obj) : warning LNK4006: zcfree already defined in DiligentTools.lib(zutil.obj); second definition ignored
+libmono-static-sgen.lib(trees.obj) : warning LNK4006: _length_code already defined in DiligentTools.lib(trees.obj); second definition ignored
+libmono-static-sgen.lib(trees.obj) : warning LNK4006: _dist_code already defined in DiligentTools.lib(trees.obj); second definition ignored
+libmono-static-sgen.lib(trees.obj) : warning LNK4006: _tr_init already defined in DiligentTools.lib(trees.obj); second definition ignored
+libmono-static-sgen.lib(trees.obj) : warning LNK4006: _tr_tally already defined in DiligentTools.lib(trees.obj); second definition ignored
+libmono-static-sgen.lib(trees.obj) : warning LNK4006: _tr_flush_block already defined in DiligentTools.lib(trees.obj); second definition ignored
+libmono-static-sgen.lib(trees.obj) : warning LNK4006: _tr_flush_bits already defined in DiligentTools.lib(trees.obj); second definition ignored
+libmono-static-sgen.lib(trees.obj) : warning LNK4006: _tr_align already defined in DiligentTools.lib(trees.obj); second definition ignored
+libmono-static-sgen.lib(trees.obj) : warning LNK4006: _tr_stored_block already defined in DiligentTools.lib(trees.obj); second definition ignored
+libmono-static-sgen.lib(inftrees.obj) : warning LNK4006: inflate_copyright already defined in DiligentTools.lib(inftrees.obj); second definition ignored
+libmono-static-sgen.lib(inftrees.obj) : warning LNK4006: inflate_table already defined in DiligentTools.lib(inftrees.obj); second definition ignored
+libmono-static-sgen.lib(inflate.obj) : warning LNK4006: inflate already defined in DiligentTools.lib(inflate.obj); second definition ignored
+libmono-static-sgen.lib(inflate.obj) : warning LNK4006: inflateEnd already defined in DiligentTools.lib(inflate.obj); second definition ignored
+libmono-static-sgen.lib(inflate.obj) : warning LNK4006: inflateSetDictionary already defined in DiligentTools.lib(inflate.obj); second definition ignored
+libmono-static-sgen.lib(inflate.obj) : warning LNK4006: inflateGetDictionary already defined in DiligentTools.lib(inflate.obj); second definition ignored
+libmono-static-sgen.lib(inflate.obj) : warning LNK4006: inflateSync already defined in DiligentTools.lib(inflate.obj); second definition ignored
+libmono-static-sgen.lib(inflate.obj) : warning LNK4006: inflateCopy already defined in DiligentTools.lib(inflate.obj); second definition ignored
+libmono-static-sgen.lib(inflate.obj) : warning LNK4006: inflateReset already defined in DiligentTools.lib(inflate.obj); second definition ignored
+libmono-static-sgen.lib(inflate.obj) : warning LNK4006: inflateReset2 already defined in DiligentTools.lib(inflate.obj); second definition ignored
+libmono-static-sgen.lib(inflate.obj) : warning LNK4006: inflatePrime already defined in DiligentTools.lib(inflate.obj); second definition ignored
+libmono-static-sgen.lib(inflate.obj) : warning LNK4006: inflateMark already defined in DiligentTools.lib(inflate.obj); second definition ignored
+libmono-static-sgen.lib(inflate.obj) : warning LNK4006: inflateGetHeader already defined in DiligentTools.lib(inflate.obj); second definition ignored
+libmono-static-sgen.lib(inflate.obj) : warning LNK4006: inflateInit_ already defined in DiligentTools.lib(inflate.obj); second definition ignored
+libmono-static-sgen.lib(inflate.obj) : warning LNK4006: inflateInit2_ already defined in DiligentTools.lib(inflate.obj); second definition ignored
+libmono-static-sgen.lib(inflate.obj) : warning LNK4006: inflateSyncPoint already defined in DiligentTools.lib(inflate.obj); second definition ignored
+libmono-static-sgen.lib(inflate.obj) : warning LNK4006: inflateUndermine already defined in DiligentTools.lib(inflate.obj); second definition ignored
+libmono-static-sgen.lib(inflate.obj) : warning LNK4006: inflateValidate already defined in DiligentTools.lib(inflate.obj); second definition ignored
+libmono-static-sgen.lib(inflate.obj) : warning LNK4006: inflateCodesUsed already defined in DiligentTools.lib(inflate.obj); second definition ignored
+libmono-static-sgen.lib(inflate.obj) : warning LNK4006: inflateResetKeep already defined in DiligentTools.lib(inflate.obj); second definition ignored
+libmono-static-sgen.lib(inffast.obj) : warning LNK4006: inflate_fast already defined in DiligentTools.lib(inffast.obj); second definition ignored
+libmono-static-sgen.lib(deflate.obj) : warning LNK4006: deflate_copyright already defined in DiligentTools.lib(deflate.obj); second definition ignored
+libmono-static-sgen.lib(deflate.obj) : warning LNK4006: deflate already defined in DiligentTools.lib(deflate.obj); second definition ignored
+libmono-static-sgen.lib(deflate.obj) : warning LNK4006: deflateEnd already defined in DiligentTools.lib(deflate.obj); second definition ignored
+libmono-static-sgen.lib(deflate.obj) : warning LNK4006: deflateSetDictionary already defined in DiligentTools.lib(deflate.obj); second definition ignored
+libmono-static-sgen.lib(deflate.obj) : warning LNK4006: deflateGetDictionary already defined in DiligentTools.lib(deflate.obj); second definition ignored
+libmono-static-sgen.lib(deflate.obj) : warning LNK4006: deflateCopy already defined in DiligentTools.lib(deflate.obj); second definition ignored
+libmono-static-sgen.lib(deflate.obj) : warning LNK4006: deflateReset already defined in DiligentTools.lib(deflate.obj); second definition ignored
+libmono-static-sgen.lib(deflate.obj) : warning LNK4006: deflateParams already defined in DiligentTools.lib(deflate.obj); second definition ignored
+libmono-static-sgen.lib(deflate.obj) : warning LNK4006: deflateTune already defined in DiligentTools.lib(deflate.obj); second definition ignored
+libmono-static-sgen.lib(deflate.obj) : warning LNK4006: deflateBound already defined in DiligentTools.lib(deflate.obj); second definition ignored
+libmono-static-sgen.lib(deflate.obj) : warning LNK4006: deflatePending already defined in DiligentTools.lib(deflate.obj); second definition ignored
+libmono-static-sgen.lib(deflate.obj) : warning LNK4006: deflatePrime already defined in DiligentTools.lib(deflate.obj); second definition ignored
+libmono-static-sgen.lib(deflate.obj) : warning LNK4006: deflateSetHeader already defined in DiligentTools.lib(deflate.obj); second definition ignored
+libmono-static-sgen.lib(deflate.obj) : warning LNK4006: deflateInit_ already defined in DiligentTools.lib(deflate.obj); second definition ignored
+libmono-static-sgen.lib(deflate.obj) : warning LNK4006: deflateInit2_ already defined in DiligentTools.lib(deflate.obj); second definition ignored
+libmono-static-sgen.lib(deflate.obj) : warning LNK4006: deflateResetKeep already defined in DiligentTools.lib(deflate.obj); second definition ignored
+libmono-static-sgen.lib(crc32.obj) : warning LNK4006: crc32 already defined in DiligentTools.lib(crc32.obj); second definition ignored
+libmono-static-sgen.lib(crc32.obj) : warning LNK4006: crc32_z already defined in DiligentTools.lib(crc32.obj); second definition ignored
+libmono-static-sgen.lib(crc32.obj) : warning LNK4006: crc32_combine_op already defined in DiligentTools.lib(crc32.obj); second definition ignored
+libmono-static-sgen.lib(crc32.obj) : warning LNK4006: crc32_combine already defined in DiligentTools.lib(crc32.obj); second definition ignored
+libmono-static-sgen.lib(crc32.obj) : warning LNK4006: crc32_combine_gen already defined in DiligentTools.lib(crc32.obj); second definition ignored
+libmono-static-sgen.lib(crc32.obj) : warning LNK4006: get_crc_table already defined in DiligentTools.lib(crc32.obj); second definition ignored
+libmono-static-sgen.lib(crc32.obj) : warning LNK4006: crc32_combine64 already defined in DiligentTools.lib(crc32.obj); second definition ignored
+libmono-static-sgen.lib(crc32.obj) : warning LNK4006: crc32_combine_gen64 already defined in DiligentTools.lib(crc32.obj); second definition ignored
+libmono-static-sgen.lib(adler32.obj) : warning LNK4006: adler32 already defined in DiligentTools.lib(adler32.obj); second definition ignored
+libmono-static-sgen.lib(adler32.obj) : warning LNK4006: adler32_z already defined in DiligentTools.lib(adler32.obj); second definition ignored
+libmono-static-sgen.lib(adler32.obj) : warning LNK4006: adler32_combine already defined in DiligentTools.lib(adler32.obj); second definition ignored
+libmono-static-sgen.lib(adler32.obj) : warning LNK4006: adler32_combine64 already defined in DiligentTools.lib(adler32.obj); second definition ignored
+Bcrypt.lib(bcrypt.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in assimp-vc142-mtd.lib(assimp-vc142-mtd.dll); second definition ignored
+version.lib(VERSION.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in assimp-vc142-mtd.lib(assimp-vc142-mtd.dll); second definition ignored
+WS2_32.lib(WS2_32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in assimp-vc142-mtd.lib(assimp-vc142-mtd.dll); second definition ignored
+winmm.lib(WINMM.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in assimp-vc142-mtd.lib(assimp-vc142-mtd.dll); second definition ignored
+Importer.obj : warning LNK4006: "public: enum aiReturn __cdecl aiMaterial::Get(char const *,unsigned int,unsigned int,struct aiColor3D &)const " (?Get@aiMaterial@@QEBA?AW4aiReturn@@PEBDIIAEAUaiColor3D@@@Z) already defined in assimp-vc142-mtd.lib(assimp-vc142-mtd.dll); second definition ignored
 Importer.obj : warning LNK4006: "public: unsigned int __cdecl aiMaterial::GetTextureCount(enum aiTextureType)const " (?GetTextureCount@aiMaterial@@QEBAIW4aiTextureType@@@Z) already defined in assimp-vc142-mtd.lib(assimp-vc142-mtd.dll); second definition ignored
 Importer.obj : warning LNK4006: "public: enum aiReturn __cdecl aiMaterial::GetTexture(enum aiTextureType,unsigned int,struct aiString *,enum aiTextureMapping *,unsigned int *,float *,enum aiTextureOp *,enum aiTextureMapMode *)const " (?GetTexture@aiMaterial@@QEBA?AW4aiReturn@@W4aiTextureType@@IPEAUaiString@@PEAW4aiTextureMapping@@PEAIPEAMPEAW4aiTextureOp@@PEAW4aiTextureMapMode@@@Z) already defined in assimp-vc142-mtd.lib(assimp-vc142-mtd.dll); second definition ignored
   Trinity3D.vcxproj -> C:\Trinity\Trinity3D\x64\Debug\Trinity3D.lib

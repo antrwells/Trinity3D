@@ -289,6 +289,9 @@ using namespace Diligent;
 
 			void SetPlaying(bool play);
 
+			Node3D* GetParent();
+			void SetParent(Node3D* parent);
+
 		protected:
 
 			static bool mSysInit;

@@ -5,6 +5,9 @@
 #include "Node3D.h"
 #include <QMouseEvent>
 #include "qscrollbar.h"
+#include "qdrag.h"
+#include "qmimedata.h"
+#include "TrinityGlobal.h"
 class SceneGraphWidget : public QWidget
 {
 	Q_OBJECT
@@ -22,10 +25,64 @@ public slots:
 	{
 		update();
 	}
+private slots:
+	void showContextMenu(const QPoint& pos)
+	{
+		QMenu contextMenu(tr("Context menu"), this);
+
+		QAction action1("Create", this);
+		connect(&action1, &QAction::triggered, [=] { });
+		contextMenu.addAction(&action1);
+
+
+		QAction action2("Delete", this);
+		connect(&action2, &QAction::triggered, [=] { DeleteCurrent(); });
+		contextMenu.addAction(&action2);
+
+
+
+		contextMenu.exec(mapToGlobal(pos));
+	}
 
 protected:
+	void DeleteCurrent();
+	void dragEnterEvent(QDragEnterEvent* event)
+	{
+		if (event->mimeData()->hasText()) {
+			event->acceptProposedAction();
+		}
+	}
 
-	
+	void dragMoveEvent(QDragMoveEvent* event)
+	{
+		if (event->mimeData()->hasText()) {
+			event->acceptProposedAction();
+		}
+	}
+
+	void dropEvent(QDropEvent* event)
+	{
+		if (event->mimeData()->hasText()) {
+			//setText(event->mimeData()->text());
+			event->acceptProposedAction();
+
+			auto scene = TrinityGlobal::CurrentScene;
+
+			auto node = scene->ReadNodeFromFile(std::string(event->mimeData()->text().toStdString()));
+
+			if (mActiveNode != nullptr) {
+				mActiveNode->AddNode(node);
+			}
+			else {
+				scene->AddNode(node);
+			}
+			//scene->AddNode(node);
+
+
+
+
+		}
+	}
 	void CheckNode(Node3D* node, int& dx, int& dy,int mx,int my);
 	void DrawNode(Node3D* node, int& dx, int& dy,QPainter& p);
 	void GetMaxSize(Node3D* node, int& sy);

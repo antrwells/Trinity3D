@@ -10,10 +10,32 @@ SceneGraphWidget::SceneGraphWidget(QWidget* parent)
 	setMouseTracking(true);
 	//ui.setupUi(this);
 	setAttribute(Qt::WA_PaintOnScreen, false);
+	setAcceptDrops(true);
+	setContextMenuPolicy(Qt::CustomContextMenu);
+	connect(this, &SceneGraphWidget::customContextMenuRequested, this, &SceneGraphWidget::showContextMenu);
 
 }
 
+void SceneGraphWidget::DeleteCurrent() {
 
+	if (mCurrentNode != nullptr) {
+		auto scene = TrinityGlobal::CurrentScene;
+
+
+		if (mCurrentNode == scene->GetRoot())
+		{
+			return;
+		}
+		mCurrentNode->GetParent()->RemoveNode(mCurrentNode);
+		if (mCurrentNode->GetType() == NodeType::Light)
+		{
+			scene->RemoveLight(mCurrentNode);
+		}
+		update();
+
+	}
+
+}
 
 void SceneGraphWidget::DrawNode(Node3D* node, int& dx, int& dy, QPainter& p)
 {

@@ -91,9 +91,9 @@ protected:
 
 			auto scene = TrinityGlobal::CurrentScene;
 
-			//auto node = scene->ReadNodeFromFile(std::string(event->mimeData()->text().toStdString()));
+			auto node = scene->ReadNodeFromFile(std::string(event->mimeData()->text().toStdString()));
 
-//			scene->AddNode(node);
+			scene->AddNode(node);
 
 
 

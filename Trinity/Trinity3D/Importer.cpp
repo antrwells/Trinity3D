@@ -249,11 +249,25 @@ std::vector<Material*> materials;
 
 				Material* new_material = new Material;
 
+
+
 				new_material->SetType(MaterialType::PBR);
 
 				auto aiMaterial = scene->mMaterials[i];
 
+				aiColor3D diffuseColor(0.f, 0.f, 0.f);
+				aiColor3D specularColor(1.f, 1.f, 1.f);
+				aiColor3D ambientColor(0.f, 0.f, 0.f);
+
+				aiMaterial->Get(AI_MATKEY_COLOR_DIFFUSE, diffuseColor);
+				//aiMaterial->Get(AI_MATKEY_COLOR_SPECULAR, specularColor);
+				aiMaterial->Get(AI_MATKEY_COLOR_AMBIENT, ambientColor);
+
 				char* mat_name = (char*)aiMaterial->GetName().C_Str();
+
+				new_material->SetDiffuse(float3(diffuseColor.r, diffuseColor.g, diffuseColor.b));
+				new_material->SetSpecular(float3(specularColor.r, specularColor.g, specularColor.b));
+
 
 				int base_tex_count = aiMaterial->GetTextureCount(aiTextureType::aiTextureType_BASE_COLOR);
 				int diff_tex_count = aiMaterial->GetTextureCount(aiTextureType::aiTextureType_DIFFUSE);

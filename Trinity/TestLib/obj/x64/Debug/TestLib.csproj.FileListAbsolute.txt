@@ -1,0 +1,6 @@
+C:\Trinity\TestLib\bin\x64\Debug\TestLib.dll
+C:\Trinity\TestLib\bin\x64\Debug\TestLib.pdb
+C:\Trinity\TestLib\obj\x64\Debug\TestLib.csproj.AssemblyReference.cache
+C:\Trinity\TestLib\obj\x64\Debug\TestLib.csproj.CoreCompileInputs.cache
+C:\Trinity\TestLib\obj\x64\Debug\TestLib.dll
+C:\Trinity\TestLib\obj\x64\Debug\TestLib.pdb

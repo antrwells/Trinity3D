@@ -6,6 +6,8 @@
 #include "qdrag.h"
 #include "qmimedata.h"
 
+ContentBrowserWidget* ContentBrowserWidget::mThis = nullptr;
+
 ContentBrowserWidget::ContentBrowserWidget(QWidget *parent)
 	: ads::CDockWidget("Content Browser", parent)
 {
@@ -20,12 +22,17 @@ ContentBrowserWidget::ContentBrowserWidget(QWidget *parent)
 	setContextMenuPolicy(Qt::CustomContextMenu);
 	connect(this, &ContentBrowserWidget::customContextMenuRequested, this, &ContentBrowserWidget::showContextMenu);
 //	setAcceptDrops(true);
+	mThis = this;
 }
 
 ContentBrowserWidget::~ContentBrowserWidget()
 {}
 
+void ContentBrowserWidget::Reload() {
 
+	Browse(mCurrentPath);
+	update();
+}
 
 void ContentBrowserWidget::paintEvent(QPaintEvent* event) {
 
@@ -189,11 +196,29 @@ std::string getFileExtension(const std::string& filePath) {
 	return filePath.substr(dotPos + 1);
 }
 
+void ContentBrowserWidget::Back() {
+
+	if (mPathStack.size() <= 1)
+	{
+		return;
+	}
+
+	mPathStack.pop();
+
+	auto np = mPathStack.top();
+	mPathStack.pop();
+	Browse(np);
+
+
+}
+
 void ContentBrowserWidget::Browse(std::string path) {
 
 	mCurrentPath = path;
+	mPathStack.push(path);
 
 	currentDir = DirCollection(path.c_str());
+	mItems.resize(0);
 
 	for (int i = 0; i < currentDir.enteries.size(); i++) {
 
@@ -246,8 +271,11 @@ void ContentBrowserWidget::resizeEvent(QResizeEvent* event)
 	QWidget::resizeEvent(event);
 }
 
+
+
 void ContentBrowserWidget::mouseMoveEvent(QMouseEvent* event)
 {
+	 mousePos = event->pos();
 
 
 	if (isDrag) {
@@ -338,7 +366,24 @@ void ContentBrowserWidget::mouseMoveEvent(QMouseEvent* event)
 
 void ContentBrowserWidget::mousePressEvent(QMouseEvent* event) {
 
+	if (event->button() == Qt::BackButton)
+	{
+		Back();
+		update();
+		QMouseEvent* event = new QMouseEvent(QEvent::MouseMove, mousePos, Qt::NoButton, Qt::NoButton, Qt::NoModifier);
+		QCoreApplication::postEvent(this, event);
+		return;
+	}
+
 	if (mCurrentItem != nullptr) {
+		if (mCurrentItem->isFolder)
+		{
+			Browse(mCurrentItem->path);
+			update();
+			QMouseEvent* event = new QMouseEvent(QEvent::MouseMove, mousePos, Qt::NoButton, Qt::NoButton, Qt::NoModifier);
+			QCoreApplication::postEvent(this, event);
+			return;
+		}
 		if (event->button() == Qt::LeftButton) {
 			dragStartPos = event->pos();
 			isDrag = true;

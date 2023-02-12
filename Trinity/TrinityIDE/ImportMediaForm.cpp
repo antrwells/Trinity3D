@@ -106,6 +106,8 @@ void Import3DForm::onImport() {
 
         scene->SaveNodeToFile(newFileName,node);
 
+        ContentBrowserWidget::mThis->Reload();
+
     }
   
     close();

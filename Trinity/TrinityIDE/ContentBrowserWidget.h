@@ -9,6 +9,7 @@
 #include <vector>
 #include "ImportMediaForm.h"
 #include "qmimedata.h"
+#include <stack>
 
 struct ContentItem {
 
@@ -29,9 +30,12 @@ public:
 	~ContentBrowserWidget();
 
 	void Browse(std::string path);
+	void Back();
 	void ImportFile();
 	void Refreash();
 
+	void Reload();
+	static ContentBrowserWidget* mThis;
 	static std::string mCurrentPath;
 
 protected:
@@ -108,6 +112,8 @@ private:
 	std::string mCurrentName = "";
 	ContentItem* mCurrentItem = nullptr;
 	std::vector<ContentItem*> mItems;
+	QPoint mousePos;
 	QPoint dragStartPos;
 	bool isDrag = false;
+	std::stack<std::string> mPathStack;
 };
