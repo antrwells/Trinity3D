@@ -36,6 +36,9 @@ public:
 	void SetShort(short value);
 	void SetLong(long value);
 	void SetByte(char value);
+	void* GetPointer();
+	void SetPointer(void* p);
+
 	PropType GetType();
 	std::string GetName();
 

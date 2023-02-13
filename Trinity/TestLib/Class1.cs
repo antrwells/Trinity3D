@@ -33,11 +33,19 @@ namespace Game
             set;
         }
 
-        public void Hey()
+        public object Test
         {
-            Console.WriteLine("Testing!");
-            MyValue = 25;
-            Link.CheckTest(25);
+            get;
+            set;
+        }
+
+        public int Hey(object b)
+        {
+
+            Test = b;
+
+            return 200;
+
         }
 
     }

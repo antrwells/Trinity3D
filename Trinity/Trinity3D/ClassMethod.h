@@ -4,9 +4,11 @@
 #include <mono/metadata/debug-helpers.h>
 #include <mono/metadata/mono-config.h>
 #include <mono/metadata/mono-debug.h>
+#include "MonoVar.h"
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <vector>
 
 class ClassMono;
 
@@ -15,7 +17,8 @@ class ClassMethod
 public:
 
 	ClassMethod(ClassMono * klass,MonoMethod* method);
-	void CallNoPars();
+	MonoVar* CallNoPars();
+	MonoVar* Call(std::vector<MonoVar*> pars);
 
 private:
 

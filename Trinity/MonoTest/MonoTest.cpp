@@ -13,6 +13,7 @@
 #include "ClassMono.h"
 #include "ClassMethod.h"
 #include "ClassProperty.h"
+#include "MonoVar.h"
 
 int main()
 
@@ -40,16 +41,44 @@ int main()
 
     auto inst = cls->CreateInstance();
 
-    auto meth = inst->GetMethod("Hey");
+    auto meth = inst->GetMethod("Hey",1);
 
-    meth->CallNoPars();
+    void* p = (void*)malloc(8);
+    
+    int* p2 = (int*)p;
+    p2[0] = 5;
+
+    p2[1] = 25;
+
+    int* v = (int*)malloc(4);
+
+    v[0] = 2500;
 
 
+    MonoVar* v1 = new MonoVar((void*)v);
+
+
+    std::vector<MonoVar*> pars;
+
+    pars.push_back(v1);
+    //pars.push_back(v2);
+
+
+  //  meth->CallNoPars();
+    auto rv = meth->Call(pars);
+
+    printf("RV==%d\n", rv->GetInt());
 
     auto prop = inst->GetProperty("MyValue");
 
-    prop->SetInt(355);
+    auto prop2 = inst->GetProperty("Test");
 
+    int* np = (int*)prop2->GetPointer();
+
+    printf("PR2:%d", np[0]);
+
+    prop->SetInt(355);
+    
     printf("V:%d\n", prop->GetInt());
 
     printf("Name:");

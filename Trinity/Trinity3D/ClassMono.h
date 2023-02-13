@@ -17,7 +17,7 @@ public:
 
 	ClassMono(MonoClass* klass);
 	ClassMono(MonoClass* klass, MonoObject* obj);
-	ClassMethod* GetMethod(std::string name);
+	ClassMethod* GetMethod(std::string name,int pars);
 	ClassMono* CreateInstance();
 	MonoObject* GetObject();
 	ClassProperty* GetProperty(std::string name);

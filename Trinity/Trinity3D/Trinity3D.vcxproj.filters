@@ -126,6 +126,9 @@
     <ClInclude Include="ClassProperty.h">
       <Filter>Mono</Filter>
     </ClInclude>
+    <ClInclude Include="MonoVar.h">
+      <Filter>Mono</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TrinityApp.cpp">
@@ -201,6 +204,9 @@
       <Filter>Mono</Filter>
     </ClCompile>
     <ClCompile Include="ClassProperty.cpp">
+      <Filter>Mono</Filter>
+    </ClCompile>
+    <ClCompile Include="MonoVar.cpp">
       <Filter>Mono</Filter>
     </ClCompile>
   </ItemGroup>

@@ -113,6 +113,18 @@ void ClassProperty::SetByte(char value) {
 	mono_property_set_value(m_property, m_class->GetObject(), args, nullptr);
 }
 
+void* ClassProperty::GetPointer() {
+
+	MonoObject* value = mono_property_get_value(m_property, m_class->GetObject(), NULL, NULL);
+	return (void*)mono_object_unbox(value);
+
+}
+
+void ClassProperty::SetPointer(void* p)
+{
+	mono_property_set_value(m_property, m_class->GetObject(),&p, nullptr);
+}
+
 PropType ClassProperty::GetType() {
 
 	MonoMethod* get_method = mono_property_get_get_method(m_property);
@@ -162,6 +174,8 @@ std::string ClassProperty::GetName() {
 	return std::string(property_name);
 
 }
+
+
 
 std::string PropTypeEnglish(PropType type) {
 

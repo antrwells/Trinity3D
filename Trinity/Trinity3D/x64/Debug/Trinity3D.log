@@ -1,4 +1,5 @@
-﻿  ClassMono.cpp
+﻿  ClassProperty.cpp
+C:\Trinity\Trinity3D\ClassProperty.cpp(37,13): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
 Diligent-TextureLoader.lib(BCTools.obj) : warning LNK4006: "void __cdecl Diligent::DecompressBC1Block(unsigned char const *,unsigned char *,unsigned int)" (?DecompressBC1Block@Diligent@@YAXPEBEPEAEI@Z) already defined in DiligentTools.lib(BCTools.obj); second definition ignored
 Diligent-TextureLoader.lib(BCTools.obj) : warning LNK4006: "void __cdecl Diligent::DecompressBC3Block(unsigned char const *,unsigned char *)" (?DecompressBC3Block@Diligent@@YAXPEBEPEAE@Z) already defined in DiligentTools.lib(BCTools.obj); second definition ignored
 Diligent-TextureLoader.lib(BCTools.obj) : warning LNK4006: "void __cdecl Diligent::DecompressBC4Block(unsigned char const *,unsigned char *,unsigned int)" (?DecompressBC4Block@Diligent@@YAXPEBEPEAEI@Z) already defined in DiligentTools.lib(BCTools.obj); second definition ignored

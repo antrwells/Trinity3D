@@ -17,8 +17,8 @@ ClassMono::ClassMono(MonoClass* klass, MonoObject* obj)
 
 }
 
-ClassMethod* ClassMono::GetMethod(std::string name) {
-    MonoMethod* method = mono_class_get_method_from_name(m_class,name.c_str(), 0);
+ClassMethod* ClassMono::GetMethod(std::string name,int pars) {
+    MonoMethod* method = mono_class_get_method_from_name(m_class,name.c_str(),pars);
     if (!method) {
         printf("Error getting method:");
         printf(name.c_str());
