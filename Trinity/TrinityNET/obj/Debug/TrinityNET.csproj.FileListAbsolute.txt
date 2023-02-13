@@ -1,9 +1,0 @@
-C:\Trinity\TrinityNET\bin\Debug\TrinityNET.dll
-C:\Trinity\TrinityNET\bin\Debug\TrinityNET.pdb
-C:\Trinity\TrinityNET\bin\Debug\System.Numerics.Vectors.dll
-C:\Trinity\TrinityNET\bin\Debug\System.Numerics.Vectors.xml
-C:\Trinity\TrinityNET\obj\Debug\TrinityNET.csproj.AssemblyReference.cache
-C:\Trinity\TrinityNET\obj\Debug\TrinityNET.csproj.CoreCompileInputs.cache
-C:\Trinity\TrinityNET\obj\Debug\TrinityNET.csproj.CopyComplete
-C:\Trinity\TrinityNET\obj\Debug\TrinityNET.dll
-C:\Trinity\TrinityNET\obj\Debug\TrinityNET.pdb

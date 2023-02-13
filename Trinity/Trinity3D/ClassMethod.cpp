@@ -22,11 +22,16 @@ MonoVar* ClassMethod::Call(std::vector<MonoVar*> vars)
 
 	
 
+
 	void** dataArray = new void* [vars.size()];
 	for (int i = 0; i < vars.size(); i++) {
 
-		dataArray[i] = vars[i]->GetObject();
-
+		if (vars[i]->IsBoxed()) {
+			dataArray[i] = vars[i]->GetObject();
+		}
+		else {
+			dataArray[i] = vars[i]->GetPointer();
+		}
 	}
 
 	return new MonoVar(mono_runtime_invoke(m_method, m_class->GetObject(),dataArray, NULL));

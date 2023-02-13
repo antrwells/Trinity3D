@@ -261,8 +261,9 @@
 			void SetCams(std::vector<NodeCamera*> cams);
 
 			void SetMain();
-
-			static SceneGraph* GetMainScene();
+			static SceneGraph* GetMainScene() {
+				return mMainScene;
+			}
 
 			void LoadCine(const char* path);
 

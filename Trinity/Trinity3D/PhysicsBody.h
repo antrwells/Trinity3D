@@ -1,6 +1,8 @@
 #pragma once
 #include <ctype.h>
-
+#ifndef PLATFORM_WIN32
+#    define PLATFORM_WIN32 1
+#endif
 #include "PxPhysicsAPI.h"
 #include "Physics.h"
 

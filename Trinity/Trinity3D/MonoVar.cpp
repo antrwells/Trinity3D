@@ -1,11 +1,16 @@
 #include "MonoVar.h"
 #include "MonoRT.h"
 
-MonoVar::MonoVar(void* p)
+MonoVar::MonoVar(void* p,bool box)
 {
 
-	m_box = mono_value_box(MonoRT::mThis->GetDomain(), mono_get_intptr_class(),p);
-
+	if (box) {
+		m_box = mono_value_box(MonoRT::mThis->GetDomain(), mono_get_intptr_class(), p);
+		m_isBoxed = true;
+	}
+	else {
+		pp = p;
+	}
 }
 int tv = 0;
 
@@ -16,14 +21,24 @@ MonoVar::MonoVar(int val) {
 	v1[0] = val;
 
 	m_box = mono_value_box(MonoRT::mThis->GetDomain(), mono_get_int32_class(),(void*)v1);
+	m_isBoxed = true;
+}
 
+MonoVar::MonoVar(long val) {
+
+	tv = val;
+	long* v1 = (long*)malloc(sizeof(long));
+	v1[0] = val;
+
+	m_box = mono_value_box(MonoRT::mThis->GetDomain(), mono_get_int64_class(), (void*)v1);
+	m_isBoxed = true;
 }
 
 MonoVar::MonoVar(MonoObject* obj)
 {
 
 	m_box = obj;
-
+	m_isBoxed = true;
 }
 
 MonoObject* MonoVar::GetObject() {

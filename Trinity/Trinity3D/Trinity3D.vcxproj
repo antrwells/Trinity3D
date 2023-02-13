@@ -19,27 +19,34 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ClassMethod.h" />
-    <ClInclude Include="ClassMono.h" />
-    <ClInclude Include="ClassProperty.h" />
+    <ClInclude Include="Audio.h" />
     <ClInclude Include="CubeRenderer.h" />
     <ClInclude Include="DataTypes.h" />
     <ClInclude Include="DirCollection.h" />
+    <ClInclude Include="GameUI.h" />
     <ClInclude Include="Importer.h" />
+    <ClInclude Include="kFont.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Mesh3D.h" />
     <ClInclude Include="MeshLines.h" />
     <ClInclude Include="MeshRenderer.h" />
-    <ClInclude Include="MonoDLL.h" />
-    <ClInclude Include="MonoRT.h" />
-    <ClInclude Include="MonoVar.h" />
     <ClInclude Include="Node3D.h" />
     <ClInclude Include="NodeCamera.h" />
     <ClInclude Include="NodeEntity.h" />
     <ClInclude Include="NodeLight.h" />
+    <ClInclude Include="PBBox.h" />
+    <ClInclude Include="PBCapsule.h" />
+    <ClInclude Include="PBConvex.h" />
+    <ClInclude Include="PBSphere.h" />
+    <ClInclude Include="PBTerrain.h" />
+    <ClInclude Include="PBTriangles.h" />
+    <ClInclude Include="Physics.h" />
+    <ClInclude Include="PhysicsBody.h" />
     <ClInclude Include="RayPicker.h" />
     <ClInclude Include="RenderTargetCube.h" />
+    <ClInclude Include="SceneGlobal.h" />
     <ClInclude Include="SceneGraph.h" />
+    <ClInclude Include="ScriptHost.h" />
     <ClInclude Include="SmartDraw.h" />
     <ClInclude Include="Texture2D.h" />
     <ClInclude Include="TextureCube.h" />
@@ -48,32 +55,47 @@
     <ClInclude Include="VString.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ClassMethod.cpp" />
-    <ClCompile Include="ClassMono.cpp" />
-    <ClCompile Include="ClassProperty.cpp" />
+    <ClCompile Include="Audio.cpp" />
     <ClCompile Include="CubeRenderer.cpp" />
     <ClCompile Include="DirCollection.cpp" />
+    <ClCompile Include="GameUI.cpp" />
     <ClCompile Include="Importer.cpp" />
+    <ClCompile Include="kFont.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Mesh3D.cpp" />
     <ClCompile Include="MeshLines.cpp" />
     <ClCompile Include="MeshRenderer.cpp" />
-    <ClCompile Include="MonoDLL.cpp" />
-    <ClCompile Include="MonoRT.cpp" />
-    <ClCompile Include="MonoVar.cpp" />
     <ClCompile Include="Node3D.cpp" />
     <ClCompile Include="NodeCamera.cpp" />
     <ClCompile Include="NodeEntity.cpp" />
     <ClCompile Include="NodeLight.cpp" />
+    <ClCompile Include="PBBox.cpp" />
+    <ClCompile Include="PBCapsule.cpp" />
+    <ClCompile Include="PBConvex.cpp" />
+    <ClCompile Include="PBSphere.cpp" />
+    <ClCompile Include="PBTerrain.cpp" />
+    <ClCompile Include="PBTriangles.cpp" />
+    <ClCompile Include="Physics.cpp" />
+    <ClCompile Include="PhysicsBody.cpp" />
     <ClCompile Include="RayPicker.cpp" />
     <ClCompile Include="RenderTargetCube.cpp" />
+    <ClCompile Include="SceneGlobal.cpp" />
     <ClCompile Include="SceneGraph.cpp" />
+    <ClCompile Include="ScriptObject.cpp" />
     <ClCompile Include="SmartDraw.cpp" />
     <ClCompile Include="Texture2D.cpp" />
     <ClCompile Include="TextureCube.cpp" />
     <ClCompile Include="TrinityApp.cpp" />
     <ClCompile Include="VFile.cpp" />
     <ClCompile Include="VString.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ZenScript\ZenScript\ZenScript.vcxproj">
+      <Project>{fc6eca50-6342-4f72-9544-b0da0c35ab52}</Project>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -159,9 +181,9 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;_SILENCE_ALL_CXX20_DEPRECATION_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Program Files\Mono\include\mono-2.0;C:\Trinity\Trinity3D\packages\AssimpCpp.5.0.1.6\build\native\include;C:\git\DiligentEngine\DiligentTools;C:\git\DiligentEngine\DiligentCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\git\irrKlang-64bit-1.6.0\include;C:\git\physx\include;C:\Trinity\ZenScript\ZenScript;C:\git\ChakraCore-master\lib\Jsrt;C:\Program Files\Mono\include\mono-2.0;C:\Trinity\Trinity3D\packages\AssimpCpp.5.0.1.6\build\native\include;C:\git\DiligentEngine\DiligentTools;C:\git\DiligentEngine\DiligentCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
@@ -170,10 +192,10 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>Diligent-GraphicsEngineD3D12-static.lib;Diligent-ShaderTools.lib;Diligent-GraphicsAccessories.lib;Diligent-Common.lib;Diligent-Win32Platform.lib;Diligent-GraphicsEngine.lib;Diligent-GraphicsEngineD3DBase.lib;Diligent-GraphicsEngineNextGenBase.lib;DiligentTools.lib;Diligent-TextureLoader.lib;Diligent-BasicPlatform.lib;LibJpeg.lib;LibTiff.lib;libpng16_staticd.lib;ZLib.lib;assimp-vc142-mtd.lib;DiligentCore.lib;libmono-static-sgen.lib;Bcrypt.lib;version.lib;WS2_32.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Diligent-GraphicsEngineD3D12-static.lib;Diligent-ShaderTools.lib;Diligent-GraphicsAccessories.lib;Diligent-Common.lib;Diligent-Win32Platform.lib;Diligent-GraphicsEngine.lib;Diligent-GraphicsEngineD3DBase.lib;Diligent-GraphicsEngineNextGenBase.lib;DiligentTools.lib;Diligent-TextureLoader.lib;Diligent-BasicPlatform.lib;LibJpeg.lib;LibTiff.lib;libpng16_staticd.lib;ZLib.lib;assimp-vc142-mtd.lib;DiligentCore.lib;libmono-static-sgen.lib;Bcrypt.lib;version.lib;WS2_32.lib;winmm.lib;Chakra.Common.Core.lib;irrKlang.lib;LowLevelDynamics_static_64.lib;PhysX_64.lib;PhysXCharacterKinematic_static_64.lib;PhysXCommon_64.lib;PhysXCooking_64.lib;PhysXExtensions_static_64.lib;PhysXFoundation_64.lib;PhysXPvdSDK_static_64.lib;PhysXTask_static_64.lib;PhysXVehicle_static_64.lib;SceneQuery_static_64.lib;SimulationController_static_64.lib;LowLevel_static_64.lib;LowLevelAABB_static_64.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>C:\Program Files\Mono\lib;C:\Trinity\Trinity3D\packages\AssimpCpp.5.0.1.6\build\native\lib\Debug;C:\Trinity\DELibs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Trinity\psx;C:\git\irrKlang-64bit-1.6.0\lib\Winx64-visualStudio;C:\Trinity\ChakLibs;C:\Program Files\Mono\lib;C:\Trinity\Trinity3D\packages\AssimpCpp.5.0.1.6\build\native\lib\Debug;C:\Trinity\DELibs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -193,6 +215,5 @@
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets" />
 </Project>

@@ -14,7 +14,8 @@
 #include "Common/interface/BasicMath.hpp"
 #include "VFile.h"
 
-
+class ScriptObject;
+class ZClassNode;
 class NodeEntity;
 using namespace Diligent;
 
@@ -44,7 +45,10 @@ using namespace Diligent;
 			virtual void UpdateActor() {};
 			virtual void UpdateRotation() {};
 
-
+			void WriteScripts(VFile* file);
+			void ReadScripts(VFile* file);
+			void WriteClass(VFile* file, ZClassNode* cls);
+			ZClassNode* ReadClass(VFile* file, ZClassNode* cls);
 			float3x3 GetRotation();
 
 			void SetRotation3x3(float3x3 rot);
@@ -157,7 +161,22 @@ using namespace Diligent;
 			/// <param name="l"></param>
 			/// <param name="up"></param>
 
+			ScriptObject* AddScript(std::string path, std::string name);
 
+			std::vector<ScriptObject*> GetScripts() {
+				return mScriptObjs;
+			}
+			void SetFilePath(std::string path)
+			{
+				mPath = path;
+			}
+			std::string GetFilePath() {
+				return mPath;
+			}
+			void SetScripts(std::vector<ScriptObject*> objs)
+			{
+				mScriptObjs = objs;
+			}
 
 
 			//	static Kinetic::FX::Effect* FXDepth;
@@ -250,8 +269,9 @@ using namespace Diligent;
 
 			virtual void ReadNode(VFile* file, bool read_type = true) {};
 
-			void WriteScripts(VFile* file);
-			void ReadScripts(VFile* file);
+
+			//void WriteScripts(VFile* file);
+			//void ReadScripts(VFile* file);
 
 			/*
 			virtual void WriteNode(VFile* file) {
@@ -339,6 +359,8 @@ using namespace Diligent;
 			//Editor specific
 			public:
 			bool mNodeOpen = true;
+			std::vector<std::string> mScripts;
+			std::vector<ScriptObject*> mScriptObjs;
 
 
 		}

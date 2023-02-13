@@ -1,4 +1,8 @@
 #pragma once
+
+#ifndef PLATFORM_WIN32
+#    define PLATFORM_WIN32 1
+#endif
 #include "PhysicsBody.h"
 #include "Mesh3D.h"
 #include <vector>

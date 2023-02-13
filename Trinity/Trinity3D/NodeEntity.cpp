@@ -4,7 +4,7 @@
 #endif
 #include "NodeEntity.h"
 //#include "EffectGlobal.h"
-
+#include "PBTriangles.h"
 
 //#include "NoRenderList.h"
 
@@ -151,23 +151,44 @@
 
 
 		}
+	
+
 		void NodeEntity::SetPhysicsBoxSize(float size) {
-		
+			mBody = new PBBox(size, size, size);
+
+			mBody->SetPosition(mPosition);
+			mBody->SetRotation(GetRotation());
 		}
 		void NodeEntity::SetPhysicsBox() {
 
 
+			float3 bb = GetBounds();
+			//bb.x = bb.x + 0.1f;
+			//bb.y = bb.y + 0.1f;
+			//bb.z = bb.z + 0.1f;
+			mBody = new PBBox(bb.x * 2, bb.y * 2, bb.z * 2);
+
+			mBody->SetPosition(mPosition);
+			mBody->SetRotation(GetRotation());
 
 		}
 
 		void NodeEntity::SetPhysicsSphere() {
 
+
+			float3 bb = GetBounds();
+			mBody = new PBSphere(bb.y / 2.0f + 0.1f);
+			mBody->SetPosition(mPosition);
+			mBody->SetRotation(GetRotation());
 		}
 
 		void NodeEntity::SetPhysicsCapsule() {
 
 
-
+			float3 bb = GetBounds();
+			mBody = new PBCapsule((bb.y / 2.0f) - 1.1f, bb.x / 2.0f);
+			mBody->SetPosition(mPosition);
+			mBody->SetRotation(GetRotation());
 
 
 		}
@@ -175,41 +196,60 @@
 		void NodeEntity::SetPhysicsCapsuleSize(float width, float height) {
 
 
-		
+			float3 bb = GetBounds();
+			mBody = new PBCapsule(height, width);
+			mBody->SetPosition(mPosition);
+			mBody->SetRotation(GetRotation());
 
 
 		}
 
 		void NodeEntity::SetConstraint(bool x, bool y, bool z) {
-			
+			mBody->SetConstraint(x, y, z);
 		}
 
 		void NodeEntity::SetPhysicsConvex() {
-			
+			mBody = new PBConvex(mMeshes[0]);
+			mBody->SetPosition(mPosition);
+			mBody->SetRotation(GetRotation());
 
 		}
 
 
 		void NodeEntity::UpdatePhysics() {
 
+			if (mBody == NULL) return;
+
+			mPosition = mBody->GetPosition();
+			mRotation = mBody->GetRotation();
 
 		}
 
 		void NodeEntity::SetPosition(float3 position) {
 
-			Node3D::SetPosition(position);
+			mPosition = position;
+			SetChanged();
+			if (mBody == NULL) return;
 
-			//mPosition = position;
+			mBody->SetPosition(position);
 
 		}
 
 		void NodeEntity::SetRotation(float pitch, float yaw, float roll) {
 
 			Node3D::SetRotation(pitch, yaw, roll);
+			SetChanged();
+			mBody->SetRotation(GetRotation());
+
 		}
 
 		void NodeEntity::SetPhysicsTris() {
-		
+			for (int i = 0; i < mMeshes.size(); i++) {
+
+				mTriBody = new PBTriangles(mMeshes, i);
+
+
+			}
 			//	mBody->SetPosition(mPosition);
 		}
 
@@ -223,11 +263,24 @@
 
 			}
 
-		
+			clone->SetScripts(GetScripts());
+
+			clone->SetName(GetName());
+			clone->SetEnabled(GetEnabled());
 
 			return (Node3D*)clone;
 
 		}
+
+
+
+
+
+
+	
+
+
+	
 
 
 

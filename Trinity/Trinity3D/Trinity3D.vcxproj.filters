@@ -43,8 +43,17 @@
     <Filter Include="Picking">
       <UniqueIdentifier>{fdd19ab1-2631-4d85-b2bd-e66b4e0fff0c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Mono">
-      <UniqueIdentifier>{80a3badd-f58a-4f3f-8194-690a833907ef}</UniqueIdentifier>
+    <Filter Include="JS">
+      <UniqueIdentifier>{d8ecd0a1-ad53-4327-8367-b9c346aad87c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physx">
+      <UniqueIdentifier>{bba20424-925e-436e-bbf4-7ec961f6509c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameUI">
+      <UniqueIdentifier>{9a9e1cda-9ddd-47ad-9d31-bf6f650609a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Audio">
+      <UniqueIdentifier>{f50c7444-f35e-4914-9f8b-bee40d2edeb7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -111,23 +120,44 @@
     <ClInclude Include="DirCollection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MonoRT.h">
-      <Filter>Mono</Filter>
+    <ClInclude Include="PBBox.h">
+      <Filter>Physx</Filter>
     </ClInclude>
-    <ClInclude Include="MonoDLL.h">
-      <Filter>Mono</Filter>
+    <ClInclude Include="PBCapsule.h">
+      <Filter>Physx</Filter>
     </ClInclude>
-    <ClInclude Include="ClassMono.h">
-      <Filter>Mono</Filter>
+    <ClInclude Include="PBConvex.h">
+      <Filter>Physx</Filter>
     </ClInclude>
-    <ClInclude Include="ClassMethod.h">
-      <Filter>Mono</Filter>
+    <ClInclude Include="PBSphere.h">
+      <Filter>Physx</Filter>
     </ClInclude>
-    <ClInclude Include="ClassProperty.h">
-      <Filter>Mono</Filter>
+    <ClInclude Include="PBTerrain.h">
+      <Filter>Physx</Filter>
     </ClInclude>
-    <ClInclude Include="MonoVar.h">
-      <Filter>Mono</Filter>
+    <ClInclude Include="PBTriangles.h">
+      <Filter>Physx</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptHost.h">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGlobal.h">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="GameUI.h">
+      <Filter>GameUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio.h">
+      <Filter>Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics.h">
+      <Filter>Physx</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsBody.h">
+      <Filter>Physx</Filter>
+    </ClInclude>
+    <ClInclude Include="kFont.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -191,23 +221,47 @@
     <ClCompile Include="DirCollection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MonoRT.cpp">
-      <Filter>Mono</Filter>
+    <ClCompile Include="PBBox.cpp">
+      <Filter>Physx</Filter>
     </ClCompile>
-    <ClCompile Include="MonoDLL.cpp">
-      <Filter>Mono</Filter>
+    <ClCompile Include="PBCapsule.cpp">
+      <Filter>Physx</Filter>
     </ClCompile>
-    <ClCompile Include="ClassMono.cpp">
-      <Filter>Mono</Filter>
+    <ClCompile Include="PBConvex.cpp">
+      <Filter>Physx</Filter>
     </ClCompile>
-    <ClCompile Include="ClassMethod.cpp">
-      <Filter>Mono</Filter>
+    <ClCompile Include="PBSphere.cpp">
+      <Filter>Physx</Filter>
     </ClCompile>
-    <ClCompile Include="ClassProperty.cpp">
-      <Filter>Mono</Filter>
+    <ClCompile Include="PBTerrain.cpp">
+      <Filter>Physx</Filter>
     </ClCompile>
-    <ClCompile Include="MonoVar.cpp">
-      <Filter>Mono</Filter>
+    <ClCompile Include="PBTriangles.cpp">
+      <Filter>Physx</Filter>
     </ClCompile>
+    <ClCompile Include="ScriptObject.cpp">
+      <Filter>SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneGlobal.cpp">
+      <Filter>SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="GameUI.cpp">
+      <Filter>GameUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Audio.cpp">
+      <Filter>Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics.cpp">
+      <Filter>Physx</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsBody.cpp">
+      <Filter>Physx</Filter>
+    </ClCompile>
+    <ClCompile Include="kFont.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

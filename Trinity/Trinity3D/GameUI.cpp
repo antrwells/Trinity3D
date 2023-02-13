@@ -1,10 +1,11 @@
 #include "pch.h"
 #include "GameUI.h"
 #include "kFont.h"
+#include "TrinityApp.h"
 
 GameUI::GameUI() {
 
-	mDraw = new SmartDraw(Application::GetApp());
+	mDraw = new SmartDraw(TrinityApp::GetApp());
 	UI = this;
 	mButtonImg = new Texture2D("UI/ButtonFrame.png");
 	mGameFont = new kFont("data/fonts/aqua.pf");
@@ -12,14 +13,24 @@ GameUI::GameUI() {
 
 bool GameUI::Button(std::string text, int x, int y, int w, int h)
 {
+	/// <summary>
+	/// TO-DO
+	/// </summary>
+	/// <param name="text"></param>
+	/// <param name="x"></param>
+	/// <param name="y"></param>
+	/// <param name="w"></param>
+	/// <param name="h"></param>
+	/// <returns></returns>
+	float xp = 0;// (int)Application::GetApp()->GetInput()->GetMouseX();
+	float yp = 0;// (int)Application::GetApp()->GetInput()->GetMouseY();
 
-	float xp = (int)Application::GetApp()->GetInput()->GetMouseX();
-	float yp = (int)Application::GetApp()->GetInput()->GetMouseY();
 
 	if (xp >= x && xp <= x + w && yp >= y && yp <= y + h) {
 		mDraw->DrawTexture(x, y, w, h, mButtonImg, 1.5f, 1.5f, 1.5f, 0.88f, false);
-		if (Application::GetApp()->GetInput()->IsMouseDown(0))
+//		if (Application::GetApp()->GetInput()->IsMouseDown(0))
 		{
+
 			return true;
 		}
 	}

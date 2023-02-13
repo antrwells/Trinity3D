@@ -60,7 +60,8 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Program Files\Mono\include\mono-2.0;C:\git\DiligentEngine\DiligentCore;C:\git\DiligentEngine\DiligentTools;C:\Trinity\Trinity3D;C:\git\Qt-Advanced-Docking-System-master\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\git\physx\include;C:\Program Files\Mono\include\mono-2.0;C:\git\DiligentEngine\DiligentCore;C:\git\DiligentEngine\DiligentTools;C:\Trinity\Trinity3D;C:\git\Qt-Advanced-Docking-System-master\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\lib\x64;C:\Program Files\Mono\lib;C:\Trinity\TrinityIDE\x64\Debug;C:\git\build-ads-Desktop_Qt_6_4_2_MSVC2019_64bit-Debug\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>

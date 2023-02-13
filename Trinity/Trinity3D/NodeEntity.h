@@ -8,11 +8,11 @@
 #include "Mesh3D.h"
 // 
 //#include "SmartMesh.h"
-//#include "PhysicsBody.h"
-//#include "PBBox.h"
-//#include "PBSphere.h"
-//#include "PBConvex.h"
-//#include "PBCapsule.h
+#include "PhysicsBody.h"
+#include "PBBox.h"
+#include "PBSphere.h"
+#include "PBConvex.h"
+#include "PBCapsule.h"
 
 
 
@@ -129,28 +129,60 @@
             void SetPhysicsTris();
 
 
+        
+
+         
+
+      
+
+           
+
+
             void UpdateRotation() {
 
-             //   if (mBody == NULL) return;
-              //  mBody->SetRotation(GetRotation());
+                if (mBody == NULL) return;
+                mBody->SetRotation(GetRotation());
 
             }
 
-         
+            PhysicsBody* GetBody() {
+                return nullptr;
+            }
 
             void Move(float3 move) {
 
                 Node3D::Move(move);
-           //     if (mBody == NULL) return;
+                if (mBody == NULL) return;
 
-              //  mBody->SetPosition(mPosition);
+                mBody->SetPosition(mPosition);
 
             }
 
-          
+
+            PhysicsType GetPhysicsType() {
+                return mPType;
+            }
+            void SetPhysicsType(PhysicsType type)
+            {
+                mPType = type;
+            }
+
+            void ClearPhysics() {
+
+
+                if (mTriBody != nullptr) {
+                    mTriBody->Remove();
+                }
+                if (mBody != nullptr) {
+                    mBody->Remove();
+                }
+
+            }
+
 
         protected:
-     
+            PhysicsBody* mBody = nullptr;
+            PhysicsBody* mTriBody = nullptr;
             /// <summary>
             /// A list containing all of this NodeEntity's attached meshes.
             /// </summary>

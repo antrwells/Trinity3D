@@ -11,8 +11,9 @@ class MonoVar
 {
 public:
 
-	MonoVar(void* pointer);
+	MonoVar(void* pointer,bool box = false);
 	MonoVar(int val);
+	MonoVar(long val);
 	MonoVar(MonoObject* obj);
 	MonoObject* GetObject();
 	int GetInt();
@@ -21,11 +22,13 @@ public:
 	double GetDouble();
 	char GetByte();
 	short GetShort();
-
-
+	bool IsBoxed() { return m_isBoxed; }
+	void* GetPointer() { return pp; };
 private:
 
 	MonoObject* m_box;
+	bool m_isBoxed = false;
+	void* pp;
 
 };
 

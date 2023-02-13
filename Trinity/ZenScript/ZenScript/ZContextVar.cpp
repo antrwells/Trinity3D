@@ -1,0 +1,257 @@
+#include "ZContextVar.h"
+//#include "ZClassNode.h"
+
+#include "VarTypes.h"
+#include "ZClassNode.h"
+
+ZContextVar::ZContextVar(std::string name, enum VarType type,std::string baseID,bool comparer) {
+	
+	std::hash<std::string> hasher;
+
+	
+	mHashName = hasher(name);
+
+	mName = name;
+	mType = type;
+	mIntVal = 0;
+	mFloatVal = 0;
+	mStringVal = "";
+	mClassVal = nullptr;
+	mBaseID = baseID;
+	mComparer = comparer;
+}
+
+std::string ZContextVar::GetName() {
+
+	return mName;
+
+}
+
+size_t ZContextVar::GetHashName() {
+
+	return mHashName;
+
+}
+
+VarType ZContextVar::GetType() {
+
+	return mType;
+
+}
+
+int ZContextVar::GetIntVal() {
+
+	if (mType == VarType::VarFloat)
+	{
+		return (int)mFloatVal;
+	}
+	return mIntVal;
+
+}
+
+float ZContextVar::GetFloatVal() {
+
+	if (mType == VarType::VarInteger)
+	{
+		return (float)mIntVal;
+	}
+	return mFloatVal;
+
+}
+
+std::string ZContextVar::GetStringVal() {
+
+	return mStringVal;
+
+}
+
+
+ZClassNode* ZContextVar::GetClassVal()
+{
+
+	return mClassVal;
+
+}
+
+void ZContextVar::SetInt(int val) {
+
+	if (mType == VarType::VarFloat) {
+		mFloatVal = (float)val;
+	}
+	mIntVal = val;
+	mCurrentType = VarInteger;
+
+}
+
+void ZContextVar::SetFloat(float val) {
+
+	if (mType == VarType::VarInteger)
+	{
+		mIntVal = (int)val;
+	}
+	mFloatVal = val;
+	mCurrentType = VarFloat;
+
+}
+
+void ZContextVar::SetString(std::string val)
+{
+
+	mStringVal = val;
+	mCurrentType = VarString;
+
+}
+
+void ZContextVar::SetClass(ZClassNode* cls) {
+
+	mClassVal = cls;
+	mCurrentType = VarInstance;
+
+}
+
+void* ZContextVar::GetCObj() {
+
+	return mCObj;
+
+}
+
+void ZContextVar::SetCObj(void * obj) {
+
+	mCObj = obj;
+
+}
+
+void ZContextVar::Push() {
+
+	switch (mType)
+	{
+	case VarType::VarFloat:
+		mPushFloat = mFloatVal;
+		break;
+	case VarType::VarInteger:
+		mPushInt = mIntVal;
+		break;
+	case VarType::VarInstance:
+
+	{
+		auto vc = mClassVal;
+		if (vc == nullptr) return;
+		auto vars = vc->GetVars();
+		for (int i = 0; i < vars.size(); i++)
+		{
+			auto v = vars[i];
+			v->Push();
+		}
+	}
+		break;
+	case VarType::VarString:
+		mPushString = mStringVal;
+		break;
+	}
+
+		
+
+}
+
+void ZContextVar::Pop() {
+
+	switch (mType) {
+	case VarType::VarFloat:
+
+		mFloatVal = mPushFloat;
+
+		break;
+	case VarType::VarInteger:
+		mIntVal = mPushInt;
+		break;
+	case VarType::VarInstance:
+	{
+		auto vc = mClassVal;
+		if (vc == nullptr) return;
+		auto vars = vc->GetVars();
+		for (int i = 0; i < vars.size(); i++)
+		{
+			auto v = vars[i];
+			v->Pop();
+		}
+	}	break;
+	case VarType::VarString:
+		mStringVal = mPushString;
+		break;
+	}
+
+}
+
+
+ZContextVar* VMakeInt(int v,bool comparer)
+{
+	auto var = new ZContextVar("", VarType::VarInteger,"int",comparer);
+	var->SetInt(v);
+
+
+	return var;
+
+}
+ZContextVar* VMakeFloat(float v,bool comparer)
+{
+	auto var = new ZContextVar("", VarType::VarFloat,"float",comparer);
+	var->SetFloat(v);
+
+	return var;
+
+}
+
+ZContextVar* VMakeString(std::string v,bool comparer)
+{
+	auto var = new ZContextVar("", VarType::VarString,"string",comparer);
+	var->SetString(v);
+
+	return var;
+
+}
+
+ZContextVar* VMakeC(void* v,bool comparer)
+{
+	auto var = new ZContextVar("", VarType::VarCObj,"CObj",comparer);
+	var->SetCObj(v);
+
+	return var;
+
+}
+
+ZContextVar* VMakeClass(ZClassNode* v,bool comparer)
+{
+
+	auto var = new ZContextVar("", VarType::VarInstance,v->GetBaseName(),comparer);
+	var->SetClass(v);
+
+	return var;
+
+}
+
+int VGetInt(ZContextVar* v)
+{
+	return v->GetIntVal();
+}
+
+float VGetFloat(ZContextVar* v)
+{
+	return v->GetFloatVal();
+}
+
+std::string VGetString(ZContextVar* v)
+{
+	return v->GetStringVal();
+}
+
+ZClassNode* VGetClass(ZContextVar* v)
+{
+	return v->GetClassVal();
+}
+
+void* VGetC(ZContextVar* v)
+{
+	return v->GetCObj();
+}
+
+

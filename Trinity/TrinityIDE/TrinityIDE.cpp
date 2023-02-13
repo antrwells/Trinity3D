@@ -111,24 +111,7 @@ TrinityIDE::TrinityIDE(QWidget *parent)
 
     auto dll_path = mProjectPath + std::string("gamenet.dll");
 
-    TrinityGlobal::Mono = new MonoRT;
-    TrinityGlobal::MonoGame = TrinityGlobal::Mono->LoadDll(dll_path);
-
-    std::string class_info;
-
-    auto clist = TrinityGlobal::MonoGame->GetClasses();
-    class_info = std::to_string(clist.size()) + " Classes";
-
-
-    ConsoleOutputWidget::LogMessage("Welcome to Trinity3D.");
-    ConsoleOutputWidget::LogMessage("Game contains:" + class_info);
-    for (int i = 0; i < clist.size(); i++) {
-        if (i == 0) continue;
-        auto name = clist[i]->GetName();
-        ConsoleOutputWidget::LogMessage("Class:" + name);
-    }
-
-    TrinityGlobal::MonoClasses = clist;
+  
 
     return;
 

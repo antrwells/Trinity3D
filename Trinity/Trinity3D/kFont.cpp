@@ -76,12 +76,14 @@ kFont::kFont(const char* path) {
 			chars[i] = nullptr;
 			continue;
 		}
-		Texture2D* nf = new Texture2D(Application::GetApp(), cw, ch,true,(const char*)pixs);
+		//Texture2D* nf = new Texture2D(cw, ch,true,(const char*)pixs);
 		//nf->Upload(pixs,true);
+
 
 	
 
-		chars[i] = nf;
+
+		//chars[i] = nf;
 
 	}
 
