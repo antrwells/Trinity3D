@@ -15,6 +15,7 @@ struct ContentItem {
 
 	std::string path;
 	std::string name;
+	std::string type;
 	bool isFolder = false;
 	int drawx, drawy;
 	QImage icon;

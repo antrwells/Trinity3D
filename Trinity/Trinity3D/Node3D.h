@@ -265,7 +265,7 @@ using namespace Diligent;
 
 			void BeginNode();
 			void EndNode();
-			void AddSystemFunctions();
+			static void AddSystemFunctions();
 
 			virtual void ReadNode(VFile* file, bool read_type = true) {};
 

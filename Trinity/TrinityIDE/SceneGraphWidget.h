@@ -49,14 +49,20 @@ protected:
 	void dragEnterEvent(QDragEnterEvent* event)
 	{
 		if (event->mimeData()->hasText()) {
-			event->acceptProposedAction();
+			if (event->mimeData()->property("type").toString() == QString("mesh"))
+			{
+				event->acceptProposedAction();
+			}
 		}
 	}
 
 	void dragMoveEvent(QDragMoveEvent* event)
 	{
 		if (event->mimeData()->hasText()) {
-			event->acceptProposedAction();
+			if (event->mimeData()->property("type").toString() == QString("mesh"))
+			{
+				event->acceptProposedAction();
+			}
 		}
 	}
 
@@ -64,21 +70,23 @@ protected:
 	{
 		if (event->mimeData()->hasText()) {
 			//setText(event->mimeData()->text());
-			event->acceptProposedAction();
+			if (event->mimeData()->property("type").toString() == QString("mesh"))
+			{
+				event->acceptProposedAction();
 
-			auto scene = TrinityGlobal::CurrentScene;
+				auto scene = TrinityGlobal::CurrentScene;
 
-			auto node = scene->ReadNodeFromFile(std::string(event->mimeData()->text().toStdString()));
+				auto node = scene->ReadNodeFromFile(std::string(event->mimeData()->text().toStdString()));
 
-			if (mActiveNode != nullptr) {
-				mActiveNode->AddNode(node);
+				if (mActiveNode != nullptr) {
+					mActiveNode->AddNode(node);
+				}
+				else {
+					scene->AddNode(node);
+				}
+				//scene->AddNode(node);
+
 			}
-			else {
-				scene->AddNode(node);
-			}
-			//scene->AddNode(node);
-
-
 
 
 		}

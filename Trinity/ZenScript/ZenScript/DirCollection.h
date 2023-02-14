@@ -17,6 +17,10 @@ class DirCollection
 
 public:
 
+	DirCollection() {
+
+	}
+
 	DirCollection(std::string path) {
 
 

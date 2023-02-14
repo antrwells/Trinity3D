@@ -217,9 +217,11 @@ void SceneViewport::mouseMoveEvent(QMouseEvent* event)
 						if (mGizmoSpace == GizmoSpace::Global) {
 							new_pos.x += (mMoveX) * mTranslateRatio;
 							TrinityGlobal::ActiveNode->SetPosition(new_pos);
+							NodeEditorWidget::sThis->ReSet();
 						}
 						else {
 							TrinityGlobal::ActiveNode->Move(float3(((float)mMoveX) * mTranslateRatio, 0, 0));
+							NodeEditorWidget::sThis->ReSet();
 
 						}
 					}
@@ -228,9 +230,11 @@ void SceneViewport::mouseMoveEvent(QMouseEvent* event)
 						if (mGizmoSpace == GizmoSpace::Global) {
 							new_pos.y += ((float)-mMoveY) * mTranslateRatio;
 							TrinityGlobal::ActiveNode->SetPosition(new_pos);
+							NodeEditorWidget::sThis->ReSet();
 						}
 						else {
 							TrinityGlobal::ActiveNode->Move(float3(0, ((float)mMoveY) * mTranslateRatio, 0));
+							NodeEditorWidget::sThis->ReSet();
 						}
 
 					}
@@ -239,9 +243,11 @@ void SceneViewport::mouseMoveEvent(QMouseEvent* event)
 						if (mGizmoSpace == GizmoSpace::Global) {
 							new_pos.z += ((float)-mMoveY) * mTranslateRatio;
 							TrinityGlobal::ActiveNode->SetPosition(new_pos);
+							NodeEditorWidget::sThis->ReSet();
 						}
 						else {
 							TrinityGlobal::ActiveNode->Move(float3(0, 0, ((float)mMoveY) * mTranslateRatio));
+							NodeEditorWidget::sThis->ReSet();
 						}
 
 					}
@@ -252,9 +258,11 @@ void SceneViewport::mouseMoveEvent(QMouseEvent* event)
 
 						if (mGizmoSpace == GizmoSpace::Local) {
 							TrinityGlobal::ActiveNode->RotateLocal(((float)mMoveX * mRotateRatio), 0, 0);
+							NodeEditorWidget::sThis->ReSet();
 						}
 						else {
 							TrinityGlobal::ActiveNode->RotateGlobal(((float)mMoveX * mRotateRatio), 0, 0);
+							NodeEditorWidget::sThis->ReSet();
 						}
 					}
 
@@ -262,9 +270,11 @@ void SceneViewport::mouseMoveEvent(QMouseEvent* event)
 
 						if (mGizmoSpace == GizmoSpace::Local) {
 							TrinityGlobal::ActiveNode->RotateLocal(0, ((float)mMoveX * mRotateRatio), 0);
+							NodeEditorWidget::sThis->ReSet();
 						}
 						else {
 							TrinityGlobal::ActiveNode->RotateGlobal(0, ((float)mMoveX * mRotateRatio), 0);
+							NodeEditorWidget::sThis->ReSet();
 						}
 					}
 
@@ -272,9 +282,11 @@ void SceneViewport::mouseMoveEvent(QMouseEvent* event)
 
 						if (mGizmoSpace == GizmoSpace::Local) {
 							TrinityGlobal::ActiveNode->RotateLocal(0, 0, -((float)mMoveX * mRotateRatio));
+							NodeEditorWidget::sThis->ReSet();
 						}
 						else {
 							TrinityGlobal::ActiveNode->RotateGlobal(0, 0, -((float)mMoveX * mRotateRatio));
+							NodeEditorWidget::sThis->ReSet();
 						}
 
 					}
@@ -289,6 +301,7 @@ void SceneViewport::mouseMoveEvent(QMouseEvent* event)
 
 						new_scale.x += ((float)mMoveX) * mScaleRatio;
 						TrinityGlobal::ActiveNode->SetScale(new_scale);
+						NodeEditorWidget::sThis->ReSet();
 
 					}
 					if (gLock_y) {
@@ -296,6 +309,7 @@ void SceneViewport::mouseMoveEvent(QMouseEvent* event)
 
 						new_scale.y += ((float)-mMoveY) * mScaleRatio;
 						TrinityGlobal::ActiveNode->SetScale(new_scale);
+						NodeEditorWidget::sThis->ReSet();
 
 
 					}
@@ -304,6 +318,7 @@ void SceneViewport::mouseMoveEvent(QMouseEvent* event)
 
 						new_scale.z += ((float)-mMoveY) * mScaleRatio;
 						TrinityGlobal::ActiveNode->SetScale(new_scale);
+						NodeEditorWidget::sThis->ReSet();
 
 					}
 

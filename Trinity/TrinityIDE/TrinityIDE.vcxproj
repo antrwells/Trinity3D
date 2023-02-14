@@ -60,7 +60,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\git\physx\include;C:\Program Files\Mono\include\mono-2.0;C:\git\DiligentEngine\DiligentCore;C:\git\DiligentEngine\DiligentTools;C:\Trinity\Trinity3D;C:\git\Qt-Advanced-Docking-System-master\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Trinity\ZenScript\ZenScript;C:\git\physx\include;C:\Program Files\Mono\include\mono-2.0;C:\git\DiligentEngine\DiligentCore;C:\git\DiligentEngine\DiligentTools;C:\Trinity\Trinity3D;C:\git\Qt-Advanced-Docking-System-master\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -102,6 +102,7 @@
     <QtUic Include="ImportMediaForm.ui" />
     <QtUic Include="NodeEditorWidget.ui" />
     <QtUic Include="PropEditor.ui" />
+    <QtUic Include="PropEditorSurface.ui" />
     <QtUic Include="QSceneGraph.ui" />
     <QtUic Include="SceneGraphWidget.ui" />
     <QtUic Include="SceneViewport.ui" />
@@ -114,6 +115,7 @@
     <ClCompile Include="ImportMediaForm.cpp" />
     <ClCompile Include="NodeEditorWidget.cpp" />
     <ClCompile Include="PropEditor.cpp" />
+    <ClCompile Include="PropEditorSurface.cpp" />
     <ClCompile Include="QDirect3D12Widget.cpp" />
     <ClCompile Include="QSceneGraph.cpp" />
     <ClCompile Include="SceneGraphWidget.cpp" />
@@ -143,6 +145,7 @@
     <QtMoc Include="ImportMediaForm.h" />
     <QtMoc Include="NodeEditorWidget.h" />
     <QtMoc Include="PropEditor.h" />
+    <QtMoc Include="PropEditorSurface.h" />
     <ClInclude Include="TrinityGlobal.h" />
     <QtMoc Include="QDirect3D12Widget.h" />
   </ItemGroup>

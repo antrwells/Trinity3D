@@ -1013,7 +1013,9 @@ void Node3D::SetPlaying(bool play) {
 
 	void Node3D::AddSystemFunctions() {
 
-		ZScriptContext* con1 = new ZScriptContext();
+		ZScriptContext* con1 = ZScriptContext::CurrentContext;
+
+
 
 		con1->LoadLib("math");
 		con1->LoadLib("scene");

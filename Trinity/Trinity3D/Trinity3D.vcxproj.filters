@@ -159,6 +159,9 @@
     <ClInclude Include="kFont.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ScriptObject.h">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TrinityApp.cpp">

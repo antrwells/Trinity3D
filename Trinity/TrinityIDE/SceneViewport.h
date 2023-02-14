@@ -72,30 +72,41 @@ protected:
 	void dragEnterEvent(QDragEnterEvent* event)
 	{
 		if (event->mimeData()->hasText()) {
-			event->acceptProposedAction();
+			if (event->mimeData()->property("type").toString() == QString("mesh"))
+			{
+				event->acceptProposedAction();
+			}
 		}
 	}
 
 	void dragMoveEvent(QDragMoveEvent* event)
 	{
 		if (event->mimeData()->hasText()) {
-			event->acceptProposedAction();
+			if (event->mimeData()->property("type").toString() == QString("mesh"))
+			{
+				event->acceptProposedAction();
+			}
 		}
 	}
 
 	void dropEvent(QDropEvent* event)
 	{
 		if (event->mimeData()->hasText()) {
-			//setText(event->mimeData()->text());
-			event->acceptProposedAction();
 
-			auto scene = TrinityGlobal::CurrentScene;
+			if (event->mimeData()->property("type").toString() == QString("mesh"))
+			{
+				//	event->acceptProposedAction();
 
-			auto node = scene->ReadNodeFromFile(std::string(event->mimeData()->text().toStdString()));
+				//setText(event->mimeData()->text());
+				event->acceptProposedAction();
 
-			scene->AddNode(node);
+				auto scene = TrinityGlobal::CurrentScene;
 
+				auto node = scene->ReadNodeFromFile(std::string(event->mimeData()->text().toStdString()));
 
+				scene->AddNode(node);
+
+			}
 
 		}
 	}

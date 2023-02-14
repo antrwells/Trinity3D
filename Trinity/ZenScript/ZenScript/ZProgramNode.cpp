@@ -1,4 +1,5 @@
 #include "ZProgramNode.h"
+#include "ZClassNode.h"
 
 
 void ZMainNode::AddClass(ZClassNode* node) {
@@ -23,5 +24,24 @@ std::vector<ZClassNode*> ZMainNode::GetClasses() {
 std::vector<ZClassNode*> ZMainNode::GetStaticClasses() {
 
 	return mStaticClasses;
+
+}
+
+ZClassNode* ZMainNode::GetClass(std::string name) {
+
+	for (int i = 0; i < mClasses.size(); i++)
+	{
+
+		auto c = mClasses[i];
+
+		if (c->GetName() == name) {
+
+			return c;
+
+		}
+
+	}
+
+	return nullptr;
 
 }

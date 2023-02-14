@@ -19,6 +19,7 @@ public:
 	~NodeEditorWidget();
 	static NodeEditorWidget* sThis;
 	void SetNode(Node3D* node);
+	void ReSet();
 protected:
 	virtual void resizeEvent(QResizeEvent* event);
 
@@ -26,4 +27,5 @@ private:
 	Ui::NodeEditorWidgetClass ui;
 	Node3D* mEditNode;
 	PropEditor* w_Prop;
+	
 };

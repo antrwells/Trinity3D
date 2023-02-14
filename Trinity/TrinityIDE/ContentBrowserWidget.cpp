@@ -15,6 +15,7 @@ ContentBrowserWidget::ContentBrowserWidget(QWidget *parent)
 	folderIcon = QImage("t3d/folderIcon.png");
 	fileIcon = QImage("t3d/fileIcon.png");
 	file3DIcon = QImage("t3d/3dicon.png");
+	fileScriptIcon = QImage("t3d/scripticon.png");
 	w_Scrollbar = new QScrollBar(this);
 	setMouseTracking(true);
 	connect(w_Scrollbar, &QScrollBar::valueChanged, this, &ContentBrowserWidget::updateWidget);
@@ -228,7 +229,7 @@ void ContentBrowserWidget::Browse(std::string path) {
 
 		std::string ext = getFileExtension(e.name);
 
-		if (e.folder || ext == "vmesh")
+		if (e.folder || ext == "vmesh" || ext == "zs")
 		{
 
 			item->name = e.name;
@@ -236,13 +237,24 @@ void ContentBrowserWidget::Browse(std::string path) {
 			item->isFolder = e.folder;
 			item->drawx = 0;
 			item->drawy = 0;
-			
+
+			if (!e.folder) {
+				QFileInfo fileInfo(QString(item->path.c_str()));
+				QString fileExtension = fileInfo.suffix();
+
+				auto ss = fileExtension.toStdString();
+				item->type = ss;
+			}
 			if (ext == "vmesh")
 			{
 				item->icon = file3DIcon;
 			}
-			else {
-			//	item->icon = fileIcon;
+			else if (ext == "zs")
+			{
+				item->icon = fileScriptIcon;
+			}
+			else if (e.folder) {
+				//	item->icon = fileIcon;
 				item->icon = folderIcon;
 			}
 
@@ -293,7 +305,14 @@ void ContentBrowserWidget::mouseMoveEvent(QMouseEvent* event)
 
 		mimeData->setText(QString(mCurrentItem->path.c_str()));
 		drag->setMimeData(mimeData);
-	
+
+		if (mCurrentItem->type == "vmesh")
+		{
+			mimeData->setProperty("type", "mesh");
+		}
+		else {
+			mimeData->setProperty("type", "script");
+		}
 		
 		Qt::DropAction act=  drag->exec();
 

@@ -239,8 +239,9 @@
 
 			Node3D::SetRotation(pitch, yaw, roll);
 			SetChanged();
-			mBody->SetRotation(GetRotation());
-
+			if (mBody != nullptr) {
+				mBody->SetRotation(GetRotation());
+			}
 		}
 
 		void NodeEntity::SetPhysicsTris() {

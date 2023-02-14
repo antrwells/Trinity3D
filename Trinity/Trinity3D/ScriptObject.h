@@ -2,6 +2,9 @@
 #include <string>
 #include <vector>
 
+class ZMainNode;
+class ZSource;
+class ZParser;
 class ZScriptContext;
 class ZClassNode;
 class ZContextVar;
@@ -24,3 +27,15 @@ public:
 
 };
 
+class ScriptContainer {
+public:
+
+	ScriptContainer(std::string path);
+	ZClassNode* GetClass(std::string name);
+
+
+private:
+	ZMainNode* mNode;
+
+
+};

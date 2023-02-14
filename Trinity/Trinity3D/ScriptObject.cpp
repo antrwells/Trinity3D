@@ -1,7 +1,11 @@
 #include "pch.h"
 #include "ScriptObject.h"
 #include <ZClassNode.h>
+#include "ZSource.h"
+#include "ZParser.h"
+#include "ZTokenizer.h"
 #include "ZContextVar.h"
+#include "ZProgramNode.h"
 
 void ScriptObject::CallInit()
 {
@@ -70,5 +74,23 @@ void ScriptObject::PopVars() {
 
 	}
 
+
+}
+
+ScriptContainer::ScriptContainer(std::string path) {
+
+	
+		auto src = new ZSource(path);
+		ZTokenizer* toker = new ZTokenizer(src);
+		auto stream = toker->Tokenize();
+		auto parser = new ZParser(stream);
+		mNode = parser->Parse();
+	
+
+}
+
+ZClassNode* ScriptContainer::GetClass(std::string name) {
+
+	return mNode->GetClass(name);
 
 }

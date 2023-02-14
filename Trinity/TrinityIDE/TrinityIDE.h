@@ -9,6 +9,8 @@
 #include <QMenuBar>
 #include <QMenu>
 #include <QAction>
+#include "ScriptObject.h"
+
 class TrinityIDE : public QMainWindow
 {
     Q_OBJECT
@@ -44,4 +46,6 @@ private:
     DockArea* w_DockArea;
     QToolBar* toolBar;
     Ui::TrinityIDEClass ui;
+    ScriptContainer* s_IDE;
+
 };

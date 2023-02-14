@@ -47,6 +47,7 @@
     <ClInclude Include="SceneGlobal.h" />
     <ClInclude Include="SceneGraph.h" />
     <ClInclude Include="ScriptHost.h" />
+    <ClInclude Include="ScriptObject.h" />
     <ClInclude Include="SmartDraw.h" />
     <ClInclude Include="Texture2D.h" />
     <ClInclude Include="TextureCube.h" />
@@ -192,7 +193,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>Diligent-GraphicsEngineD3D12-static.lib;Diligent-ShaderTools.lib;Diligent-GraphicsAccessories.lib;Diligent-Common.lib;Diligent-Win32Platform.lib;Diligent-GraphicsEngine.lib;Diligent-GraphicsEngineD3DBase.lib;Diligent-GraphicsEngineNextGenBase.lib;DiligentTools.lib;Diligent-TextureLoader.lib;Diligent-BasicPlatform.lib;LibJpeg.lib;LibTiff.lib;libpng16_staticd.lib;ZLib.lib;assimp-vc142-mtd.lib;DiligentCore.lib;libmono-static-sgen.lib;Bcrypt.lib;version.lib;WS2_32.lib;winmm.lib;Chakra.Common.Core.lib;irrKlang.lib;LowLevelDynamics_static_64.lib;PhysX_64.lib;PhysXCharacterKinematic_static_64.lib;PhysXCommon_64.lib;PhysXCooking_64.lib;PhysXExtensions_static_64.lib;PhysXFoundation_64.lib;PhysXPvdSDK_static_64.lib;PhysXTask_static_64.lib;PhysXVehicle_static_64.lib;SceneQuery_static_64.lib;SimulationController_static_64.lib;LowLevel_static_64.lib;LowLevelAABB_static_64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Diligent-GraphicsEngineD3D12-static.lib;Diligent-ShaderTools.lib;Diligent-GraphicsAccessories.lib;Diligent-Common.lib;Diligent-Win32Platform.lib;Diligent-GraphicsEngine.lib;Diligent-GraphicsEngineD3DBase.lib;Diligent-GraphicsEngineNextGenBase.lib;DiligentTools.lib;Diligent-TextureLoader.lib;Diligent-BasicPlatform.lib;LibJpeg.lib;LibTiff.lib;libpng16_staticd.lib;ZLib.lib;assimp-vc142-mtd.lib;DiligentCore.lib;libmono-static-sgen.lib;Bcrypt.lib;version.lib;WS2_32.lib;winmm.lib;irrKlang.lib;LowLevelDynamics_static_64.lib;PhysX_64.lib;PhysXCharacterKinematic_static_64.lib;PhysXCommon_64.lib;PhysXCooking_64.lib;PhysXExtensions_static_64.lib;PhysXFoundation_64.lib;PhysXPvdSDK_static_64.lib;PhysXTask_static_64.lib;PhysXVehicle_static_64.lib;SceneQuery_static_64.lib;SimulationController_static_64.lib;LowLevel_static_64.lib;LowLevelAABB_static_64.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
       <AdditionalLibraryDirectories>C:\Trinity\psx;C:\git\irrKlang-64bit-1.6.0\lib\Winx64-visualStudio;C:\Trinity\ChakLibs;C:\Program Files\Mono\lib;C:\Trinity\Trinity3D\packages\AssimpCpp.5.0.1.6\build\native\lib\Debug;C:\Trinity\DELibs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>

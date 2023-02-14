@@ -1,5 +1,7 @@
 #pragma once
 #include "ZScriptNode.h"
+#include <string>
+
 
 class ZClassNode;
 
@@ -12,6 +14,7 @@ public:
 	void AddStaticClass(ZClassNode* node);
 	std::vector<ZClassNode*> GetClasses();
 	std::vector<ZClassNode*> GetStaticClasses();
+	ZClassNode* GetClass(std::string name);
 
 private:
 

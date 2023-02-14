@@ -12,6 +12,22 @@
 #include "ClassMono.h"
 #include "ConsoleOutputWidget.h"
 #include <vector>
+#include "ZContextScope.h"
+#include "ZClassNode.h"
+#include "ZSystemFunction.h"
+#include "ZSystemFunctions.h"
+#include "ZScriptContext.h"
+
+ZContextVar* sys_console(const std::vector<ZContextVar*>& args)
+{
+
+    int a = 5;
+
+    ConsoleOutputWidget::LogMessage(args[0]->GetStringVal());
+
+    return nullptr;
+}
+
 
 TrinityIDE::TrinityIDE(QWidget *parent)
     : QMainWindow(parent)
@@ -110,6 +126,42 @@ TrinityIDE::TrinityIDE(QWidget *parent)
     w_DockArea->setGeometry(0, 26+34, width(), height() -(26+34));
 
     auto dll_path = mProjectPath + std::string("gamenet.dll");
+
+    auto sc = new ZScriptContext;
+
+    Node3D::AddSystemFunctions();
+
+    auto funcs = ZScriptContext::CurrentContext->GetSysFuncs();
+
+    ZSystemFunction printf("console", sys_console);
+
+    funcs->RegisterFunction(printf);
+
+    s_IDE = new ScriptContainer("script/init_ide.zs");
+
+    auto ide_class = s_IDE->GetClass("IDE");
+
+    auto ide_inst = ide_class->CreateInstance("IDEInst", {});
+
+
+    ide_inst->CallMethod("InitIDE", {});
+
+
+  //  ScriptObject* new_obj = new ScriptObject;
+  //  auto con = ZScriptContext::CurrentContext;
+
+
+    /*
+    new_obj->mContext->AddNode(node);
+
+    auto v1 = VMakeC((void*)this);
+
+    new_obj->mMainClass = new_obj->mContext->CreateInstance(cls_name, cls_name + "Instance", { v1 });
+
+    auto n_var = new_obj->mMainClass->FindVar("Node");
+
+    n_var->SetCObj((void*)this);
+    */
 
   
 
