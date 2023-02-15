@@ -247,9 +247,14 @@ void Node3D::SetPlaying(bool play) {
 
 	void Node3D::Update() {
 
-		if (mEnabled == false) return;
 	
+		if (mEnabled == false) return;
+		for (int i = 0; i < mScriptObjs.size(); i++)
+		{
+			auto obj = mScriptObjs[i];
 
+			obj->CallUpdate();
+		}
 
 		//UpdateComponents();
 
@@ -348,7 +353,11 @@ void Node3D::SetPlaying(bool play) {
 	//Position/Rotation/Scale
 	void Node3D::SetPosition(float3 position) {
 
-		mPosition = position;
+
+		auto mp = &mPosition;
+
+		mp[0] = position;
+
 
 
 
@@ -374,8 +383,9 @@ void Node3D::SetPlaying(bool play) {
 	}
 
 	void Node3D::SetScale(float3 scale) {
-
-		mScale = scale;
+		
+		auto mp = &mScale;
+		mp[0] = scale;
 	
 	//	InvalidateTransform();
 
@@ -401,11 +411,11 @@ void Node3D::SetPlaying(bool play) {
 	}
 
 
-	const char* Node3D::GetName() {
+	std::string Node3D::GetName() {
 		return mName;
 	}
 
-	void Node3D::SetName(const char* name) {
+	void Node3D::SetName(std::string name) {
 
 		mName = name;
 
@@ -465,7 +475,14 @@ void Node3D::SetPlaying(bool play) {
 		mPushRot = mRotation;
 		mPushScale = mScale;
 
-	
+		printf("Node begun.");
+		for (int i = 0; i < mScriptObjs.size(); i++)
+		{
+			auto obj = mScriptObjs[i];
+
+			obj->PushVars();
+			obj->CallInit();
+		}
 
 	}
 

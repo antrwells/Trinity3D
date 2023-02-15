@@ -254,13 +254,22 @@
 		
 			
 
-			std::vector<NodeCamera*> GetCams();
+			std::vector<NodeCamera*> GetCams()
+			{
+				return mCams;
+			}
 
 		//	MeshRenderer* GetRenderer();
 
-			void SetCams(std::vector<NodeCamera*> cams);
+			void SetCams(std::vector<NodeCamera*> cams)
+			{
+				mCams = cams;
+			}
 
-			void SetMain();
+			void SetMain()
+			{
+				mMainScene = this;
+			}
 			static SceneGraph* GetMainScene() {
 				return mMainScene;
 			}
@@ -275,7 +284,7 @@
 			void SaveNodeHeader(VFile* file, Node3D* node) {
 
 				file->WriteInt((int)node->GetType());
-				file->WriteString(node->GetName());
+				file->WriteString(node->GetName().c_str());
 				file->WriteBool(node->GetEnabled());
 				WriteTransform(file, node);
 

@@ -8,7 +8,7 @@
 #ifndef PLATFORM_WIN32
 #    define PLATFORM_WIN32 1
 #endif
-
+#include <cmath>
 
 //#include "NodeProperty.h"
 #include "Common/interface/BasicMath.hpp"
@@ -19,7 +19,7 @@ class ZClassNode;
 class NodeEntity;
 using namespace Diligent;
 
-
+const double pi = 3.14159265358979323846;
 
 		enum NodeType {
 			Entity, Node, Camera, Light, Other, Actor
@@ -246,18 +246,143 @@ using namespace Diligent;
 			void RemoveNode(Node3D* node);
 
 
-
+			float3* GetPositionPtr() {
+				return &mPosition;
+			}
+		
+			float3* GetScalePtr() {
+				return &mScale;
+			}
 			/// <summary>
 			/// Sets the name of the node.
 			/// </summary>
 			/// <param name="name"></param>
-			void SetName(const char* name);
+			void SetName(std::string name);
 			/// <summary>
 			/// returns the name of the node.
 			/// </summary>
 			/// <returns></returns>
-			const char* GetName();
+			std::string GetName();
 
+
+
+			float radians(float degrees)
+			{
+				return degrees * (pi / 180.0f);
+			}
+
+			double radiansToDegrees(double radians)
+			{
+				return radians * (180.0 / 3.14159265358979323846);
+			}
+
+			void SetRotationEular(float3 angles)
+			{
+				auto cs = &mRotationEular;
+
+				cs[0] = angles;
+				
+				float sinPitch = std::sin(radians(angles.x));
+				float cosPitch = std::cos(radians(angles.x));
+				float sinYaw = std::sin(radians(angles.y));
+				float cosYaw = std::cos(radians(angles.y));
+				float sinRoll = std::sin(radians(angles.z));
+				float cosRoll = std::cos(radians(angles.z));
+
+				float4x4 matrix;
+				matrix._11 = cosYaw * cosRoll;
+				matrix._12 = sinPitch * sinYaw * cosRoll - cosPitch * sinRoll;
+				matrix._13 = cosPitch * sinYaw * cosRoll + sinPitch * sinRoll;
+				matrix._14 = 0.0f;
+
+				matrix._21 = cosYaw * sinRoll;
+				matrix._22 = sinPitch * sinYaw * sinRoll + cosPitch * cosRoll;
+				matrix._23 = cosPitch * sinYaw * sinRoll - sinPitch * cosRoll;
+				matrix._24 = 0.0f;
+
+				matrix._31 = -sinYaw;
+				matrix._32 = sinPitch * cosYaw;
+				matrix._33 = cosPitch * cosYaw;
+				matrix._34 = 0.0f;
+
+				matrix._41 = 0.0f;
+				matrix._42 = 0.0f;
+				matrix._43 = 0.0f;
+				matrix._44 = 1.0f;
+
+				mRotation = matrix;
+
+			}
+
+			float3* GetRotationEularPtr() {
+
+
+				float3 result;
+				auto matrix = mRotation;
+				// Extract the pitch angle
+				float3 forward = normalize(float3(matrix._13, matrix._23, matrix._33));
+				float pitch = std::atan2(-forward.y, forward.z);
+				result[0] = pitch;
+
+				// Extract the yaw angle
+				float3 right = normalize(float3(matrix._11, matrix._21, matrix._31));
+				float yaw = std::atan2(right.x, std::sqrt(right.y * right.y + right.z * right.z));
+				result[1] = yaw;
+
+				// Extract the roll angle
+				float3 up = normalize(float3(matrix._12, matrix._22, matrix._32));
+				float roll = std::atan2(up.y, up.x);
+				result[2] = roll;
+
+				auto cs = &mRotationEular;
+				cs[0] = result;
+				return &mRotationEular;
+
+			}
+
+			float3 matrixToEulerAngles(const float4x4& matrix)
+			{
+				float3 result;
+
+				// Extract the pitch angle
+				float forwardY = -matrix._31;
+				float forwardZ = matrix._21;
+				result.x = std::atan2(forwardY, forwardZ);
+				result.x = radiansToDegrees(result.x);
+				if (result.x < 0)
+				{
+					result.x += 360.0f;
+				}
+
+				// Extract the yaw angle
+				float forwardX = matrix._32;
+				float yaw = std::atan2(forwardX, forwardZ);
+				result.y = radiansToDegrees(yaw);
+				if (result.y < 0)
+				{
+					result.y += 360.0f;
+				}
+
+				// Extract the roll angle
+				float rightX = matrix._11;
+				float upY = matrix._22;
+				float roll = std::atan2(rightX, upY);
+				result.z = radiansToDegrees(roll);
+				if (result.z < 0)
+				{
+					result.z += 360.0f;
+				}
+
+				return result;
+			}
+
+
+
+			float3 GetRotationEular() {
+
+				return matrixToEulerAngles(mRotation);
+
+			}
 
 			void SetHidden(bool hidden);
 
@@ -312,6 +437,8 @@ using namespace Diligent;
 			Node3D* GetParent();
 			void SetParent(Node3D* parent);
 
+
+
 		protected:
 
 			static bool mSysInit;
@@ -331,11 +458,12 @@ using namespace Diligent;
 			float4x4 mRotation;
 			float3 mPosition;
 			float3 mScale;
+			float3 mRotationEular;
 
 			float4x4 mValidTransform;
 
 			//name
-			const char* mName;
+			std::string mName;
 
 			NodeType mType;
 

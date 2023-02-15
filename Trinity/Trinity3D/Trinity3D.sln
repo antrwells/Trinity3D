@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Trinity3D", "Trinity3D.vcxproj", "{C430AB24-45B0-4877-A01C-FD2B7363F146}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TrinityIDE", "..\TrinityIDE\TrinityIDE.vcxproj", "{064E4B37-3E8D-4F65-837D-9AB0502CA4E3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FC6ECA50-6342-4F72-9544-B0DA0C35AB52} = {FC6ECA50-6342-4F72-9544-B0DA0C35AB52}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZenScript", "..\ZenScript\ZenScript\ZenScript.vcxproj", "{FC6ECA50-6342-4F72-9544-B0DA0C35AB52}"
 EndProject

@@ -162,6 +162,9 @@
     <ClInclude Include="ScriptObject.h">
       <Filter>SceneGraph</Filter>
     </ClInclude>
+    <ClInclude Include="VarWatch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TrinityApp.cpp">
@@ -261,6 +264,9 @@
       <Filter>Physx</Filter>
     </ClCompile>
     <ClCompile Include="kFont.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VarWatch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -607,7 +607,17 @@ void SceneGraph::RenderNodeBasic(NodeEntity* entity)
 
 		void SceneGraph::EndNode(Node3D* node)
 		{
-		
+			if (node->GetEnabled() == false) return;
+			node->EndNode();
+			node->SetPlaying(false);
+			if (node->GetType() == NodeType::Actor)
+			{
+				auto act = (NodeActor*)node;
+				//act->StopAnim();
+			}
+			for (int i = 0; i < node->ChildrenCount(); i++) {
+				EndNode(node->GetChild(i));
+			}
 		}
 
 	
@@ -619,12 +629,14 @@ void SceneGraph::RenderNodeBasic(NodeEntity* entity)
 		//	ClearPhysics(mRootNode);
 		//	BeginPhysics(mRootNode);
 		//	BeginNode(mRootNode);
-
+			//ClearPhysics(mRootNode);
+			//BeginPhysics(mRootNode);
+			BeginNode(mRootNode);
 		}
 
 		void SceneGraph::EndPlay() {
 
-		//	EndNode(mRootNode);
+			EndNode(mRootNode);
 		//	Audio::EndSong();
 
 		}
