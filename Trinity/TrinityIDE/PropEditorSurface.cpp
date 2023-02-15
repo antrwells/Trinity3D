@@ -160,6 +160,25 @@ void PropEditorSurface::SetNode(Node3D* node)
 
 
 				}
+				break;
+				case 8:
+				{
+					//bool editor
+					bool bv = var->GetBoolVal();
+
+					auto v_lab = new QLabel(var->GetName().c_str(), this);
+					v_lab->setGeometry(5, edit_y, 100, 20);
+
+					auto v_edit = new QCheckBox(this);
+					v_edit->setGeometry(80, edit_y, 100, 20);
+					edit_y += 25;
+					v_edit->setChecked(bv);
+					boolEdit* be = new boolEdit(v_edit, var);
+					bools.push_back(be);
+
+					int v = 1;
+				}
+					break;
 				
 				}
 

@@ -16,9 +16,28 @@
 #include <string>
 #include "ZContextVar.h"
 #include "qlineedit.h"
+#include "qcheckbox.h"
 
 
 std::string get_filename_without_extension(const std::string& path);
+
+//boolEdit class
+struct boolEdit
+{
+	QCheckBox* ib;
+	ZContextVar* var;
+	boolEdit(QCheckBox* b, ZContextVar* v)
+	{
+		ib = b;
+		var = v;
+		QObject::connect(b, &QCheckBox::stateChanged,
+						[this](bool value) { changed(value); });
+	}
+	void changed(bool value) {
+		var->SetBool(value);
+	}
+};
+
 
 struct stringEdit
 {
@@ -156,5 +175,6 @@ private:
 	std::vector<intEdit*> ints;
 	std::vector<floatEdit*> floats;
 	std::vector<stringEdit*> strings;
+	std::vector<boolEdit*> bools;
 
 };

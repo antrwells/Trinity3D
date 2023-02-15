@@ -146,6 +146,14 @@ std::string ZContextVar::GetStringVal() {
 	if (mType == VarType::VarFloat) {
 		return std::to_string(mFloatVal);
 	}
+	if (mType == VarType::VarBool) {
+		int v = 1;
+		if (mBoolVal == false)
+		{
+			v = 0;
+		}
+		return std::to_string(v);
+	}
 	return mStringVal;
 
 }

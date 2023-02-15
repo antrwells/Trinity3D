@@ -113,6 +113,9 @@ void ZClassNode::PopulateScope() {
 						case VarType::VarInstance:
 							new_var->SetClass(res->GetClassVal());
 							break;
+						case VarType::VarBool:
+							new_var->SetBool(res->GetBoolVal());
+							break;
 						}
 
 						//new_var->SetInt(names[j]->def->Exec(std::vector<ZContextVar*>())->GetIntVal());
