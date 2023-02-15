@@ -14,7 +14,7 @@ enum ExprOperatorType {
 
 enum ExprElementType {
 
-    EInt,EFloat,EString,EOp,SubExpression,EVar,EStatement,EClassStatement,ENew
+    EInt,EFloat,EString,EOp,SubExpression,EVar,EStatement,EClassStatement,ENew,ETrue,EFalse
 
 };
 

@@ -124,6 +124,11 @@ ZContextVar* ZVarsNode::Exec(const std::vector<ZContextVar*>& params)
 				new_var->SetFloat(var->def->Exec({})->GetFloatVal());
 			}
 			break;
+		case VarBool:
+			if (var->def != nullptr) {
+				new_var->SetBool(var->def->Exec({})->GetBoolVal());
+			}
+			break;
 		case VarInstance:
 
 			if (var->new_node != nullptr) {

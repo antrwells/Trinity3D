@@ -1,2 +1,6 @@
-﻿  SceneViewport.cpp
+﻿ZenScript.lib(ZCodeBodyNode.obj) : warning LNK4204: 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZParametersNode.obj) : warning LNK4204: 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZScriptNode.obj) : warning LNK4204: 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZSignatureNode.obj) : warning LNK4204: 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZSource.obj) : warning LNK4204: 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb' is missing debugging information for referencing module; linking object as if no debug info
   TrinityIDE.vcxproj -> C:\Trinity\Trinity3D\x64\Debug\TrinityIDE.exe

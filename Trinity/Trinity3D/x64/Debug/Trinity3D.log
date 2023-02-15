@@ -1,4 +1,4 @@
-﻿  SceneGraph.cpp
+﻿  Node3D.cpp
 C:\Trinity\Trinity3D\Node3D.h(271,20): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
 C:\Trinity\Trinity3D\Node3D.h(351,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
@@ -16,7 +16,8 @@ C:\Trinity\Trinity3D\Node3D.h(370,32): warning C4244: '=': conversion from 'doub
               T=float
           ]
 C:\Trinity\Trinity3D\Material.h(126,28): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Trinity\Trinity3D\SceneGraph.cpp(540,3): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  ScriptObject.cpp
+  Generating Code...
 Diligent-TextureLoader.lib(BCTools.obj) : warning LNK4006: "void __cdecl Diligent::DecompressBC1Block(unsigned char const *,unsigned char *,unsigned int)" (?DecompressBC1Block@Diligent@@YAXPEBEPEAEI@Z) already defined in DiligentTools.lib(BCTools.obj); second definition ignored
 Diligent-TextureLoader.lib(BCTools.obj) : warning LNK4006: "void __cdecl Diligent::DecompressBC3Block(unsigned char const *,unsigned char *)" (?DecompressBC3Block@Diligent@@YAXPEBEPEAE@Z) already defined in DiligentTools.lib(BCTools.obj); second definition ignored
 Diligent-TextureLoader.lib(BCTools.obj) : warning LNK4006: "void __cdecl Diligent::DecompressBC4Block(unsigned char const *,unsigned char *,unsigned int)" (?DecompressBC4Block@Diligent@@YAXPEBEPEAEI@Z) already defined in DiligentTools.lib(BCTools.obj); second definition ignored

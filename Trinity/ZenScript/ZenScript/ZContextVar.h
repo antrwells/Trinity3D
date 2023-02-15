@@ -17,6 +17,7 @@ public:
 	VarType GetType();
 	int GetIntVal();
 	float GetFloatVal();
+	bool GetBoolVal();
 	VarType GetCurrentType() {
 		return mCurrentType;
 	}
@@ -28,6 +29,7 @@ public:
 	void SetString(std::string val);
 	void SetClass(ZClassNode* cls);
 	void SetCObj(void* obj);
+	void SetBool(bool val);
 	void* GetCObj();
 	int GetTypeInt() {
 		return (int)mType;
@@ -54,6 +56,7 @@ private:
 	VarType mCurrentType;
 	int mIntVal;
 	float mFloatVal;
+	bool mBoolVal;
 	std::string mStringVal;
 	ZClassNode* mClassVal;
 	void* mCObj;

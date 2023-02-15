@@ -14,8 +14,62 @@
 #include "Node3D.h"
 #include "VString.h"
 #include <string>
+#include "ZContextVar.h"
+#include "qlineedit.h"
+
 
 std::string get_filename_without_extension(const std::string& path);
+
+struct stringEdit
+{
+	QLineEdit* ib;
+	ZContextVar* var;
+	stringEdit(QLineEdit* b, ZContextVar* v)
+	{
+		ib = b;
+		var = v;
+		QObject::connect(b, &QLineEdit::textChanged,
+						[this](const QString& value) { changed(value); });
+	}
+	void changed(const QString& value) {
+		var->SetString(value.toStdString());
+	}
+};
+
+struct intEdit
+{
+	QSpinBox* ib;
+	ZContextVar* var;
+	intEdit(QSpinBox* b, ZContextVar* v)
+	{
+		ib = b;
+		var = v;
+		QObject::connect(b, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged),
+			[this](int value) { changed(value); });
+	}
+	void changed(int value) {
+		var->SetInt(value);
+	}
+};
+
+
+struct floatEdit
+{
+	QDoubleSpinBox* ib;
+	ZContextVar* var;
+	floatEdit(QDoubleSpinBox* b, ZContextVar* v)
+	{
+		ib = b;
+		var = v;
+		QObject::connect(b, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),
+			[this](double value) { changed(value); });
+	}
+	void changed(double value) {
+		var->SetFloat(value);
+	}
+};
+
+
 struct vec3Edit
 {
 	std::string name;
@@ -89,38 +143,7 @@ protected:
 		}
 	}
 
-	void dropEvent(QDropEvent* event)
-	{
-		if (event->mimeData()->hasText()) {
-
-			if (event->mimeData()->property("type").toString() == QString("script"))
-			{
-				//	event->acceptProposedAction();
-
-				//setText(event->mimeData()->text());
-				event->acceptProposedAction();
-				std::string sc_path = event->mimeData()->text().toStdString();
-				int a = 5;
-
-				auto node = TrinityGlobal::ActiveNode;
-
-				auto s_name = get_filename_without_extension(sc_path);
-
-
-				int vvv = 5;
-
-
-				node->AddScript(sc_path,s_name);
-			//	auto scene = TrinityGlobal::CurrentScene;
-
-			//	auto node = scene->ReadNodeFromFile(std::string(event->mimeData()->text().toStdString()));
-
-			//	scene->AddNode(node);
-
-			}
-
-		}
-	}
+	void dropEvent(QDropEvent* event);
 
 private:
 	Ui::PropEditorSurfaceClass ui;
@@ -130,5 +153,8 @@ private:
 	QSpinBox* scale_X, * scale_Y, * scale_Z;
 	QSpinBox* rot_X,*rot_Y,*rot_Z;
 	vec3Edit* pos,* rot,* scale;
+	std::vector<intEdit*> ints;
+	std::vector<floatEdit*> floats;
+	std::vector<stringEdit*> strings;
 
 };

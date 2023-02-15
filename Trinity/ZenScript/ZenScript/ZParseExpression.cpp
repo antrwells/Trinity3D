@@ -141,6 +141,16 @@ ZScriptNode* ZParseExpression::Parse() {
 			expr.mElements.push_back(ele);
 
 			break;
+		case TokenType::TokenTrue:
+
+			ele.mType = ExprElementType::ETrue;
+			expr.mElements.push_back(ele);
+
+			break;
+		case TokenType::TokenFalse:
+			ele.mType = ExprElementType::EFalse;
+			expr.mElements.push_back(ele);
+			break;
 		case TokenType::TokenNew:
 			ele.mType = ExprElementType::ENew;
 			ele.mValString = std::string(token.mText);

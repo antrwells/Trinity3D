@@ -38,6 +38,66 @@ VarType ZContextVar::GetType() {
 	return mType;
 
 }
+bool ZContextVar::GetBoolVal() {
+
+	{
+		if (mType == VarType::VarInteger) {
+		return mIntVal != 0;
+	}
+		if (mType == VarType::VarFloat) {
+		return mFloatVal != 0;
+	}
+		if (mType == VarType::VarString) {
+		return mStringVal != "";
+	}
+		if (mType == VarType::VarClass) {
+		return mClassVal != nullptr;
+	}
+		return mBoolVal;
+}
+
+}
+
+void ZContextVar::SetBool(bool v) {
+
+	if (mType == VarType::VarInteger)
+	{
+		if (v) { mIntVal = 1; }
+		else
+		{
+			mIntVal = 0;
+		}
+		return;
+	}
+
+	if (mType == VarType::VarFloat) {
+
+		if (v) {
+			mFloatVal = 1;
+		}
+		else {
+			mFloatVal = 0;
+		}
+		return;
+	}
+	
+	if (mType == VarType::VarString) {
+
+		if (v)
+		{
+			mStringVal = "true";
+		}
+		else {
+			mStringVal = "false";
+		}
+		return;
+	}
+
+	{
+		mBoolVal = v;
+	}
+
+}
 
 int ZContextVar::GetIntVal() {
 
@@ -61,6 +121,12 @@ float ZContextVar::GetFloatVal() {
 
 std::string ZContextVar::GetStringVal() {
 
+	if (mType == VarType::VarInteger) {
+		return std::to_string(mIntVal);
+	}
+	if (mType == VarType::VarFloat) {
+		return std::to_string(mFloatVal);
+	}
 	return mStringVal;
 
 }

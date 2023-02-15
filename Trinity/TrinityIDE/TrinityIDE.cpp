@@ -23,8 +23,13 @@ ZContextVar* sys_console(const std::vector<ZContextVar*>& args)
 
     int a = 5;
 
-    ConsoleOutputWidget::LogMessage(args[0]->GetStringVal());
+    std::string out = "";
 
+    for (int i = 0; i < args.size(); i++) {
+        out = out + args[i]->GetStringVal() + " ";
+    }
+
+    ConsoleOutputWidget::LogMessage(out);
     return nullptr;
 }
 
