@@ -14,7 +14,7 @@ DockArea::DockArea(QWidget *parent)
 {
 	ui.setupUi(this);
 
-	
+	acceptDrops();
 
 	m_DockManager = new ads::CDockManager(this);
 	m_DockManager->setGeometry(0, 0, width(), height());

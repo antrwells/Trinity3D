@@ -21,7 +21,11 @@ NodeEditorWidget::NodeEditorWidget(QWidget *parent)
 	w_Prop = new PropEditor(this);
 	w_Prop->setGeometry(0, 0, width(), height());
 //	setAutoFillBackground(true);
+// 	   set
+// 
 	//setPalette(myPal);
+	//setAcceptDrops(true);
+	setAcceptDrops(true);
 }
 
 NodeEditorWidget::~NodeEditorWidget()
@@ -36,7 +40,7 @@ void NodeEditorWidget::SetNode(Node3D* node) {
 	//update();
 	//w_Prop->resize(width(), height());
 	mEditNode = node;
-
+	
 
 
 }

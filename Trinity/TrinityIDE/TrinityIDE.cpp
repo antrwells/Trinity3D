@@ -93,12 +93,38 @@ TrinityIDE::TrinityIDE(QWidget *parent)
 
     localeBox->setCurrentIndex(1);
 
+    toolBar->addSeparator();
+    toolBar->addSeparator();
+
+    QAction* play_act = new QAction(QIcon("data/ui/playIcon.png"), "Play", this);
+    play_act->setShortcut(QKeySequence("F5"));
+    toolBar->addAction(play_act);
+
+    QAction* pause_act = new QAction(QIcon("data/ui/pauseIcon.png"), "Pause", this);
+    pause_act->setShortcut(QKeySequence("F6"));
+    toolBar->addAction(pause_act);
+
+    QAction* stop_act = new QAction(QIcon("data/ui/stopIcon.png"), "Stop", this);
+    stop_act->setShortcut(QKeySequence("F7"));
+    toolBar->addAction(stop_act);
+
+    toolBar->addSeparator();
+    toolBar->addSeparator();
+
+
+
     connect(localeBox, &QComboBox::currentIndexChanged, this, &TrinityIDE::act_LocalSpace);
 
 
     connect(move_act, &QAction::triggered, this, &TrinityIDE::act_move);
     connect(rot_act, &QAction::triggered, this, &TrinityIDE::act_rotate);
     connect(scale_act, &QAction::triggered, this, &TrinityIDE::act_scale);
+    connect(play_act, &QAction::triggered, this, &TrinityIDE::act_play);
+    connect(pause_act, &QAction::triggered, this, &TrinityIDE::act_pause);
+    connect(stop_act, &QAction::triggered, this, &TrinityIDE::act_stop);
+
+
+
     /*
     w_Toolbar = new ToolBarWidget(this);
     w_Toolbar->setGeometry(QRect(0, 26, width(), 60));
@@ -258,4 +284,18 @@ void TrinityIDE::saveLayout() {
         file.close();
     }
 
+}
+
+void TrinityIDE::act_play() {
+
+    SceneViewport::BeginPlay();
+
+}
+
+void TrinityIDE::act_pause() {
+	SceneViewport::Pause();
+}
+
+void TrinityIDE::act_stop() {
+	SceneViewport::Stop();
 }

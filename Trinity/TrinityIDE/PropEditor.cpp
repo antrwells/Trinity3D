@@ -12,7 +12,7 @@ PropEditor::PropEditor(QWidget *parent)
 
 
 
-
+	//acceptDrops();
 	w_PropSurface = new PropEditorSurface();
 
 	//setWidget(w_PropSurface);
@@ -39,6 +39,7 @@ void PropEditor::SetNode(Node3D* node) {
 	w_PropSurface->SetNode(node);
 	
 	setWidget(w_PropSurface);
+	acceptDrops();
 	show();
 
 	//w_PropSurface->adjustSize();

@@ -1,11 +1,2 @@
-﻿  moc SceneGraphWidget.h
-  DockArea.cpp
-  QSceneGraph.cpp
-  SceneGraphWidget.cpp
-  TrinityIDE.cpp
-  main.cpp
-  moc_DockArea.cpp
-  moc_QSceneGraph.cpp
-  moc_SceneGraphWidget.cpp
-  moc_TrinityIDE.cpp
+﻿  SceneViewport.cpp
   TrinityIDE.vcxproj -> C:\Trinity\Trinity3D\x64\Debug\TrinityIDE.exe

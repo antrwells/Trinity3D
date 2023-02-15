@@ -39,6 +39,27 @@ signals:
 public:
 	SceneViewport(QWidget *parent = nullptr);
 	~SceneViewport();
+
+	static void BeginPlay() {
+
+		mThis->Play();
+
+	}
+
+	static void Pause() {
+
+	}
+
+	static void Stop()
+	{
+		mThis->StopPlay();
+	}
+
+	static SceneViewport* mThis;
+
+	void Play();
+	void StopPlay();
+
 	void SetMode(int mode)
 	{
 		mGizMode = (GizmoMode)mode;
@@ -215,6 +236,7 @@ private:
 	float mRotateRatio = 0.22f;
 	float mScaleRatio = 0.07f;
 	MeshLines* mEditGrid = nullptr;
+	bool mPlaying = false;
 
 };
 

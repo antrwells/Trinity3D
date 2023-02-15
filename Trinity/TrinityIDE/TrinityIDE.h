@@ -25,6 +25,9 @@ private slots:
     void act_rotate();
     void act_scale();
     void act_LocalSpace(int id);
+    void act_play();
+    void act_pause();
+    void act_stop();
     void saveLayout();
     void loadLayout();
 

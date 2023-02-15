@@ -9,11 +9,12 @@ int main(int argc, char *argv[])
 {
 
     QApplication a(argc, argv);
-    QFile file("c:/trinity/themes/spybot.qss");
+    QFile file("c:/trinity/themes/darkcore.qss");
     file.open(QFile::ReadOnly);
     QString styleSheet = QLatin1String(file.readAll());
     
-    //qApp->setStyleSheet(styleSheet);
+
+ // qApp->setStyleSheet(styleSheet);
    
     TrinityIDE w;
 

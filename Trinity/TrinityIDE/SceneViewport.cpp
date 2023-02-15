@@ -17,9 +17,10 @@ SceneViewport::SceneViewport(QWidget *parent)
 	setMouseTracking(true);
 
 
+
 	installEventFilter(this);
 	//setAttribute(Qt::WA_PaintOnScreen, false);
-
+	mThis = this;
 	
 	connect(this, &QDirect3D12Widget::LoadResources, this, &SceneViewport::LoadResources);
 	connect(this, &QDirect3D12Widget::RenderScene, this, &SceneViewport::RenderScene);
@@ -28,6 +29,10 @@ SceneViewport::SceneViewport(QWidget *parent)
 
 SceneViewport::~SceneViewport()
 {}
+
+SceneViewport* SceneViewport::mThis = nullptr;
+
+
 
 void SceneViewport::LoadResources() {
 
@@ -116,62 +121,79 @@ void SceneViewport::RenderScene() {
 	//mDraw->DrawTexture(20, 20, 256, 256, mTex1, 1, 1, 1, 1, false);
 	//mDraw->End();
 
-	auto ren = TrinityGlobal::CurrentScene->GetRenderer();
-	//if (mGridOn) {
-		ren->RenderMeshLines(mEditGrid,mEditCam);
-	//}
+	auto gg = TrinityGlobal::GameScene;
 
-	auto g1 = TrinityGlobal::CurrentScene;
-	g1->RenderShadowMaps();
-	g1->Render();
+	if (gg == nullptr) {
+		auto ren = TrinityGlobal::CurrentScene->GetRenderer();
+		//if (mGridOn) {
+		ren->RenderMeshLines(mEditGrid, mEditCam);
+		//}
 
-	ClearDepth();
+		auto g1 = TrinityGlobal::CurrentScene;
+		g1->RenderShadowMaps();
+		g1->Render();
 
-	auto mSelectedNode = TrinityGlobal::ActiveNode;
+		ClearDepth();
 
-	if (mSelectedNode != nullptr) {
+		auto mSelectedNode = TrinityGlobal::ActiveNode;
 
-
-
-		//mCamGizmo->SetPosition(mSelectedNode->GetPosition());
-
-		mCurrentGizmo->SetPosition(mSelectedNode->GetPositionWorld());
+		if (mSelectedNode != nullptr) {
 
 
-		//mCamGizmo->SetRotation4x4(mSelectedNode->GetRotation4x4().Inverse());
-		if (mGizmoSpace == GizmoSpace::Local) {
 
-			if (mSelectedNode->GetType() == NodeType::Camera) {
-				mCurrentGizmo->SetRotation4x4(mSelectedNode->GetRotation4x4().Inverse());
+			//mCamGizmo->SetPosition(mSelectedNode->GetPosition());
+
+			mCurrentGizmo->SetPosition(mSelectedNode->GetPositionWorld());
+
+
+			//mCamGizmo->SetRotation4x4(mSelectedNode->GetRotation4x4().Inverse());
+			if (mGizmoSpace == GizmoSpace::Local) {
+
+				if (mSelectedNode->GetType() == NodeType::Camera) {
+					mCurrentGizmo->SetRotation4x4(mSelectedNode->GetRotation4x4().Inverse());
+				}
+				else {
+					mCurrentGizmo->SetRotation4x4(mSelectedNode->GetRotation4x4());
+				}
+
 			}
 			else {
-				mCurrentGizmo->SetRotation4x4(mSelectedNode->GetRotation4x4());
+				mCurrentGizmo->SetRotation(0, 0, 0);
 			}
 
+
+
 		}
-		else {
-			mCurrentGizmo->SetRotation(0, 0, 0);
+
+		if (TrinityGlobal::ActiveNode != nullptr) {
+			//mCurrentGizmo->SetPosition(TrinityGlobal::ActiveNode->GetPosition());
+
+			g1->RenderNodeBasic(mCurrentGizmo);
 		}
 
 
+		mEditCam->Move(float3(mCamMoveX * mSpeedMod, 0, mCamMoveY * mSpeedMod));
 
 	}
+	else {
 
-	if (TrinityGlobal::ActiveNode != nullptr) {
-		//mCurrentGizmo->SetPosition(TrinityGlobal::ActiveNode->GetPosition());
+		auto g1 = TrinityGlobal::GameScene;
+		g1->Update();
+		g1->RenderShadowMaps();
+		g1->Render();
 
-		g1->RenderNodeBasic(mCurrentGizmo);
 	}
-
-
-	mEditCam->Move(float3(mCamMoveX*mSpeedMod, 0, mCamMoveY*mSpeedMod));
-
+	
 
 }
 
 void SceneViewport::mouseMoveEvent(QMouseEvent* event)
 {
-	
+	if (TrinityGlobal::GameScene != nullptr) {
+
+		return;
+
+	}
 	int x, y;
 
 	x = event->x();
@@ -336,6 +358,11 @@ void SceneViewport::mouseMoveEvent(QMouseEvent* event)
 
 void SceneViewport::mousePressEvent(QMouseEvent* event) {
 
+	if (TrinityGlobal::GameScene!=nullptr) {
+
+		return;
+
+	}
 	if (event->button() == Qt::RightButton)
 	{
 		if (event->type() == QEvent::MouseButtonPress)
@@ -473,5 +500,36 @@ void SceneViewport::createGrid() {
 
 	}
 	mEditGrid->CreateBuffers();
+
+}
+
+void SceneViewport::Play() {
+
+	if (mPlaying) return;
+	auto mGameGraph = new SceneGraph;
+
+	mGameGraph->SetRoot(TrinityGlobal::CurrentScene->GetRoot());
+	mGameGraph->SetMain();
+	mGameGraph->SetCamera(TrinityGlobal::CurrentScene->GetCamera());
+	mGameGraph->SetCams(TrinityGlobal::CurrentScene->GetCams());
+	mGameGraph->SetLights(TrinityGlobal::CurrentScene->GetLights());
+	mGameGraph->BeginPlay();
+	TrinityGlobal::GameScene = mGameGraph;
+
+	//mGameGraph->SetRoot(new Node3D);
+
+	//mGraph->BeginPlay();
+
+	mPlaying = true;
+
+
+}
+
+void SceneViewport::StopPlay() {
+
+	if (mPlaying == false) return;
+	TrinityGlobal::GameScene = nullptr;
+	TrinityGlobal::CurrentScene->EndPlay();
+	mPlaying = false;
 
 }

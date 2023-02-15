@@ -79,7 +79,7 @@ void SceneGraphWidget::DrawNode(Node3D* node, int& dx, int& dy, QPainter& p)
 	
 
 	int a = 5;
-	p.drawText(QPoint(dx + 20, dy + 3), name);
+	p.drawText(QPoint(dx + 20, dy + 3), name.c_str());
 	if (open) {
 		p.drawRect(QRect(dx + 6, dy - 3, 4, 4));
 		auto cc = node->ChildrenCount();

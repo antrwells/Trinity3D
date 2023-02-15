@@ -4,15 +4,37 @@
 #include "qpushbutton.h"
 #include "Node3D.h"
 #include "ConsoleOutputWidget.h"
+#include "qlineedit.h"
 
 
 PropEditorSurface::PropEditorSurface(QWidget *parent)
 	: QWidget(parent)
 {
 	ui.setupUi(this);
+	setMouseTracking(true);
+	//acceptDrops();
+	setAcceptDrops(true);
 
-	
+}
 
+std::string get_filename_without_extension(const std::string& path)
+{
+	// Find the position of the last directory separator character
+	size_t last_slash_pos = path.find_last_of("/\\");
+
+	// Extract the filename (including extension) from the path
+	std::string filename = path.substr(last_slash_pos + 1);
+
+	// Find the position of the last dot character in the filename
+	size_t last_dot_pos = filename.find_last_of('.');
+
+	if (last_dot_pos != std::string::npos)
+	{
+		// If there is a dot, remove everything after it
+		filename = filename.substr(0, last_dot_pos);
+	}
+
+	return filename;
 }
 
 PropEditorSurface::~PropEditorSurface()
@@ -25,29 +47,37 @@ void PropEditorSurface::SetNode(Node3D* node)
 
 	edit_y = 5;
 	
-	std::string name = "Node: " + std::string(node->GetName());
-
+	std::string name = "Node: ";
 
 	auto name_lab = new QLabel(name.c_str(), this);
 	name_lab->setGeometry(5, edit_y, 100, 20);
+
+	auto name_edit = new QLineEdit(node->GetName().c_str(), this);
+	name_edit->setGeometry(80, edit_y, 250, 20);
+
+	connect(name_edit, &QLineEdit::textChanged, [=](const QString& text) {
+		t_Node->SetName(text.toStdString().c_str());
+	});
+
 	edit_y += 30;
 	name_lab->setParent(this);
 
 
 //	for (int i = 0; i < 50; i++) {
-		auto pe = AddVec3Editor("Position", node->GetPosition());
-		auto re = AddVec3Editor("Rotation", float3(0, 0, 0));
-		auto se = AddVec3Editor("Scale", node->GetScale());
+		auto pe = AddVec3Editor("Position", node->GetPositionPtr());
+		auto re = AddVec3Editor("Rotation", node->GetRotationEularPtr());
+		auto se = AddVec3Editor("Scale", node->GetScalePtr());
+		re->is_NodeRot = t_Node;
 		pos = pe;
 		rot = re;
 		scale = se;
-	adjustSize();
+	//adjustSize();
 	return;
 
 
 	QWidget* parent_widget =this; // Get the parent widget
 	QLayout* layout_to_remove = parent_widget->layout(); // Get the layout to remove
-	QLayoutItem* layout_item = nullptr;
+//	QLayoutItem* layout_item = nullptr;
 
 	/*
 	if (layout_to_remove != nullptr) {
@@ -75,7 +105,7 @@ void PropEditorSurface::SetNode(Node3D* node)
 }
 int inf = 0;
 
-vec3Edit PropEditorSurface::AddVec3Editor(std::string name,float3 cur) {
+vec3Edit* PropEditorSurface::AddVec3Editor(std::string name,float3* cur) {
 
 
 	//auto row = new QHBoxLayout();
@@ -121,11 +151,9 @@ vec3Edit PropEditorSurface::AddVec3Editor(std::string name,float3 cur) {
 //	nlayout->addWidget(x_spinbox);
 	//x_spinbox->setValue(cur.x);
 
-	vec3Edit c;
-	c.x = x_spinbox;
-	c.y = y_spinbox;
-	c.z = z_spinbox;
+	
 
+	vec3Edit* c = new vec3Edit(name.c_str(), x_spinbox, y_spinbox, z_spinbox,cur);
 
 	return c;
 	/*
@@ -149,16 +177,16 @@ vec3Edit PropEditorSurface::AddVec3Editor(std::string name,float3 cur) {
 	*/
 }
 
-void reset(vec3Edit edit, float3 cur) {
-	edit.x->setValue(cur.x);
-	edit.y->setValue(cur.y);
-	edit.z->setValue(cur.z);
+void reset(vec3Edit* edit, float3 cur) {
+	edit->x->setValue(cur.x);
+	edit->y->setValue(cur.y);
+	edit->z->setValue(cur.z);
 }
 
 void PropEditorSurface::ReSet() {
 
 	reset(pos, t_Node->GetPosition());
-	reset(rot ,float3(0,0,0));
+	reset(rot, t_Node->GetRotationEular());
 	reset(scale, t_Node->GetScale());
 
 }
