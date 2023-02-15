@@ -130,7 +130,7 @@ int evaluateInt(std::vector<ExpressionElement> mElements) {
             ops.push(tok.mOp);
 
         }
-        else if (tok.mType == EInt || tok.mType == EFloat || tok.mType == EVar || tok.mType == EStatement || tok.mType == EClassStatement)
+        else if (tok.mType == EInt || tok.mType == EFloat || tok.mType == EVar || tok.mType == EStatement || tok.mType == EClassStatement || tok.mType == ETrue || tok.mType == EFalse)
         {
             //int val = 0;
             if (tok.mType == EInt) {
@@ -138,6 +138,13 @@ int evaluateInt(std::vector<ExpressionElement> mElements) {
             }
             else if (tok.mType == EFloat) {
                 values.push((int)tok.mValFloat);
+            }
+            else if (tok.mType == ETrue)
+            {
+                values.push((int)1);
+            }
+            else if (tok.mType == EFalse) {
+                values.push((int)0);
             }
             else if (tok.mType == EClassStatement)
             {
@@ -149,6 +156,11 @@ int evaluateInt(std::vector<ExpressionElement> mElements) {
                     break;
                 case VarType::VarFloat:
                     values.push((int)res->GetFloatVal());
+                    break;
+                case VarType::VarBool:
+                    
+                    values.push(res->GetIntVal());
+
                     break;
                 }
                 int aa = 5;
@@ -163,6 +175,9 @@ int evaluateInt(std::vector<ExpressionElement> mElements) {
                     break;
                 case VarType::VarFloat:
                     values.push((int)res->GetFloatVal());
+                    break;
+                case VarType::VarBool:
+                    values.push(res->GetIntVal());
                     break;
                 
                 }
@@ -204,6 +219,9 @@ int evaluateInt(std::vector<ExpressionElement> mElements) {
 
                             values.push(av->GetIntVal());
                         }
+                        else if (av->GetType() == VarType::VarBool) {
+                            values.push(av->GetIntVal());
+                        }
                         else {
                             values.push((int)av->GetFloatVal());
                         }
@@ -216,6 +234,9 @@ int evaluateInt(std::vector<ExpressionElement> mElements) {
                         values.push((int)evar->GetFloatVal());
                         break;
                     case VarType::VarInteger:
+                        values.push(evar->GetIntVal());
+                        break;
+                    case VarType::VarBool:
                         values.push(evar->GetIntVal());
                         break;
                     case VarType::VarVar:
@@ -743,6 +764,19 @@ ZContextVar* Expression::Evaluate(VarType recv) {
     VarType rt = recv;
     ZExpressionNode::RecvType = VarVoid;
 
+    if (mElements.size() == 1)
+    {
+
+        if (mElements[0].mType == ETrue)
+        {
+            return VMakeInt(1);
+        }
+        else if (mElements[0].mType == EFalse)
+        {
+            return VMakeInt(0);
+        }
+
+    }
 
     if (mElements.size() == 3)
     {
@@ -845,6 +879,12 @@ ZContextVar* Expression::Evaluate(VarType recv) {
 
             
             switch (rv->GetType()) {
+            case VarBool:
+            {
+                int aa = 5;
+                return VMakeInt(rv->GetBoolVal());
+            }
+                break;
             case VarInstance:
                 if (rv->GetCObj() != nullptr) {
                     return VMakeC(rv->GetCObj(),false);

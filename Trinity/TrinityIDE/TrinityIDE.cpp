@@ -160,7 +160,7 @@ TrinityIDE::TrinityIDE(QWidget *parent)
 
     auto sc = new ZScriptContext;
 
-    Node3D::AddSystemFunctions();
+ //   Node3D::AddSystemFunctions();
 
     auto funcs = ZScriptContext::CurrentContext->GetSysFuncs();
 
@@ -176,6 +176,7 @@ TrinityIDE::TrinityIDE(QWidget *parent)
 
 
     ide_inst->CallMethod("InitIDE", {});
+    int b = 5;
 
 
   //  ScriptObject* new_obj = new ScriptObject;

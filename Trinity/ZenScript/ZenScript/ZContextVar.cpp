@@ -105,6 +105,16 @@ int ZContextVar::GetIntVal() {
 	{
 		return (int)mFloatVal;
 	}
+	if (mType == VarType::VarBool) {
+
+		if (mBoolVal) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
+
+	}
 	return mIntVal;
 
 }
@@ -114,6 +124,15 @@ float ZContextVar::GetFloatVal() {
 	if (mType == VarType::VarInteger)
 	{
 		return (float)mIntVal;
+	}
+	if (mType == VarType::VarBool) {
+
+		if (mBoolVal) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
 	}
 	return mFloatVal;
 

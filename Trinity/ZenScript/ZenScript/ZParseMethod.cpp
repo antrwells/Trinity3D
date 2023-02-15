@@ -50,6 +50,12 @@ ZScriptNode* ZParseMethod::Parse()
 		break;
 	case TokenType::TokenVoid:
 		meth_node->SetReturnType(VarType::VarVoid);
+	case TokenType::TokenBool:
+		meth_node->SetReturnType(VarType::VarBool);
+		break;
+	case TokenType::TokenVar:
+		meth_node->SetReturnType(VarType::VarVar);
+		break;
 	}
 
 	int bb = 5;
