@@ -531,5 +531,7 @@ void SceneViewport::StopPlay() {
 	TrinityGlobal::GameScene = nullptr;
 	TrinityGlobal::CurrentScene->EndPlay();
 	mPlaying = false;
+	NodeEditorWidget::sThis->SetNode(TrinityGlobal::ActiveNode);
+
 
 }

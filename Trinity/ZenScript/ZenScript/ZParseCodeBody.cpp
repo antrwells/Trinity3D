@@ -18,6 +18,9 @@
 #include "ZIncNode.h"
 #include "ZScriptContext.h"
 #include "ZMethodNode.h"
+#include "ZParseForEach.h"
+#include "ZForEachNode.h";
+#include "ParseListAdd.h"
 ZParseCodeBody::ZParseCodeBody(ZTokenStream* stream) : ZParseNode(stream) {
 
 
@@ -93,7 +96,17 @@ CodeType ZParseCodeBody::PredictType() {
 		case TokenType::TokenCObj:
 		case TokenType::TokenVar:
 		case TokenType::TokenBool:
+		case TokenType::TokenList:
 			return CodeType::CodeDeclareVars;
+			break;
+		case TokenType::TokenListAdd:
+			return CodeType::CodeListAdd;
+			break;
+		case TokenType::TokenListRemove:
+			return CodeType::CodeListRemove;
+			break;
+		case TokenType::TokenForEach:
+			return CodeType::CodeForEach;
 			break;
 		case TokenType::TokenEndOfLine:
 		
@@ -276,7 +289,7 @@ ZScriptNode* ZParseCodeBody::Parse() {
 			mStream->NextToken();
 			int aa = 5;
 		}
-			break;
+		break;
 		case CodeType::CodeDec:
 
 		{
@@ -288,7 +301,7 @@ ZScriptNode* ZParseCodeBody::Parse() {
 			mStream->NextToken();
 
 		}
-			break;
+		break;
 		case CodeType::CodeParseStop:
 
 		{
@@ -296,7 +309,7 @@ ZScriptNode* ZParseCodeBody::Parse() {
 			int stop_here = 1;
 		}
 
-			break;
+		break;
 		case CodeType::CodeDebug:
 			next_Debug = true;
 			{
@@ -321,7 +334,7 @@ ZScriptNode* ZParseCodeBody::Parse() {
 		}
 
 
-			break;
+		break;
 		case CodeType::CodeReturn:
 		{
 			auto parse_ret = new ZParseReturn(mStream);
@@ -331,7 +344,7 @@ ZScriptNode* ZParseCodeBody::Parse() {
 			ret_node->SetReturnType(ZMethodNode::mCurrentNode->GetReturnType());
 			int z = 0;
 		}
-			break;
+		break;
 		case CodeType::CodeFor:
 		{
 
@@ -350,7 +363,7 @@ ZScriptNode* ZParseCodeBody::Parse() {
 
 		}
 
-			break;
+		break;
 		case CodeType::CodeIf:
 		{
 
@@ -365,7 +378,7 @@ ZScriptNode* ZParseCodeBody::Parse() {
 
 		}
 
-			break;
+		break;
 		case CodeType::CodeAssign:
 		{
 			auto tok = mStream->NextToken();
@@ -386,7 +399,7 @@ ZScriptNode* ZParseCodeBody::Parse() {
 
 		}
 
-			break;
+		break;
 		case CodeType::ClassStatement:
 
 			e = 1;
@@ -437,6 +450,7 @@ ZScriptNode* ZParseCodeBody::Parse() {
 			break;
 		case CodeType::CodeStatement:
 
+		{
 			parse_statement = new ZParseStatement(mStream);
 
 			statement_node = (ZStatementNode*)parse_statement->Parse();
@@ -448,8 +462,38 @@ ZScriptNode* ZParseCodeBody::Parse() {
 
 
 			auto next_tok = mStream->AssertNextToken(TokenType::TokenEndOfLine);
+		}
+			break;
+		case CodeType::CodeListAdd:
+		{
+			auto parse_listadd = new ZParseListAdd(mStream);
+			auto listadd_node = parse_listadd->Parse();
+			codebody->AddNode((ZScriptNode*)listadd_node);
+
+			if (mStream->PeekToken(0).mType == TokenType::TokenEndOfLine)
+			{
+				mStream->NextToken();
+			}
+
+		}
+			break;
+		case CodeType::CodeForEach:
+		{
+
+
+			auto parse_foreach = new ZParseForEach(mStream);
+			auto foreach_node = (ZForEachNode*)parse_foreach->Parse();
+
+			if (next_Debug) {
+				foreach_node->SetDebug(true);
+				next_Debug = false;
+			}
+
+			codebody->AddNode(foreach_node);
+		}
 
 			break;
+
 		}
 
 		int bb = 5;

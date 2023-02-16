@@ -17,9 +17,17 @@
 #include "ZContextVar.h"
 #include "qlineedit.h"
 #include "qcheckbox.h"
+#include "ZClassNode.h"
+
 
 
 std::string get_filename_without_extension(const std::string& path);
+
+
+struct scvec3Edit {
+	
+
+};
 
 //boolEdit class
 struct boolEdit
@@ -95,6 +103,7 @@ struct vec3Edit
 	QDoubleSpinBox* x, * y, * z;
 	float3* real_val;
 	Node3D* is_NodeRot = nullptr;
+	ZContextVar* var = nullptr;
 	vec3Edit()
 	{
 
@@ -121,6 +130,13 @@ struct vec3Edit
 
 	void changed(double v) {
 		//int a = 5;
+		if (var != nullptr) {
+			auto i_cls = var->GetClassVal();
+			i_cls->FindVar("x")->SetFloat(x->value());
+			i_cls->FindVar("y")->SetFloat(y->value());
+			i_cls->FindVar("z")->SetFloat(z->value());
+			return;
+		}
 		real_val[0] = float3(x->value(), y->value(), z->value());
 		if (is_NodeRot!=nullptr) {
 
@@ -140,7 +156,7 @@ public:
 	void SetNode(Node3D* node);
 	void ReSet();
 	vec3Edit* AddVec3Editor(std::string name,float3 *cur);
-
+	void AddItem(int type,ZContextVar* var);
 protected:
 	void dragEnterEvent(QDragEnterEvent* event) override
 	{
@@ -151,6 +167,7 @@ protected:
 			}
 		}
 	}
+
 
 	void dragMoveEvent(QDragMoveEvent* event) override
 	{

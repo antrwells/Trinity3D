@@ -177,6 +177,8 @@ TrinityIDE::TrinityIDE(QWidget *parent)
 
     ide_inst->CallMethod("InitIDE", {});
     int b = 5;
+    
+    //Dominos pizza.
 
 
   //  ScriptObject* new_obj = new ScriptObject;

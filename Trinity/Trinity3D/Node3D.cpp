@@ -492,7 +492,15 @@ void Node3D::SetPlaying(bool play) {
 		SetScale(mPushScale);
 		SetRotation(mPushRot);
 
-	
+
+		for (int i = 0; i < mScriptObjs.size(); i++)
+		{
+
+			auto obj = mScriptObjs[i];
+			obj->PopVars();
+
+
+		}
 	
 
 	}

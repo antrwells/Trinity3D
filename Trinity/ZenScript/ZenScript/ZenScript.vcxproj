@@ -165,6 +165,7 @@
   <ItemGroup>
     <ClInclude Include="DirCollection.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="ParseListAdd.h" />
     <ClInclude Include="tinydir.h" />
     <ClInclude Include="VarTypes.h" />
     <ClInclude Include="pch.h" />
@@ -177,9 +178,11 @@
     <ClInclude Include="ZenByteCode.h" />
     <ClInclude Include="ZenParser.h" />
     <ClInclude Include="ZExpressionNode.h" />
+    <ClInclude Include="ZForEachNode.h" />
     <ClInclude Include="ZForNode.h" />
     <ClInclude Include="ZIfnode.h" />
     <ClInclude Include="ZIncNode.h" />
+    <ClInclude Include="ZListAddNode.h" />
     <ClInclude Include="ZMethodNode.h" />
     <ClInclude Include="ZNewNode.h" />
     <ClInclude Include="ZParametersNode.h" />
@@ -189,6 +192,7 @@
     <ClInclude Include="ZParseCodeBody.h" />
     <ClInclude Include="ZParseExpression.h" />
     <ClInclude Include="ZParseFor.h" />
+    <ClInclude Include="ZParseForEach.h" />
     <ClInclude Include="ZParseIf.h" />
     <ClInclude Include="ZParseMethod.h" />
     <ClInclude Include="ZParseNew.h" />
@@ -220,6 +224,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirCollection.cpp" />
+    <ClCompile Include="ParseListAdd.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -236,9 +241,11 @@
     <ClCompile Include="ZenParser.cpp" />
     <ClCompile Include="ZenScript.cpp" />
     <ClCompile Include="ZExpressionNode.cpp" />
+    <ClCompile Include="ZForEachNode.cpp" />
     <ClCompile Include="ZForNode.cpp" />
     <ClCompile Include="ZIfnode.cpp" />
     <ClCompile Include="ZIncNode.cpp" />
+    <ClCompile Include="ZListAddNode.cpp" />
     <ClCompile Include="ZMethodNode.cpp" />
     <ClCompile Include="ZNewNode.cpp" />
     <ClCompile Include="ZParametersNode.cpp" />
@@ -248,6 +255,7 @@
     <ClCompile Include="ZParseCodeBody.cpp" />
     <ClCompile Include="ZParseExpression.cpp" />
     <ClCompile Include="ZParseFor.cpp" />
+    <ClCompile Include="ZParseForEach.cpp" />
     <ClCompile Include="ZParseIf.cpp" />
     <ClCompile Include="ZParseMethod.cpp" />
     <ClCompile Include="ZParseNew.cpp" />

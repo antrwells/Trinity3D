@@ -218,6 +218,9 @@ void ZContextVar::Push() {
 
 	switch (mType)
 	{
+	case VarType::VarBool:
+		mPushBool = mBoolVal;
+		break;
 	case VarType::VarFloat:
 		mPushFloat = mFloatVal;
 		break;
@@ -240,6 +243,11 @@ void ZContextVar::Push() {
 	case VarType::VarString:
 		mPushString = mStringVal;
 		break;
+	case VarType::VarList:
+		for (int i = 0; i < mList.size(); i++) {
+			mList[i]->Push();
+		}
+		break;
 	}
 
 		
@@ -249,6 +257,9 @@ void ZContextVar::Push() {
 void ZContextVar::Pop() {
 
 	switch (mType) {
+	case VarType::VarBool:
+		mBoolVal = mPushBool;
+		break;
 	case VarType::VarFloat:
 
 		mFloatVal = mPushFloat;
@@ -271,9 +282,21 @@ void ZContextVar::Pop() {
 	case VarType::VarString:
 		mStringVal = mPushString;
 		break;
+	case VarType::VarList:
+		for (int i = 0; i < mList.size(); i++) {
+			mList[i]->Pop();
+		}
+		break;
 	}
 
 }
+
+void ZContextVar::ListAdd(ZContextVar* v) {
+
+	mList.push_back(v);
+
+}
+
 
 
 ZContextVar* VMakeInt(int v,bool comparer)

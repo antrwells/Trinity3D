@@ -22,6 +22,7 @@ c:\trinity\trinity3d\x64\debug\cuberenderer.obj
 c:\trinity\trinity3d\x64\debug\audio.obj
 c:\trinity\trinity3d\x64\debug\vstring.obj
 c:\trinity\trinity3d\x64\debug\vfile.obj
+c:\trinity\trinity3d\x64\debug\varwatch.obj
 c:\trinity\trinity3d\x64\debug\trinityapp.obj
 c:\trinity\trinity3d\x64\debug\texturecube.obj
 c:\trinity\trinity3d\x64\debug\texture2d.obj
@@ -33,7 +34,6 @@ c:\trinity\trinity3d\x64\debug\rendertargetcube.obj
 c:\trinity\trinity3d\x64\debug\raypicker.obj
 c:\trinity\trinity3d\x64\debug\physicsbody.obj
 c:\trinity\trinity3d\x64\debug\physics.obj
-c:\trinity\trinity3d\x64\debug\varwatch.obj
 c:\trinity\trinity3d\x64\debug\trinity3d.lib
 c:\trinity\trinity3d\x64\debug\trinityide.ilk
 c:\trinity\trinity3d\x64\debug\zenscript.idb

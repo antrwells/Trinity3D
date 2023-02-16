@@ -308,6 +308,12 @@ ZTokenStream* ZTokenizer::Tokenize() {
 	token_map.insert(std::make_pair("bool", TokenType::TokenBool));
 	token_map.insert(std::make_pair("true", TokenType::TokenTrue));
 	token_map.insert(std::make_pair("false", TokenType::TokenFalse));
+	token_map.insert(std::make_pair("list", TokenType::TokenList));
+	token_map.insert(std::make_pair("foreach", TokenType::TokenForEach));
+	token_map.insert(std::make_pair("add", TokenType::TokenListAdd));
+	token_map.insert(std::make_pair("remove", TokenType::TokenListRemove));
+
+
 
 	std::vector<Token> new_tokens;
 

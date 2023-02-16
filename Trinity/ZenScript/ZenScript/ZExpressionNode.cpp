@@ -766,7 +766,16 @@ ZContextVar* Expression::Evaluate(VarType recv) {
 
     if (mElements.size() == 1)
     {
+        if (mElements[0].mType == EVar)
+        {
 
+            auto var = GetVar(mElements[0].mNameHash[0], mElements[0].mNameHash[1]);
+            if (var != nullptr) {
+                return var;
+            }
+            int aa = 5;
+
+        }
         if (mElements[0].mType == ETrue)
         {
             return VMakeInt(1);
@@ -827,6 +836,13 @@ ZContextVar* Expression::Evaluate(VarType recv) {
             auto new_cls = mElements[0].mNew->Exec({});
             return VMakeClass(new_cls->GetClassVal(),false);
 
+        }
+        if (mElements[0].mType == EInt) {
+            return VMakeInt(mElements[0].mValInt);
+        }
+        if (mElements[0].mType == EFloat)
+        {
+            return VMakeInt(mElements[0].mValFloat);
         }
         if (mElements[0].mType == EStatement)
         {

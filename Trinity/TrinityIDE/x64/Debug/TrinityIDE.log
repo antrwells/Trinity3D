@@ -1,2 +1,13 @@
-﻿  PropEditorSurface.cpp
+﻿  moc PropEditor.h
+  DockArea.cpp
+  NodeEditorWidget.cpp
+  PropEditor.cpp
+  PropEditorSurface.cpp
+  SceneViewport.cpp
+  TrinityIDE.cpp
+  main.cpp
+  moc_DockArea.cpp
+  moc_NodeEditorWidget.cpp
+  moc_PropEditor.cpp
+  moc_TrinityIDE.cpp
   TrinityIDE.vcxproj -> C:\Trinity\Trinity3D\x64\Debug\TrinityIDE.exe

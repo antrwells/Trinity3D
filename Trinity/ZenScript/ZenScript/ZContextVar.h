@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-
+#include <vector>
 //#include "DataTypes.h"
 enum VarType;
 
@@ -49,6 +49,14 @@ public:
 	void Push();
 	void Pop();
 
+	void ListAdd(ZContextVar* var);
+	std::vector<ZContextVar*> GetList() {
+		return mList;
+	}
+	void SetList(std::vector<ZContextVar*> list) {
+		mList = list;
+	}
+
 private:
 
 	std::string mName;
@@ -57,6 +65,7 @@ private:
 	int mIntVal;
 	float mFloatVal;
 	bool mBoolVal;
+	bool mPushBool;
 	std::string mStringVal;
 	ZClassNode* mClassVal;
 	void* mCObj;
@@ -66,6 +75,7 @@ private:
 	std::string mBaseID;
 	bool mComparer = false;
 	size_t mHashName;
+	std::vector<ZContextVar*> mList;
 
 };
 

@@ -18,6 +18,9 @@ ZScriptNode* ZParseVars::Parse() {
 	bool is_class = false;
 	switch (var_type.mType)
 	{
+	case TokenType::TokenList:
+		vars_node->SetType(VarType::VarList);
+		break;
 	case TokenType::TokenBool:
 		vars_node->SetType(VarType::VarBool);
 		break;

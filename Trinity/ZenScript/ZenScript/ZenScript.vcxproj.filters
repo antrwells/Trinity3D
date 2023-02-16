@@ -186,6 +186,18 @@
     <ClInclude Include="ZenByteCode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ParseListAdd.h">
+      <Filter>ParseNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ZListAddNode.h">
+      <Filter>ScriptNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ZParseForEach.h">
+      <Filter>ParseNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ZForEachNode.h">
+      <Filter>ScriptNodes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ZenScript.cpp">
@@ -211,9 +223,6 @@
     </ClCompile>
     <ClCompile Include="ZProgramNode.cpp">
       <Filter>ScriptNodes</Filter>
-    </ClCompile>
-    <ClCompile Include="ZParseClass.cpp">
-      <Filter>ParseNodes</Filter>
     </ClCompile>
     <ClCompile Include="ZClassNode.cpp">
       <Filter>ScriptNodes</Filter>
@@ -302,9 +311,6 @@
     <ClCompile Include="ZParseAssign.cpp">
       <Filter>ParseNodes</Filter>
     </ClCompile>
-    <ClCompile Include="ZAssignNode.cpp">
-      <Filter>ScriptNodes</Filter>
-    </ClCompile>
     <ClCompile Include="ZParseIf.cpp">
       <Filter>ParseNodes</Filter>
     </ClCompile>
@@ -343,6 +349,24 @@
     </ClCompile>
     <ClCompile Include="ZenByteCode.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZAssignNode.cpp">
+      <Filter>ParseNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ParseListAdd.cpp">
+      <Filter>ParseNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZParseClass.cpp">
+      <Filter>ParseNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZListAddNode.cpp">
+      <Filter>ScriptNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZParseForEach.cpp">
+      <Filter>ParseNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZForEachNode.cpp">
+      <Filter>ScriptNodes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

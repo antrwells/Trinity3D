@@ -42,6 +42,16 @@ ZScriptNode* ZParseClass::Parse()
 		//
 
 		switch (token.mType) {
+		case TokenType::TokenList:
+
+			mStream->Back();
+			parse_vars = new ZParseVars(mStream);
+			vars_node = (ZVarsNode*)parse_vars->Parse();
+
+			//codebody->AddNode(vars_node);
+			class_node->AddVars(vars_node);
+
+			break;
 		case TokenType::TokenIdent:
 
 			mStream->Back();

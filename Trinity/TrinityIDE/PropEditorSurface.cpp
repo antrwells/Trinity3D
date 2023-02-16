@@ -43,20 +43,156 @@ std::string get_filename_without_extension(const std::string& path)
 PropEditorSurface::~PropEditorSurface()
 {}
 
+void PropEditorSurface::AddItem(int id,ZContextVar* var)
+{
+
+	switch (id)
+	{
+	case 0:
+	{
+		int iv = var->GetIntVal();
+
+		auto v_lab = new QLabel(var->GetName().c_str(), this);
+		v_lab->setGeometry(10, edit_y, 100, 20);
+
+		auto v_edit = new QSpinBox(this);
+		v_edit->setGeometry(85, edit_y, 100, 20);
+		edit_y += 25;
+
+		v_edit->setValue(iv);
+
+		//if (ImGui::DragInt(var->GetName().c_str(), &iv))
+		//{
+		intEdit* ie = new intEdit(v_edit, var);
+		ints.push_back(ie);
+		var->SetInt(iv);
+	}
+	break;
+	case 1:
+	{
+		float fv = var->GetFloatVal();
+
+		auto v_lab = new QLabel(var->GetName().c_str(), this);
+		v_lab->setGeometry(10, edit_y, 100, 20);
+
+		auto v_edit = new QDoubleSpinBox(this);
+		v_edit->setGeometry(85, edit_y, 100, 20);
+		edit_y += 25;
+
+		v_edit->setValue(fv);
+
+		//if (ImGui::DragFloat(var->GetName().c_str(), &fv))
+		//{
+		floatEdit* fe = new floatEdit(v_edit, var);
+		floats.push_back(fe);
+		var->SetFloat(fv);
+		break;
+	}
+	case 2:
+	{
+
+		std::string sv = var->GetStringVal();
+
+
+		auto v_lab = new QLabel(var->GetName().c_str(), this);
+		v_lab->setGeometry(10, edit_y, 100, 20);
+
+		auto v_edit = new QLineEdit(sv.c_str(), this);
+		v_edit->setGeometry(85, edit_y, 250, 20);
+		edit_y += 25;
+
+		v_edit->setText(sv.c_str());
+
+		stringEdit* se = new stringEdit(v_edit, var);
+		strings.push_back(se);
+
+
+
+
+	}
+	break;
+	case 4:
+	{
+		int bb = 5;
+		auto i_cls = var->GetClassVal();
+		//if (i_cls == nullptr) continue
+		if (i_cls != nullptr) {
+			auto c_name = i_cls->GetBaseName();
+
+			if (c_name == "Vec3")
+			{
+				float vv[3];
+				vv[0] = i_cls->FindVar("x")->GetFloatVal();
+				vv[1] = i_cls->FindVar("y")->GetFloatVal();
+				vv[2] = i_cls->FindVar("z")->GetFloatVal();
+				float3* val = new float3(vv[0], vv[1], vv[2]);
+				auto v3 = AddVec3Editor(var->GetName().c_str(), val);
+				v3->var = var;
+
+
+				break;
+
+			}
+		}
+	}
+	break;
+	case 8:
+	{
+		//bool editor
+		bool bv = var->GetBoolVal();
+
+		auto v_lab = new QLabel(var->GetName().c_str(), this);
+		v_lab->setGeometry(10, edit_y, 100, 20);
+
+		auto v_edit = new QCheckBox(this);
+		v_edit->setGeometry(85, edit_y, 100, 20);
+		edit_y += 25;
+		v_edit->setChecked(bv);
+		boolEdit* be = new boolEdit(v_edit, var);
+		bools.push_back(be);
+
+		int v = 1;
+	}
+	break;
+	case 9:
+	{
+
+		std::string name = "List: " + var->GetName();
+
+		auto name_lab = new QLabel(name.c_str(), this);
+		name_lab->setGeometry(10, edit_y, 100, 20);
+
+		edit_y += 25;
+		auto ls = var->GetList();
+
+		for (int i = 0; i < ls.size(); i++) {
+
+			AddItem(ls[i]->GetType(), ls[i]);
+
+		}
+
+
+	}
+	break;
+
+	}
+
+}
+
 void PropEditorSurface::SetNode(Node3D* node)
 {
 
 	t_Node = node;
 
-	edit_y = 5;
+	edit_y = 10;
 	
 	std::string name = "Node: ";
 
 	auto name_lab = new QLabel(name.c_str(), this);
-	name_lab->setGeometry(5, edit_y, 100, 20);
+	name_lab->setGeometry(10, edit_y, 100, 20);
 
 	auto name_edit = new QLineEdit(node->GetName().c_str(), this);
-	name_edit->setGeometry(80, edit_y, 250, 20);
+	name_edit->setGeometry(85, edit_y, 250, 20);
 
 	connect(name_edit, &QLineEdit::textChanged, [=](const QString& text) {
 		t_Node->SetName(text.toStdString().c_str());
@@ -84,7 +220,7 @@ void PropEditorSurface::SetNode(Node3D* node)
 			auto name = s->mClsName;
 
 			auto name_lab = new QLabel(name.c_str(), this);
-			name_lab->setGeometry(5, edit_y, 100, 20);
+			name_lab->setGeometry(10, edit_y, 100, 20);
 			edit_y += 25;
 
 			auto vars = scripts[i]->GetVars();
@@ -97,101 +233,18 @@ void PropEditorSurface::SetNode(Node3D* node)
 
 				auto var = vars[v];
 
-				switch (var->GetTypeInt())
-				{
-				case 0:
-				{
-					int iv = var->GetIntVal();
+				AddItem(var->GetType(), var);
 
-					auto v_lab = new QLabel(var->GetName().c_str(), this);
-					v_lab->setGeometry(5, edit_y, 100, 20);
-
-					auto v_edit = new QSpinBox(this);
-					v_edit->setGeometry(80, edit_y, 100, 20);
-					edit_y += 25;
-
-					v_edit->setValue(iv);
-
-					//if (ImGui::DragInt(var->GetName().c_str(), &iv))
-					//{
-					intEdit* ie = new intEdit(v_edit, var);
-					ints.push_back(ie);
-					var->SetInt(iv);
-				}
-					break;
-				case 1:
-				{
-					float fv = var->GetFloatVal();
-
-					auto v_lab = new QLabel(var->GetName().c_str(), this);
-					v_lab->setGeometry(5, edit_y, 100, 20);
-
-					auto v_edit = new QDoubleSpinBox(this);
-					v_edit->setGeometry(80, edit_y, 100, 20);
-					edit_y +=25;
-
-					v_edit->setValue(fv);
-
-					//if (ImGui::DragFloat(var->GetName().c_str(), &fv))
-					//{
-					floatEdit* fe = new floatEdit(v_edit, var);
-					floats.push_back(fe);
-					var->SetFloat(fv);
-					break;
-				}
-				case 2:
-				{
-
-					std::string sv = var->GetStringVal();
-
-					auto v_lab = new QLabel(var->GetName().c_str(), this);
-					v_lab->setGeometry(5, edit_y, 100, 20);
-
-					auto v_edit = new QLineEdit(sv.c_str(), this);
-					v_edit->setGeometry(80, edit_y, 250, 20);
-					edit_y +=25;
-
-					v_edit->setText(sv.c_str());
-
-					stringEdit* se = new stringEdit(v_edit, var);
-					strings.push_back(se);
-
-
-
-
-				}
-				break;
-				case 8:
-				{
-					//bool editor
-					bool bv = var->GetBoolVal();
-
-					auto v_lab = new QLabel(var->GetName().c_str(), this);
-					v_lab->setGeometry(5, edit_y, 100, 20);
-
-					auto v_edit = new QCheckBox(this);
-					v_edit->setGeometry(80, edit_y, 100, 20);
-					edit_y += 25;
-					v_edit->setChecked(bv);
-					boolEdit* be = new boolEdit(v_edit, var);
-					bools.push_back(be);
-
-					int v = 1;
-				}
-					break;
 				
-				}
 
 
 
 
 
 
-
-				}
 			}
-
-	//adjustSize();
+		}
+	
 	return;
 
 
@@ -232,7 +285,7 @@ vec3Edit* PropEditorSurface::AddVec3Editor(std::string name,float3* cur) {
 
 
 	auto name_lab = new QLabel(name.c_str(), this);
-	name_lab->setGeometry(5, edit_y, 80, 20);
+	name_lab->setGeometry(10, edit_y, 80, 20);
 
 	auto x_lab = new QLabel("X:",this);
 
@@ -241,8 +294,8 @@ vec3Edit* PropEditorSurface::AddVec3Editor(std::string name,float3* cur) {
 
 	x_spinbox->setSingleStep(0.1);
 
-	x_lab->setGeometry(70, edit_y, 40, 20);
-	x_spinbox->setGeometry(85, edit_y, 80, 20);
+	x_lab->setGeometry(75, edit_y, 40, 20);
+	x_spinbox->setGeometry(90, edit_y, 80, 20);
 	
 
 	auto y_lab = new QLabel("Y:", this);
@@ -252,8 +305,8 @@ vec3Edit* PropEditorSurface::AddVec3Editor(std::string name,float3* cur) {
 
 	y_spinbox->setSingleStep(0.1);
 
-	y_lab->setGeometry(170, edit_y, 40, 20);
-	y_spinbox->setGeometry(185, edit_y, 80, 20);
+	y_lab->setGeometry(175, edit_y, 40, 20);
+	y_spinbox->setGeometry(190, edit_y, 80, 20);
 
 	//
 	auto z_lab = new QLabel("Z:", this);
@@ -263,8 +316,8 @@ vec3Edit* PropEditorSurface::AddVec3Editor(std::string name,float3* cur) {
 
 	z_spinbox->setSingleStep(0.1);
 
-	z_lab->setGeometry(270, edit_y, 40, 20);
-	z_spinbox->setGeometry(285, edit_y, 80, 20);
+	z_lab->setGeometry(275, edit_y, 40, 20);
+	z_spinbox->setGeometry(290, edit_y, 80, 20);
 	
 	edit_y += 25;
 
