@@ -1,8 +1,19 @@
+enum test
+
+    GUI, GFX, Sound
+
+end 
+
 class IDE
 
     method void InitIDE()
 
-        console("Initializing IDE Script")
+       
+        if test.Sound == test.GUI
+        
+            console("Enum",test.Sound)
+        
+        end
 
 
     end 

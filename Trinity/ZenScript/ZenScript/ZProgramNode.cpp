@@ -1,6 +1,6 @@
 #include "ZProgramNode.h"
 #include "ZClassNode.h"
-
+#include "ZEnumNode.h"
 
 void ZMainNode::AddClass(ZClassNode* node) {
 
@@ -43,5 +43,11 @@ ZClassNode* ZMainNode::GetClass(std::string name) {
 	}
 
 	return nullptr;
+
+}
+
+void ZMainNode::AddEnum(ZEnumNode* node) {
+
+	mEnums.push_back(node);
 
 }

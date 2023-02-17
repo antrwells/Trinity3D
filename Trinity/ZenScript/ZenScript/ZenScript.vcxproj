@@ -177,6 +177,7 @@
     <ClInclude Include="ZContextVar.h" />
     <ClInclude Include="ZenByteCode.h" />
     <ClInclude Include="ZenParser.h" />
+    <ClInclude Include="ZEnumNode.h" />
     <ClInclude Include="ZExpressionNode.h" />
     <ClInclude Include="ZForEachNode.h" />
     <ClInclude Include="ZForNode.h" />
@@ -190,6 +191,7 @@
     <ClInclude Include="ZParseClass.h" />
     <ClInclude Include="ZParseClassStatement.h" />
     <ClInclude Include="ZParseCodeBody.h" />
+    <ClInclude Include="ZParseEnum.h" />
     <ClInclude Include="ZParseExpression.h" />
     <ClInclude Include="ZParseFor.h" />
     <ClInclude Include="ZParseForEach.h" />
@@ -240,6 +242,7 @@
     <ClCompile Include="ZenByteCode.cpp" />
     <ClCompile Include="ZenParser.cpp" />
     <ClCompile Include="ZenScript.cpp" />
+    <ClCompile Include="ZEnumNode.cpp" />
     <ClCompile Include="ZExpressionNode.cpp" />
     <ClCompile Include="ZForEachNode.cpp" />
     <ClCompile Include="ZForNode.cpp" />
@@ -253,6 +256,7 @@
     <ClCompile Include="ZParseClass.cpp" />
     <ClCompile Include="ZParseClassStatement.cpp" />
     <ClCompile Include="ZParseCodeBody.cpp" />
+    <ClCompile Include="ZParseEnum.cpp" />
     <ClCompile Include="ZParseExpression.cpp" />
     <ClCompile Include="ZParseFor.cpp" />
     <ClCompile Include="ZParseForEach.cpp" />

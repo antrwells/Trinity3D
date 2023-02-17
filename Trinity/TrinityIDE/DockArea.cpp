@@ -33,6 +33,7 @@ DockArea::DockArea(QWidget *parent)
 
 	w_NodeEditor = new NodeEditorWidget(NULL);
 	auto w4 = m_DockManager->addDockWidget(ads::RightDockWidgetArea, w_NodeEditor);
+	w_NodeEditor->resize(w4->width(), w4->height());
 
 	auto w2 = m_DockManager->addDockWidget(ads::LeftDockWidgetArea, w_SceneGraph);
 	w_ContentBrowser = new ContentBrowserWidget(NULL);

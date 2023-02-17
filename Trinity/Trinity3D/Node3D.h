@@ -314,6 +314,15 @@ const double pi = 3.14159265358979323846;
 
 			}
 
+
+			bool* GetEnabledPtr() {
+				return &mEnabled;
+			}
+
+			
+
+			bool IsChildOf(Node3D* n);
+
 			float3* GetRotationEularPtr() {
 
 

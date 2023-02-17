@@ -12,6 +12,7 @@
 #include "DirCollection.h"
 #include "ZParser.h"
 #include <time.h>
+#include "ZEnumNode.h"
 #include <ctime>
 
 //#include "ZContextVar.h"
@@ -127,6 +128,12 @@ void ZScriptContext::AddNode(ZMainNode* node) {
 
 	}
 
+	for (int i = 0; i < node->GetEnums().size(); i++) {
+
+		mEnums.push_back(node->GetEnums()[i]);
+
+	}
+
 }
 
 ZClassNode* ZScriptContext::FindClass(std::string name) {
@@ -198,6 +205,32 @@ ZClassNode* ZScriptContext::FindInstance(std::string name) {
 		}
 
 	}
+
+}
+
+bool ZScriptContext::IsEnum(size_t name) {
+
+	for (int i = 0; i < mEnums.size(); i++) {
+
+		if (name == mEnums[i]->GetHashName()) {
+			return true;
+		}
+
+	}
+	return false;
+
+}
+
+ZEnumNode* ZScriptContext::GetEnum(size_t name) {
+
+	for (int i = 0; i < mEnums.size(); i++) {
+
+		if (name == mEnums[i]->GetHashName()) {
+			return mEnums[i];
+		}
+
+	}
+	return nullptr;
 
 }
 

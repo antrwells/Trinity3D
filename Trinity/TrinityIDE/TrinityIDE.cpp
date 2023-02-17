@@ -160,7 +160,7 @@ TrinityIDE::TrinityIDE(QWidget *parent)
 
     auto sc = new ZScriptContext;
 
-   Node3D::AddSystemFunctions();
+ //  Node3D::AddSystemFunctions();
 
     auto funcs = ZScriptContext::CurrentContext->GetSysFuncs();
 
@@ -169,6 +169,7 @@ TrinityIDE::TrinityIDE(QWidget *parent)
     funcs->RegisterFunction(printf);
 
     s_IDE = new ScriptContainer("script/init_ide.zs");
+   
 
     auto ide_class = s_IDE->GetClass("IDE");
 

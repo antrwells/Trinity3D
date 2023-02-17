@@ -53,6 +53,9 @@ public:
 	}
 	ZContextVar* FindComparer() {
 
+		if (mInstanceScope == nullptr) {
+			return nullptr;
+		}
 		auto vars = mInstanceScope->GetVars();
 		for (int i = 0; i < vars.size(); i++) {
 			if (vars[i]->GetCompare())

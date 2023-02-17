@@ -198,6 +198,12 @@
     <ClInclude Include="ZForEachNode.h">
       <Filter>ScriptNodes</Filter>
     </ClInclude>
+    <ClInclude Include="ZParseEnum.h">
+      <Filter>ParseNodes</Filter>
+    </ClInclude>
+    <ClInclude Include="ZEnumNode.h">
+      <Filter>ScriptNodes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ZenScript.cpp">
@@ -366,6 +372,12 @@
       <Filter>ParseNodes</Filter>
     </ClCompile>
     <ClCompile Include="ZForEachNode.cpp">
+      <Filter>ScriptNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZParseEnum.cpp">
+      <Filter>ParseNodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ZEnumNode.cpp">
       <Filter>ScriptNodes</Filter>
     </ClCompile>
   </ItemGroup>

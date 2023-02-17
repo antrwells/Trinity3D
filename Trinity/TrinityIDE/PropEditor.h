@@ -20,6 +20,7 @@ protected:
 	virtual void resizeEvent(QResizeEvent* event);
 
 protected:
+	Node3D* t_Node = nullptr;
 	void dragEnterEvent(QDragEnterEvent* event)
 	{
 		if (event->mimeData()->hasText()) {

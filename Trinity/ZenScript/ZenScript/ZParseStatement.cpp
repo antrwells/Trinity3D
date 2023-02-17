@@ -10,18 +10,23 @@ ZParseStatement::ZParseStatement(ZTokenStream* stream) : ZParseNode(stream) {
 
 ZScriptNode* ZParseStatement::Parse() {
 
+	if(mStream->PeekToken(0).mType == TokenType::TokenEndOfLine)
+		mStream->NextToken();
+
 	//auto token = mStream->NextToken();
 	auto state_node = new ZStatementNode;
 
 	while (!mStream->EOS()) {
 
 		auto token = mStream->NextToken();
+		
 
 		ZParseParameters* parse_pars = nullptr;
 		ZParametersNode* pars_node = nullptr;
 
 		switch (token.mType) {
 
+		case TokenType::TokenEndOfLine:
 		case TokenType::TokenRightPara:
 
 			return state_node;

@@ -181,6 +181,7 @@ ZScriptNode* ZParseExpression::Parse() {
 				//ele.mValName[1] = mStream->NextToken().mText;
 
 				ele.mNameHash[1] = hasher(mStream->NextToken().mText);
+				
 				if (mStream->PeekToken(0).mType == TokenType::TokenLeftPara)
 				{
 					mStream->Back();

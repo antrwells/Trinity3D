@@ -9,12 +9,13 @@ int main(int argc, char *argv[])
 {
 
     QApplication a(argc, argv);
-    QFile file("c:/trinity/themes/darkcore.qss");
+    QFile file("c:/trinity/themes/Photoxo.qss");
     file.open(QFile::ReadOnly);
     QString styleSheet = QLatin1String(file.readAll());
     
 
- // qApp->setStyleSheet(styleSheet);
+
+  qApp->setStyleSheet(styleSheet);
    
     TrinityIDE w;
 

@@ -1,6 +1,10 @@
 #include "ZParseScript.h"
 #include "ZProgramNode.h"
 #include "ZParseClass.h"
+#include "ZParseEnum.h"
+#include "ZEnumNode.h"
+//#include
+
 
 ZParseScript::ZParseScript(ZTokenStream* stream) : ZParseNode(stream) {
 
@@ -26,6 +30,18 @@ ZScriptNode* ZParseScript::Parse()
 
 			return (ZScriptNode*)main_node;
 
+			break;
+		case TokenType::TokenEnum:
+		{
+
+			mStream->NextToken();
+
+			auto parse_enum = new ZParseEnum(mStream);
+			auto enum_node = parse_enum->Parse();
+
+			main_node->AddEnum((ZEnumNode*)enum_node);
+
+		}
 			break;
 		case TokenType::TokenStatic:
 		{

@@ -1,16 +1,16 @@
 ﻿  Node3D.cpp
 C:\Trinity\Trinity3D\Node3D.h(271,20): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Trinity\Trinity3D\Node3D.h(351,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
 C:\Trinity\Trinity3D\Node3D.h(360,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Trinity\Trinity3D\Node3D.h(370,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(369,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Trinity\Trinity3D\Node3D.h(379,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float

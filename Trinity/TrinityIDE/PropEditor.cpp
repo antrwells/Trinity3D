@@ -14,7 +14,8 @@ PropEditor::PropEditor(QWidget *parent)
 
 	//acceptDrops();
 	w_PropSurface = new PropEditorSurface();
-
+	w_PropSurface->pHeight = height();
+	w_PropSurface->resize(width(), height());
 	//setWidget(w_PropSurface);
 	
 	//dockWidget->setWidget(centralWidget);
@@ -32,12 +33,13 @@ void PropEditor::ReSet() {
 void PropEditor::SetNode(Node3D* node) {
 
 
+	t_Node = node;
 	w_PropSurface->setParent(nullptr);
 
 	w_PropSurface = new PropEditorSurface;
 
 	w_PropSurface->SetNode(node);
-	
+	w_PropSurface->pHeight = height() * 2;
 	setWidget(w_PropSurface);
 	acceptDrops();
 	show();
@@ -83,6 +85,11 @@ void PropEditor::resizeEvent(QResizeEvent* event)
 	QSize size = event->size();
 	int width = size.width();
 	int height = size.height();
+	w_PropSurface->pHeight = height;
+	w_PropSurface->resize(width, height);
+	if (t_Node != nullptr) {
+		SetNode(t_Node);
+	}
 	//w_PropSurface->resize(width, height);
 	
 

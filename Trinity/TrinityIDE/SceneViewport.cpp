@@ -19,6 +19,7 @@ SceneViewport::SceneViewport(QWidget *parent)
 
 
 	installEventFilter(this);
+
 	//setAttribute(Qt::WA_PaintOnScreen, false);
 	mThis = this;
 	
@@ -38,6 +39,7 @@ void SceneViewport::LoadResources() {
 
 	int a = 5;
 	mTex1 = new Texture2D("test/img1.png");
+	iconLight = new Texture2D("edit/sprites/light1.png");
 	mDraw = new SmartDraw(TrinityApp::GetApp());
 	//ViewportReady();
 	TrinityGlobal::CurrentScene = new SceneGraph;
@@ -164,6 +166,61 @@ void SceneViewport::RenderScene() {
 
 
 		}
+		auto mGraph = TrinityGlobal::CurrentScene;
+		auto cam = mGraph->GetCamera();
+
+
+		TrinityApp::GetApp()->ClearDepth();
+
+		mDraw->Begin();
+
+		for (int i = 0; i < mGraph->LightCount(); i++) {
+			Node3D* entity = mGraph->GetLight(i);
+
+			float lx, ly;
+
+			lx = 20;
+			ly = 20;
+			float4x4 model = entity->GetWorldMatrix();
+			//angX = angX + 0.1f;
+
+			// Camera is at (0, 0, -5) looking along the Z axis
+			float4x4 View = cam->GetWorldMatrix().Inverse();;// float4x4::Translation(0.f, 0.0f, 5.0f);
+
+			// Get pretransform matrix that rotates the scene according the surface orientation
+			//auto SrfPreTransform = GetSurfacePretransformMatrix(float3{ 0, 0, 1 });
+
+			// Get projection matrix adjusted to the current screen orientation
+			auto Proj = cam->GetProjectionMatrix();  //float4x4::Projection( Maths::Deg2Rad(70.0f), 1024.0f / 760.0f, 0.001f, 1000.0f, false);
+
+			// Compute world-view-projection matrix
+			float4x4 m_WorldViewProjMatrix = model * View * Proj;
+			m_WorldViewProjMatrix = m_WorldViewProjMatrix.Transpose();
+
+
+			float4 pos = m_WorldViewProjMatrix * float4(0, 0, 0, 1.0);
+
+			pos.x /= pos.w;
+			pos.y /= pos.w;
+
+			pos.x = (0.5 + pos.x * 0.5) * width();//  mRenderTarget->GetWidth();
+			pos.y = (0.5 - pos.y * 0.5) * height();// mRenderTarget->GetHeight();
+
+			mDraw->DrawTexture(pos.x - 32, pos.y - 32, 64, 64, iconLight, 1, 1, 1, 1, false);
+		//	if (real_pos.x > pos.x - 32 && real_pos.x<pos.x + 32 && real_pos.y>pos.y - 32 && real_pos.y < pos.y + 32)
+		//	{
+				//if (Application::GetApp()->GetInput()->IsMouseDown(0))
+				//{
+				//	mSelectedNode = entity;
+				//	mEditNode = entity;
+			//	}
+			//}
+		}
+
+		mDraw->End();
+
+	 TrinityApp::GetApp()->ClearDepth();
+
 
 		if (TrinityGlobal::ActiveNode != nullptr) {
 			//mCurrentGizmo->SetPosition(TrinityGlobal::ActiveNode->GetPosition());
@@ -377,6 +434,63 @@ void SceneViewport::mousePressEvent(QMouseEvent* event) {
 
 		if (event->type() == QEvent::MouseButtonPress)
 		{
+
+			auto mGraph = TrinityGlobal::CurrentScene;
+			auto cam = mGraph->GetCamera();
+
+			mDraw->Begin();
+
+			int realy = mLastY;
+
+			for (int i = 0; i < mGraph->LightCount(); i++) {
+				Node3D* entity = mGraph->GetLight(i);
+
+				float lx, ly;
+
+				lx = 20;
+				ly = 20;
+				float4x4 model = entity->GetWorldMatrix();
+				//angX = angX + 0.1f;
+
+				// Camera is at (0, 0, -5) looking along the Z axis
+				float4x4 View = cam->GetWorldMatrix().Inverse();;// float4x4::Translation(0.f, 0.0f, 5.0f);
+
+				// Get pretransform matrix that rotates the scene according the surface orientation
+				//auto SrfPreTransform = GetSurfacePretransformMatrix(float3{ 0, 0, 1 });
+
+				// Get projection matrix adjusted to the current screen orientation
+				auto Proj = cam->GetProjectionMatrix();  //float4x4::Projection( Maths::Deg2Rad(70.0f), 1024.0f / 760.0f, 0.001f, 1000.0f, false);
+
+				// Compute world-view-projection matrix
+				float4x4 m_WorldViewProjMatrix = model * View * Proj;
+				m_WorldViewProjMatrix = m_WorldViewProjMatrix.Transpose();
+
+
+				float4 pos = m_WorldViewProjMatrix * float4(0, 0, 0, 1.0);
+
+				pos.x /= pos.w;
+				pos.y /= pos.w;
+
+				pos.x = (0.5 + pos.x * 0.5) * width();//  mRenderTarget->GetWidth();
+				pos.y = (0.5 - pos.y * 0.5) * height();// mRenderTarget->GetHeight();
+
+				//mDraw->DrawTexture(pos.x - 32, pos.y - 32, 64, 64, iconLight, 1, 1, 1, 1, false);
+					if (mLastX > pos.x - 32 && mLastX<pos.x + 32 && realy>pos.y - 32 && realy < pos.y + 32)
+					{
+						TrinityGlobal::ActiveNode = entity;
+						NodeEditorWidget::sThis->SetNode(entity);
+
+						//exit(1);
+						//if (Application::GetApp()->GetInput()->IsMouseDown(0))
+						// 
+						//{
+						//	mSelectedNode = entity;
+						//	mEditNode = entity;
+					//	}
+					}
+			}
+
+
 			mLeftDown = true;
 			auto scene = TrinityGlobal::CurrentScene;
 			auto res = scene->mRayPick->MousePick(mLastX, mLastY, width(), height(), scene->GetCamera());

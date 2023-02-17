@@ -7,6 +7,7 @@
 #include "ZContextVar.h"
 class ZContextScope;
 class ZSystemFunctions;
+class ZEnumNode;
 
 class ZScriptContext
 {
@@ -18,6 +19,8 @@ public:
 	ZClassNode* FindClass(std::string name);
 	bool IsStaticClass(std::string name);
 	bool IsStaticClass(size_t hash);
+	bool IsEnum(size_t name);
+	ZEnumNode* GetEnum(size_t name);
 	ZClassNode* GetStaticClass(std::string name);
 	ZClassNode* GetStaticClass(size_t name);
 
@@ -52,6 +55,7 @@ private:
 	std::stack<ZClassNode*> mClassStack;
 	std::vector<ZClassNode*> mInstances;
 	std::stack<ZContextScope*> mScope;
+	std::vector<ZEnumNode*> mEnums;
 	static bool mSysInit;
 };
 

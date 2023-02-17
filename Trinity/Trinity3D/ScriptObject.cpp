@@ -6,6 +6,7 @@
 #include "ZTokenizer.h"
 #include "ZContextVar.h"
 #include "ZProgramNode.h"
+#include "ZScriptContext.h"
 
 void ScriptObject::CallInit()
 {
@@ -85,6 +86,7 @@ ScriptContainer::ScriptContainer(std::string path) {
 		auto stream = toker->Tokenize();
 		auto parser = new ZParser(stream);
 		mNode = parser->Parse();
+		ZScriptContext::CurrentContext->AddNode(mNode);
 	
 
 }

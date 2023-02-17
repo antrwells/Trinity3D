@@ -211,6 +211,7 @@ private slots:
 private:
 	Ui::SceneViewportClass ui;
 	Texture2D* mTex1;
+	Texture2D* iconLight, * iconCam, * iconEmpty;
 	SmartDraw* mDraw;
 	NodeCamera* mEditCam;
 	float mMoveX, mMoveY, mMoveZ;

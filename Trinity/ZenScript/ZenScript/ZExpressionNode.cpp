@@ -6,6 +6,7 @@
 #include "ZClassStatementNode.h"
 #include "ZContextVar.h"
 #include "ZNewNode.h"
+#include "ZEnumNode.h"
 void ZExpressionNode::SetExpression(Expression expr) {
 
 	//mElements.push_back(element);
@@ -202,6 +203,11 @@ int evaluateInt(std::vector<ExpressionElement> mElements) {
 
                 if (depth > 1)
                 {
+                    if (ZScriptContext::CurrentContext->IsEnum(tok.mNameHash[0])) {
+                        auto e = ZScriptContext::CurrentContext->GetEnum(tok.mNameHash[0]);
+                        values.push(e->GetHashOptionIndex(tok.mNameHash[1]));
+
+                    }else 
                     if (ZScriptContext::CurrentContext->IsStaticClass(tok.mNameHash[0])) {
 
                         auto scls = ZScriptContext::CurrentContext->GetStaticClass(tok.mNameHash[0]);
@@ -571,6 +577,17 @@ Expression ZExpressionNode::GetExpression() {
 
 ZContextVar* GetVar(size_t name1, size_t name2) {
     ZContextVar* var = nullptr;
+   
+    if (ZScriptContext::CurrentContext->IsEnum(name1)) {
+
+        auto en = ZScriptContext::CurrentContext->GetEnum(name1);
+        
+        auto ri = VMakeInt(en->GetHashOptionIndex(name2));
+        return ri;
+
+        int a = 5;
+    }
+
     if (ZScriptContext::CurrentContext->IsStaticClass(name1))
     {
         auto scls = ZScriptContext::CurrentContext->GetStaticClass(name1);
@@ -680,16 +697,19 @@ bool Expression::IsCompare() {
 
                     auto v1 = GetVar(mElements[0].mNameHash[0], mElements[0].mNameHash[1]);
                     auto v2 = GetVar(mElements[2].mNameHash[0], mElements[2].mNameHash[1]);
-                    auto c1 = v1->GetClassVal();
-                    auto c2 = v2->GetClassVal();
 
-                    auto com1 = c1->FindComparer();
-                    auto com2 = c2->FindComparer();
+                    if (v1->GetType() == VarType::VarInstance) {
+                        auto c1 = v1->GetClassVal();
+                        auto c2 = v2->GetClassVal();
 
-                    if (com1 != nullptr && com2 != nullptr) {
+                        auto com1 = c1->FindComparer();
+                        auto com2 = c2->FindComparer();
 
-                        return true;
+                        if (com1 != nullptr && com2 != nullptr) {
 
+                            return true;
+
+                        }
                     }
 
 
@@ -768,6 +788,9 @@ ZContextVar* Expression::Evaluate(VarType recv) {
     {
         if (mElements[0].mType == EVar)
         {
+
+          
+
 
             auto var = GetVar(mElements[0].mNameHash[0], mElements[0].mNameHash[1]);
             if (var != nullptr) {

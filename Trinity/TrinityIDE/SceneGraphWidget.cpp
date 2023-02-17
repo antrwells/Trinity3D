@@ -3,6 +3,8 @@
 #include "qpainterpath.h"
 #include "TrinityGlobal.h"
 #include <qevent.h>
+#include "NodeEditorWidget.h"
+#include "ConsoleOutputWidget.h"
 
 SceneGraphWidget::SceneGraphWidget(QWidget* parent)
 	: QWidget(parent)
@@ -144,6 +146,16 @@ void SceneGraphWidget::paintEvent(QPaintEvent* event) {
 
 void SceneGraphWidget::CheckNode(Node3D* node, int& dx, int& dy, int mx, int my) {
 
+	bool open = node->mNodeOpen;
+
+	//p.drawRect(QRect(dx + 4, dy - 5, 8, 8));
+
+	if (mx >= dx && mx < (dx + 4 + 18) && my >= dy - 8 && my < ((dy - 8) + 12))
+	{
+		openClose = true;
+		ConsoleOutputWidget::LogMessage("Open/Close");
+		//mCurrentNode = node;
+	}
 
 	if (mx >= 2 && my >= (dy - 14) && mx < ((width() - 4)) && my <= ((dy - 14) + 25))
 	{
@@ -155,31 +167,49 @@ void SceneGraphWidget::CheckNode(Node3D* node, int& dx, int& dy, int mx, int my)
 
 		//		p.drawRect(QRect(dx + 6, dy - 3, 4, 4));
 		auto cc = node->ChildrenCount();
+		dx = dx + 15;
+		dy = dy + 25;
+		int ox = dx;
 		for (int i = 0; i < cc; i++) {
-			dx = dx + 15;
-			dy = dy + 25;
-			CheckNode(node->GetChild(i), dx, dy,mx,my);
+
+			//dy = dy + 25;
+			CheckNode(node->GetChild(i), dx, dy, mx, my);
+			dx = ox;
 		}
+	}
+	else {
+		dy = dy + 25;
 	}
 }
 
 void SceneGraphWidget::mousePressEvent(QMouseEvent* event) {
-
+	if (openClose) {
+		if (mCurrentNode->mNodeOpen)
+		{
+			mCurrentNode->mNodeOpen = false;
+		}
+		else {
+			mCurrentNode->mNodeOpen = true;
+		}
+	}
 	if (event->button() == Qt::LeftButton)
 	{
 
 		if (mCurrentNode != nullptr) {
+			mDragNode = mActiveNode;
 			mActiveNode = mCurrentNode;
+
+			TrinityGlobal::ActiveNode = mCurrentNode;
+			NodeEditorWidget::sThis->SetNode(mCurrentNode);
+
 			//mActiveNode->mNodeOpen = mActiveNode ? false : true;
-			if (mActiveNode->mNodeOpen)
-			{
-				mActiveNode->mNodeOpen = false;
-			}
-			else {
-				mActiveNode->mNodeOpen = true;
-			}
+			
 			TrinityGlobal::ActiveNode = mCurrentNode;
 			update();
+			if (event->button() == Qt::LeftButton) {
+				dragStartPos = event->pos();
+				isDrag = true;
+			}
 		}
 		else {
 			mActiveNode = nullptr;
@@ -201,7 +231,33 @@ void SceneGraphWidget::mouseMoveEvent(QMouseEvent* event)
 {
 	int x = event->x();
 	int y = event->y();
+	mox = x;
+	moy = y;
 
+	if (isDrag) {
+
+		if ((event->pos() - dragStartPos).manhattanLength() < QApplication::startDragDistance()) {
+			//isDrag = false;
+			return;
+			//return;
+
+		}
+		//return;
+
+		QDrag* drag = new QDrag(this);
+		QMimeData* mimeData = new QMimeData;
+
+		mimeData->setText(QString(mCurrentNode->GetName().c_str()));
+		drag->setMimeData(mimeData);
+
+		mimeData->setProperty("type", "node");
+
+		Qt::DropAction act = drag->exec();
+
+
+		isDrag = false;
+		return;
+	}
 
 	auto scene = TrinityGlobal::CurrentScene;
 	//mCurrentNode = scene->GetRoot();
@@ -211,6 +267,12 @@ void SceneGraphWidget::mouseMoveEvent(QMouseEvent* event)
 	dx = 10;
 	dy = 20;
 	dy = dy - mScrollLink->value();
+
+	dx = 10;
+	dy = 20;
+
+	dy = dy - mScrollLink->value();
+	openClose = false;
 	CheckNode(scene->GetRoot(), dx,dy, x, y);
 	int max = 20;
 	GetMaxSize(scene->GetRoot(), max);

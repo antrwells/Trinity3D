@@ -18,6 +18,7 @@
 #include "qlineedit.h"
 #include "qcheckbox.h"
 #include "ZClassNode.h"
+#include "qcombobox.h"
 
 
 
@@ -29,11 +30,38 @@ struct scvec3Edit {
 
 };
 
+struct comboEdit {
+
+	QComboBox* cb;
+	void* val;
+	comboEdit(QComboBox* b, void* v) {
+		cb = b;
+		val = v;
+		QObject::connect(b, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),
+						[this](int value) { changed(value); });
+	}
+	void changed(int value) {
+		//var->SetInt(value);
+		int* v = (int*)val;
+		v[0] = value;
+	}
+
+
+
+};
+
 //boolEdit class
 struct boolEdit
 {
 	QCheckBox* ib;
 	ZContextVar* var;
+	bool* cur = nullptr;
+	boolEdit(QCheckBox* b, bool* c) {
+		ib = b;
+		cur = c;
+		QObject::connect(b, &QCheckBox::stateChanged,
+			[this](bool value) { changed(value); });
+	}
 	boolEdit(QCheckBox* b, ZContextVar* v)
 	{
 		ib = b;
@@ -42,7 +70,12 @@ struct boolEdit
 						[this](bool value) { changed(value); });
 	}
 	void changed(bool value) {
-		var->SetBool(value);
+		if (cur != nullptr) {
+			cur[0] = value;
+		}
+		else {
+			var->SetBool(value);
+		}
 	}
 };
 
@@ -84,15 +117,29 @@ struct floatEdit
 {
 	QDoubleSpinBox* ib;
 	ZContextVar* var;
+	float* cur = nullptr;
+	floatEdit(QDoubleSpinBox* b, float* c) {
+		cur = c;
+		ib = b;
+		QObject::connect(b, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),
+			[this](double value) { changed(value); });
+
+	}
 	floatEdit(QDoubleSpinBox* b, ZContextVar* v)
 	{
 		ib = b;
 		var = v;
+		
 		QObject::connect(b, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),
 			[this](double value) { changed(value); });
 	}
 	void changed(double value) {
-		var->SetFloat(value);
+		if (cur != nullptr) {
+			cur[0] = (float)value;
+		}
+		else {
+			var->SetFloat(value);
+		}
 	}
 };
 
@@ -104,6 +151,7 @@ struct vec3Edit
 	float3* real_val;
 	Node3D* is_NodeRot = nullptr;
 	ZContextVar* var = nullptr;
+	bool block = false;
 	vec3Edit()
 	{
 
@@ -140,8 +188,9 @@ struct vec3Edit
 		real_val[0] = float3(x->value(), y->value(), z->value());
 		if (is_NodeRot!=nullptr) {
 
-			is_NodeRot->SetRotationEular(real_val[0]);
-
+			if (!block) {
+				is_NodeRot->SetRotationEular(real_val[0]);
+			}
 		}
 	};
 };
@@ -156,7 +205,11 @@ public:
 	void SetNode(Node3D* node);
 	void ReSet();
 	vec3Edit* AddVec3Editor(std::string name,float3 *cur);
+	floatEdit* AddFloatEditor(std::string name, float* cur);
+	boolEdit* AddBoolEditor(std::string name, bool* cur);
+	comboEdit* AddComboEditor(std::string name, void* cur);
 	void AddItem(int type,ZContextVar* var);
+	int pHeight = 0;
 protected:
 	void dragEnterEvent(QDragEnterEvent* event) override
 	{
@@ -183,7 +236,7 @@ protected:
 
 private:
 	Ui::PropEditorSurfaceClass ui;
-	Node3D* t_Node;
+	Node3D* t_Node = nullptr;
 	int edit_y = 20;
 	QSpinBox* pos_X, * pos_Y, * pos_Z;
 	QSpinBox* scale_X, * scale_Y, * scale_Z;
@@ -193,5 +246,9 @@ private:
 	std::vector<floatEdit*> floats;
 	std::vector<stringEdit*> strings;
 	std::vector<boolEdit*> bools;
+	std::vector<comboEdit*> combos;
+	comboEdit* ltype;
+	vec3Edit* ldiff,* lspec;
+	floatEdit* lrange;
 
 };

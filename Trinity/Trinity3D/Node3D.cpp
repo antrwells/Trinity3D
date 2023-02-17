@@ -198,7 +198,8 @@ bool Node3D::IsHidden() {
 
 
 void Node3D:: SetEnabled(bool enable) {
-	mEnabled = enable;
+	auto en = &mEnabled;
+	en[0] = enable;
 }
 
 bool Node3D::GetEnabled() {
@@ -330,6 +331,19 @@ void Node3D::SetPlaying(bool play) {
 
 		mRootNode = node;
 		
+
+	}
+
+
+	
+
+	bool Node3D::IsChildOf(Node3D *n) {
+
+		if(n == this) return true;
+		for (int i = 0; i < mChildren.size(); i++) {
+			if(mChildren[i]->IsChildOf(n)) return true;
+		}
+		return false;
 
 	}
 

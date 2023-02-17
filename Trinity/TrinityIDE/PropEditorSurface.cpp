@@ -188,8 +188,13 @@ void PropEditorSurface::SetNode(Node3D* node)
 	
 	std::string name = "Node: ";
 
+
+	auto benable = AddBoolEditor("Enabled", node->GetEnabledPtr());
+
 	auto name_lab = new QLabel(name.c_str(), this);
 	name_lab->setGeometry(10, edit_y, 100, 20);
+
+
 
 	auto name_edit = new QLineEdit(node->GetName().c_str(), this);
 	name_edit->setGeometry(85, edit_y, 250, 20);
@@ -197,6 +202,8 @@ void PropEditorSurface::SetNode(Node3D* node)
 	connect(name_edit, &QLineEdit::textChanged, [=](const QString& text) {
 		t_Node->SetName(text.toStdString().c_str());
 	});
+
+
 
 	edit_y += 30;
 	name_lab->setParent(this);
@@ -210,6 +217,34 @@ void PropEditorSurface::SetNode(Node3D* node)
 		pos = pe;
 		rot = re;
 		scale = se;
+
+		if (node->GetType() == NodeType::Light) {
+
+			auto light = (NodeLight*)node;
+			edit_y += 5;
+			auto name_lab = new QLabel("Light", this);
+			name_lab->setGeometry(10, edit_y, 100, 20);
+			edit_y += 25;
+
+			auto ltype1 = AddComboEditor("Light Type",light->GetLightTypePtr());
+			int ct = light->GetLightType();
+			ltype1->cb->addItem("Point");
+			ltype1->cb->addItem("Spot");
+			ltype1->cb->addItem("Direction");
+			ltype1->cb->setCurrentIndex(ct);
+
+			auto ldif1 = AddVec3Editor("Diffuse", light->GetDiffusePtr());
+			auto lspec1 = AddVec3Editor("Specular", light->GetSpecularPtr());
+			auto lrange1 = AddFloatEditor("Range", light->GetRangePtr());
+			auto lcs1 = AddBoolEditor("Cast Shadows", light->GetCastShadowsPtr());
+		//	auto ldir = AddVec3Editor("Direction", light->GetDirectionPtr());
+			//range
+			//auto lrange = AddFloatEditor("Range", node->GetLight()->GetRangePtr());
+			ldiff = ldif1;
+			lspec = lspec1;
+			lrange = lrange1;
+			ltype = ltype1;
+		}
 
 		auto scripts = t_Node->GetScripts();
 
@@ -244,7 +279,13 @@ void PropEditorSurface::SetNode(Node3D* node)
 
 			}
 		}
-	
+
+		int ah = edit_y + 100;
+		if (ah < pHeight) {
+			ah = pHeight;
+		}
+		ah = ah * 2;
+		resize(400,ah);
 	return;
 
 
@@ -358,9 +399,24 @@ void reset(vec3Edit* edit, float3 cur) {
 
 void PropEditorSurface::ReSet() {
 
+	if (t_Node == nullptr) return;
+	rot->block = true;
 	reset(pos, t_Node->GetPosition());
 	reset(rot, t_Node->GetRotationEular());
 	reset(scale, t_Node->GetScale());
+	rot->block = false;
+	if (t_Node->GetType() == NodeType::Light) {
+		auto l = (NodeLight*)t_Node;
+		reset(ldiff, l->GetDiffuse());
+		reset(lspec, l->GetSpecular());
+	    ltype->cb->setCurrentIndex((int)l->GetLightType());
+		lrange->ib->blockSignals(true);
+		lrange->ib->setValue(l->GetRange());
+		lrange->ib->blockSignals(false);
+	}
+
+
+	
 
 }
 
@@ -398,4 +454,63 @@ void PropEditorSurface::dropEvent(QDropEvent* event)
 		}
 
 	}
+}
+
+boolEdit* PropEditorSurface::AddBoolEditor(std::string name, bool* cur) {
+
+	auto v_lab = new QLabel(name.c_str(), this);
+	v_lab->setGeometry(10, edit_y, 100, 20);
+
+	auto v_edit = new QCheckBox(this);
+	v_edit->setGeometry(90, edit_y, 100, 20);
+	edit_y += 25;
+
+	v_edit->setChecked(cur[0]);
+
+	boolEdit* be = new boolEdit(v_edit, cur);
+	bools.push_back(be);
+	return be;
+}
+
+floatEdit* PropEditorSurface::AddFloatEditor(std::string name, float* cur) {
+
+
+
+	auto v_lab = new QLabel(name.c_str(), this);
+	v_lab->setGeometry(10, edit_y, 100, 20);
+
+	auto v_edit = new QDoubleSpinBox(this);
+	v_edit->setGeometry(90, edit_y, 100, 20);
+	edit_y += 25;
+
+	v_edit->setValue(cur[0]);
+	v_edit->setMinimum(0);
+	v_edit->setMaximum(9999);
+
+	//if (ImGui::DragFloat(var->GetName().c_str(), &fv))
+	//{
+	floatEdit* fe = new floatEdit(v_edit,cur);
+	floats.push_back(fe);
+	return fe;
+}
+
+comboEdit* PropEditorSurface::AddComboEditor(std::string name, void* cur) {
+
+	auto v_lab = new QLabel(name.c_str(), this);
+	v_lab->setGeometry(10, edit_y, 100, 20);
+
+	auto v_edit = new QComboBox(this);
+	v_edit->setGeometry(90, edit_y, 100, 20);
+	edit_y += 25;
+
+	//v_edit->setValue((*(int)*cur));
+	//v_edit->setMinimum(0);
+	//v_edit->setMaximum(9999);
+
+	//if (ImGui::DragFloat(var->GetName().c_str(), &fv))
+	//{
+	comboEdit* fe = new comboEdit(v_edit, cur);
+	combos.push_back(fe);
+	return fe;
+
 }

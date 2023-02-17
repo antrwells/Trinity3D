@@ -32,12 +32,22 @@
 				return mDiffuse;
 			}
 
+			float3* GetDiffusePtr() {
+
+				return &mDiffuse;
+
+			}
+
 			/// <summary>
 			/// Gets the specular color of the light.
 			/// </summary>
 			/// <returns></returns>
 			float3 GetSpecular() {
 				return mSpecular;
+			}
+
+			float3* GetSpecularPtr() {
+				return &mSpecular;
 			}
 
 			/// <summary>
@@ -48,6 +58,10 @@
 				return mRange;
 			}
 
+			float* GetRangePtr() {
+				return &mRange;
+			}
+
 			
 			/// <summary>
 			/// Sets the diffuse color of the light.
@@ -55,8 +69,8 @@
 			/// <param name="diffuse"></param>
 			void SetDiffuse(float3 diffuse)
 			{
-
-				mDiffuse = diffuse;
+				auto dp = &mDiffuse;
+				dp[0] = diffuse;
 
 			}
 
@@ -66,7 +80,8 @@
 			/// <param name="specular"></param>
 			void SetSpecular(float3 specular) {
 
-				mSpecular = specular;
+				auto ds = &mSpecular;
+				ds[0] = specular;
 
 			}
 
@@ -76,8 +91,13 @@
 			/// <param name="cast"></param>
 			void SetCastShadows(bool cast) {
 
-				mCastShadows = cast;
+				auto ls = &mCastShadows;
+				ls[0] = cast;
 
+			}
+
+			bool* GetCastShadowsPtr() {
+				return &mCastShadows;
 			}
 
 			/// <summary>
@@ -90,13 +110,20 @@
 
 			}
 
+			bool* GetShadowMappingPtr() {
+
+				return &mCastShadows;
+
+			}
+
 			/// <summary>
 			/// Sets the range of the light.
 			/// </summary>
 			/// <param name="range"></param>
 			void SetRange(float range) {
 
-				mRange = range;
+				auto lr = &mRange;
+				lr[0] = range;
 
 			}
 
@@ -125,11 +152,18 @@
 			}
 
 			void SetLightType(LightType type) {
-				mLightType = type;
+				auto lt = &mLightType;
+				lt[0] = type;
 			}
 			LightType GetLightType() {
 				return mLightType;
 			}
+
+			LightType* GetLightTypePtr() {
+				return &mLightType;
+			}
+
+
 
 			float3 GetCone() {
 				return float3(mICone, mOCone, 0);
@@ -145,6 +179,7 @@
 			}
 
 			bool GetCastShadows() {
+				
 				return mCastShadows;
 			}
 

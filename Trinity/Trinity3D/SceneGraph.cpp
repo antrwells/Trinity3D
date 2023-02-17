@@ -402,8 +402,9 @@ void SceneGraph::RenderNodeBasic(NodeEntity* entity)
 			}
 
 			for (int i = 0; i < entity->ChildrenCount(); i++) {
-
-				RenderNodeDepth((NodeEntity*)entity->GetChild(i));
+				if (entity->GetChild(i)->GetType() != NodeType::Light) {
+					RenderNodeDepth((NodeEntity*)entity->GetChild(i));
+				}
 
 			}
 
@@ -688,13 +689,15 @@ void SceneGraph::RenderNodeBasic(NodeEntity* entity)
 		void SceneGraph::RenderNodeLit(NodeEntity* entity) {
 
 			bool first = true;
-			if (entity->GetEnabled() == false) return;
-			if (entity->GetMeshes().size() > 0) {
-				for (int i = 0; i < mLights.size(); i++)
-				{
-					if (mLights[i]->GetEnabled() == false) continue;
-					mRenderer->RenderLit(entity, mCam, mLights[i], first);
-					first = false;
+			if (entity->GetType() == NodeType::Entity) {
+				if (entity->GetEnabled() == false) return;
+				if (entity->GetMeshes().size() > 0) {
+					for (int i = 0; i < mLights.size(); i++)
+					{
+						if (mLights[i]->GetEnabled() == false) continue;
+						mRenderer->RenderLit(entity, mCam, mLights[i], first);
+						first = false;
+					}
 				}
 			}
 

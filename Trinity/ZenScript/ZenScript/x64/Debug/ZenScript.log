@@ -1,2 +1,4 @@
-﻿  ZContextVar.cpp
+﻿  ZExpressionNode.cpp
+C:\Trinity\ZenScript\ZenScript\ZExpressionNode.cpp(868,41): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Trinity\ZenScript\ZenScript\ZExpressionNode.cpp(79): warning C4715: 'applyOpInt': not all control paths return a value
   ZenScript.vcxproj -> C:\Trinity\Trinity3D\x64\Debug\ZenScript.lib

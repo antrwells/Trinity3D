@@ -460,6 +460,14 @@ ZScriptNode* ZParseCodeBody::Parse() {
 			}
 			codebody->AddNode(statement_node);
 
+			auto tt = mStream->NextToken();
+			if (tt.mType == TokenType::TokenEnd) {
+				mStream->Back();
+				mStream->Back();
+			}
+			if (tt.mType == TokenType::TokenEndOfLine) {
+				mStream->Back();
+			}
 
 			auto next_tok = mStream->AssertNextToken(TokenType::TokenEndOfLine);
 		}
