@@ -16,6 +16,7 @@
 #include "ZClassNode.h"
 #include "ZSystemFunction.h"
 #include "ZSystemFunctions.h"
+#include "Importer.h"
 #include "ZScriptContext.h"
 
 ZContextVar* sys_console(const std::vector<ZContextVar*>& args)
@@ -49,6 +50,23 @@ TrinityIDE::TrinityIDE(QWidget *parent)
     loadLayoutAction = new QAction("Load State", this);
     exitAction = new QAction("Exit", this);
 
+    auto create = menu->addMenu("Create");
+    auto createNode = create->addMenu("Node");
+
+    auto crPlane = new QAction("Plane", this);
+    auto crCube = new QAction("Cube", this);
+    auto crSphere = new QAction("Sphere", this);
+    auto crCylinder = new QAction("Cylinder", this);
+    auto crCone = new QAction("Cone", this);
+    auto crTorus = new QAction("Torus", this);
+
+    createNode->addAction(crPlane);
+    createNode->addAction(crCube);
+    createNode->addAction(crSphere);
+    createNode->addAction(crCylinder);
+    createNode->addAction(crCone);
+    createNode->addAction(crTorus);
+
 
     fileMenu->addAction(newProjAction);
     fileMenu->addAction(openProjAction);
@@ -61,6 +79,16 @@ TrinityIDE::TrinityIDE(QWidget *parent)
 
     connect(saveLayoutAction, &QAction::triggered, this, &TrinityIDE::saveLayout);
     connect(loadLayoutAction, &QAction::triggered, this, &TrinityIDE::loadLayout);
+
+    connect(crPlane, &QAction::triggered, this, &TrinityIDE::create_plane);
+    connect(crCube, &QAction::triggered, this, &TrinityIDE::create_box);
+    connect(crSphere, &QAction::triggered, this, &TrinityIDE::create_sphere);
+    connect(crCone, &QAction::triggered, this, &TrinityIDE::create_cone);
+    connect(crTorus, &QAction::triggered, this, &TrinityIDE::create_torus);
+    connect(crCylinder, &QAction::triggered, this, &TrinityIDE::create_cylinder);
+
+
+
 
     //QPushButton* test = new QPushButton("Test!", this);
     //test->setGeometry(20, 20, 200, 30);
@@ -308,3 +336,49 @@ void TrinityIDE::act_pause() {
 void TrinityIDE::act_stop() {
 	SceneViewport::Stop();
 }
+
+void TrinityIDE::create_plane() {
+
+    //create plane
+    Importer* imp = new Importer;
+    auto box = imp->ImportEntity("data/primitive/plane.fbx");
+    TrinityGlobal::CurrentScene->AddNode(box);
+
+
+}
+
+void TrinityIDE::create_box()
+{
+    Importer* imp = new Importer;
+    auto box = imp->ImportEntity("data/primitive/cube.fbx");
+    TrinityGlobal::CurrentScene->AddNode(box);
+}
+
+void TrinityIDE::create_sphere()
+{
+    Importer* imp = new Importer;
+    auto box = imp->ImportEntity("data/primitive/sphere.fbx");
+    TrinityGlobal::CurrentScene->AddNode(box);
+}
+
+void TrinityIDE::create_cylinder()
+{
+    Importer* imp = new Importer;
+    auto box = imp->ImportEntity("data/primitive/cylinder.fbx");
+    TrinityGlobal::CurrentScene->AddNode(box);
+}
+
+void TrinityIDE::create_cone()
+{
+    Importer* imp = new Importer;
+    auto box = imp->ImportEntity("data/primitive/cone.fbx");
+    TrinityGlobal::CurrentScene->AddNode(box);
+}
+
+void TrinityIDE::create_torus()
+{
+    Importer* imp = new Importer;
+    auto box = imp->ImportEntity("data/primitive/torus.fbx");
+    TrinityGlobal::CurrentScene->AddNode(box);
+}
+

@@ -31,6 +31,15 @@ private slots:
     void saveLayout();
     void loadLayout();
 
+//create primitives
+    void create_plane();
+    void create_box();
+    void create_sphere();
+    void create_cylinder();
+    void create_cone();
+    void create_torus();
+
+
 
 protected:
     void resizeEvent(QResizeEvent* event) override;

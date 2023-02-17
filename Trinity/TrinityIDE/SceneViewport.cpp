@@ -492,21 +492,8 @@ void SceneViewport::mousePressEvent(QMouseEvent* event) {
 
 
 			mLeftDown = true;
+		
 			auto scene = TrinityGlobal::CurrentScene;
-			auto res = scene->mRayPick->MousePick(mLastX, mLastY, width(), height(), scene->GetCamera());
-
-			if (res.hit) {
-
-				TrinityGlobal::ActiveNode = res.hit_node;
-				NodeEditorWidget::sThis->SetNode(res.hit_node);
-				std::string name = res.hit_node->GetName();
-
-				std::string log = "Active Node:" + name;
-				qDebug(log.c_str());
-
-
-			}
-
 
 			auto giz_result = scene->mRayPick->MousePickNode((int)mLastX, (int)mLastY, (int)width(), (int)height(), mCurrentGizmo, mEditCam);
 
@@ -521,6 +508,7 @@ void SceneViewport::mousePressEvent(QMouseEvent* event) {
 					gLock_y = false;
 					gLock_z = false;
 					gLock = true;
+					return;
 				}
 				if (giz_name.Contains(VString("Y")))
 				{
@@ -528,19 +516,31 @@ void SceneViewport::mousePressEvent(QMouseEvent* event) {
 					gLock_y = true;
 					gLock_z = false;
 					gLock = true;
+					return;
 				}
 				if (giz_name.Contains("Z")) {
 					gLock_x = false;
 					gLock_y = false;
 					gLock_z = true;
 					gLock = true;
+					return;
 				}
 			}
 
 			//}
 
 
+		
+			auto res = scene->mRayPick->MousePick(mLastX, mLastY, width(), height(), scene->GetCamera());
 
+			if (res.hit) {
+
+				TrinityGlobal::ActiveNode = res.hit_node;
+				NodeEditorWidget::sThis->SetNode(res.hit_node);
+				std::string name = res.hit_node->GetName();
+				
+
+			}
 		}
 
 	}
