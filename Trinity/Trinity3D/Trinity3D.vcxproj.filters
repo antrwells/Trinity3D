@@ -165,6 +165,9 @@
     <ClInclude Include="VarWatch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FinalRender.h">
+      <Filter>Render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TrinityApp.cpp">
@@ -268,6 +271,9 @@
     </ClCompile>
     <ClCompile Include="VarWatch.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FinalRender.cpp">
+      <Filter>Render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

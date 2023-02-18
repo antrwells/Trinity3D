@@ -52,6 +52,7 @@ TrinityIDE::TrinityIDE(QWidget *parent)
 
     auto create = menu->addMenu("Create");
     auto createNode = create->addMenu("Node");
+    auto lightNode = create->addMenu("Light");
 
     auto crPlane = new QAction("Plane", this);
     auto crCube = new QAction("Cube", this);
@@ -60,12 +61,20 @@ TrinityIDE::TrinityIDE(QWidget *parent)
     auto crCone = new QAction("Cone", this);
     auto crTorus = new QAction("Torus", this);
 
+    auto crPointLight = new QAction("Point Light",this);
+    auto crSpotlight = new QAction("Spot Light", this);
+    auto crDirLight = new QAction("Directional Light", this);
+
     createNode->addAction(crPlane);
     createNode->addAction(crCube);
     createNode->addAction(crSphere);
     createNode->addAction(crCylinder);
     createNode->addAction(crCone);
     createNode->addAction(crTorus);
+
+    lightNode->addAction(crPointLight);
+    lightNode->addAction(crSpotlight);
+    lightNode->addAction(crDirLight);
 
 
     fileMenu->addAction(newProjAction);
@@ -86,6 +95,11 @@ TrinityIDE::TrinityIDE(QWidget *parent)
     connect(crCone, &QAction::triggered, this, &TrinityIDE::create_cone);
     connect(crTorus, &QAction::triggered, this, &TrinityIDE::create_torus);
     connect(crCylinder, &QAction::triggered, this, &TrinityIDE::create_cylinder);
+
+    connect(crPointLight, &QAction::triggered, this, &TrinityIDE::create_pointlight);
+    connect(crSpotlight, &QAction::triggered, this, &TrinityIDE::create_spotlight);
+    connect(crDirLight, &QAction::triggered, this, &TrinityIDE::create_dirlight);
+
 
 
 
@@ -188,7 +202,7 @@ TrinityIDE::TrinityIDE(QWidget *parent)
 
     auto sc = new ZScriptContext;
 
- //  Node3D::AddSystemFunctions();
+   Node3D::AddSystemFunctions();
 
     auto funcs = ZScriptContext::CurrentContext->GetSysFuncs();
 
@@ -382,3 +396,21 @@ void TrinityIDE::create_torus()
     TrinityGlobal::CurrentScene->AddNode(box);
 }
 
+void TrinityIDE::create_pointlight() {
+    auto l = new NodeLight;
+    TrinityGlobal::CurrentScene->AddLight(l);
+}
+
+void TrinityIDE::create_spotlight() {
+
+    auto l = new NodeLight;
+    l->SetLightType(LightType::SpotLight);
+	TrinityGlobal::CurrentScene->AddLight(l);
+
+}
+
+void TrinityIDE::create_dirlight() {
+    auto l = new NodeLight;
+	l->SetLightType(LightType::DirectionalLight);
+	TrinityGlobal::CurrentScene->AddLight(l);
+}

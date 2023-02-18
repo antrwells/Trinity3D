@@ -8,7 +8,7 @@ enum TokenType {
 	TokenElseIf,TokenSwitch,TokenFor,EndOfFile,TokenOperator,TokenInt,TokenFloat,TokenMethod,TokenFunction,TokenPeriod,TokenComma,
 	TokenPlus,TokenMinus,TokenDivide,TokenMultiply,TokenEndOfLine,TokenEquals,TokenNew,TokenVoid,TokenGreater,TokenLess,TokenTo,TokenReturn,
 	TokenWhile,TokenDebugStop,TokenParseStop,TokenInc,TokenDec,TokenColon,TokenSame,TokenNotSame,TokenOr,TokenUMinus,TokenCObj,TokenStatic,
-	TokenVirtual,TokenVar,TokenBool,TokenTrue,TokenFalse,TokenList,TokenForEach,TokenListAdd,TokenListRemove,TokenEnum
+	TokenVirtual,TokenVar,TokenBool,TokenTrue,TokenFalse,TokenList,TokenForEach,TokenListAdd,TokenListRemove,TokenEnum,TokenExpr
 };
 
 std::string TokenToString(enum TokenType type);
@@ -17,10 +17,17 @@ public:
 	
 	Token(enum TokenType type) {
 		mType = type;
+		mText = "";
 	}
-	Token(enum TokenType type, std::string text) {
+	Token(enum TokenType type,std::string text) {
 		mType = type;
 		mText = text;
+	}
+	Token(enum TokenType type, std::string text,int line,int chr) {
+		mType = type;
+		mText = text;
+		TokenIndex = chr;
+		TokenLineIndex = line;
 	}
 	enum TokenType mType;
 	std::string mText;

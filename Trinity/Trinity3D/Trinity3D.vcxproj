@@ -23,6 +23,7 @@
     <ClInclude Include="CubeRenderer.h" />
     <ClInclude Include="DataTypes.h" />
     <ClInclude Include="DirCollection.h" />
+    <ClInclude Include="FinalRender.h" />
     <ClInclude Include="GameUI.h" />
     <ClInclude Include="Importer.h" />
     <ClInclude Include="kFont.h" />
@@ -60,6 +61,7 @@
     <ClCompile Include="Audio.cpp" />
     <ClCompile Include="CubeRenderer.cpp" />
     <ClCompile Include="DirCollection.cpp" />
+    <ClCompile Include="FinalRender.cpp" />
     <ClCompile Include="GameUI.cpp" />
     <ClCompile Include="Importer.cpp" />
     <ClCompile Include="kFont.cpp" />

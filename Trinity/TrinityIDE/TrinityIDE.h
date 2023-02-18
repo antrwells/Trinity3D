@@ -38,7 +38,10 @@ private slots:
     void create_cylinder();
     void create_cone();
     void create_torus();
-
+//create lights
+    void create_pointlight();
+    void create_spotlight();
+    void create_dirlight();
 
 
 protected:

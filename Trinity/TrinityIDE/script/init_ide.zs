@@ -1,19 +1,11 @@
-enum test
-
-    GUI, GFX, Sound
-
-end 
 
 class IDE
 
     method void InitIDE()
 
-       
-        if test.Sound == test.GUI
         
-            console("Enum",test.Sound)
-        
-        end
+
+        console("Welcome to Trinity3D - The future is 3D")        
 
 
     end 
