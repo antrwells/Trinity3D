@@ -93,6 +93,12 @@ protected:
 	void dragEnterEvent(QDragEnterEvent* event)
 	{
 		if (event->mimeData()->hasText()) {
+			if (event->mimeData()->property("type").toString() == QString("graph"))
+			{
+				int a = 55;
+				event->acceptProposedAction();
+
+			}
 			if (event->mimeData()->property("type").toString() == QString("mesh"))
 			{
 				event->acceptProposedAction();
@@ -103,6 +109,12 @@ protected:
 	void dragMoveEvent(QDragMoveEvent* event)
 	{
 		if (event->mimeData()->hasText()) {
+			if (event->mimeData()->property("type").toString() == QString("graph"))
+			{
+				int a = 55;
+				event->acceptProposedAction();
+
+			}
 			if (event->mimeData()->property("type").toString() == QString("mesh"))
 			{
 				event->acceptProposedAction();
@@ -113,7 +125,23 @@ protected:
 	void dropEvent(QDropEvent* event)
 	{
 		if (event->mimeData()->hasText()) {
+			if (event->mimeData()->property("type").toString() == QString("graph"))
+			{
+				int a = 55;
+				event->acceptProposedAction();
 
+				auto path = event->mimeData()->text().toStdString();
+				
+				auto pcam = TrinityGlobal::CurrentScene->GetCamera();
+				TrinityGlobal::CurrentScene = new SceneGraph();
+			
+
+				TrinityGlobal::CurrentScene->LoadGraph(path);
+				TrinityGlobal::CurrentScene->SetCamera(pcam);
+				
+
+
+			}
 			if (event->mimeData()->property("type").toString() == QString("mesh"))
 			{
 				//	event->acceptProposedAction();

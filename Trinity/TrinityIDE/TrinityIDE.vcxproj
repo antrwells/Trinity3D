@@ -100,6 +100,7 @@
     <QtUic Include="DirectXHost.ui" />
     <QtUic Include="DockAreaWidget.ui" />
     <QtUic Include="ImportMediaForm.ui" />
+    <QtUic Include="MaterialEditorWidget.ui" />
     <QtUic Include="NodeEditorWidget.ui" />
     <QtUic Include="PropEditor.ui" />
     <QtUic Include="PropEditorSurface.ui" />
@@ -113,6 +114,7 @@
     <ClCompile Include="ContentBrowserWidget.cpp" />
     <ClCompile Include="DockArea.cpp" />
     <ClCompile Include="ImportMediaForm.cpp" />
+    <ClCompile Include="MaterialEditorWidget.cpp" />
     <ClCompile Include="NodeEditorWidget.cpp" />
     <ClCompile Include="PropEditor.cpp" />
     <ClCompile Include="PropEditorSurface.cpp" />
@@ -146,6 +148,7 @@
     <QtMoc Include="NodeEditorWidget.h" />
     <QtMoc Include="PropEditor.h" />
     <QtMoc Include="PropEditorSurface.h" />
+    <QtMoc Include="MaterialEditorWidget.h" />
     <ClInclude Include="TrinityGlobal.h" />
     <QtMoc Include="QDirect3D12Widget.h" />
   </ItemGroup>

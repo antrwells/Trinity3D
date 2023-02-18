@@ -1,6 +1,11 @@
 #pragma once
 #include <string>
 #include <vector>
+
+#ifndef PLATFORM_WIN32
+#    define PLATFORM_WIN32 1
+#endif
+
 #include "Common/interface/BasicMath.hpp"
 
 using namespace Diligent;

@@ -18,6 +18,7 @@
 #include "ZSystemFunctions.h"
 #include "Importer.h"
 #include "ZScriptContext.h"
+#include "qfiledialog.h"
 
 ZContextVar* sys_console(const std::vector<ZContextVar*>& args)
 {
@@ -46,9 +47,11 @@ TrinityIDE::TrinityIDE(QWidget *parent)
     newProjAction = new QAction("New", this);
     openProjAction = new QAction("Open", this);
     saveProjAction = new QAction("Save", this);
-    saveLayoutAction = new QAction("Save State", this);
-    loadLayoutAction = new QAction("Load State", this);
+    fileMenu->addSeparator();
+    saveSceneAction = new QAction("Save Scene", this);
+    loadSceneAction = new QAction("Load Scene", this);
     exitAction = new QAction("Exit", this);
+
 
     auto create = menu->addMenu("Create");
     auto createNode = create->addMenu("Node");
@@ -81,13 +84,13 @@ TrinityIDE::TrinityIDE(QWidget *parent)
     fileMenu->addAction(openProjAction);
     fileMenu->addAction(saveProjAction);
     fileMenu->addSeparator();
-    fileMenu->addAction(loadLayoutAction);
-    fileMenu->addAction(saveLayoutAction);
+    fileMenu->addAction(loadSceneAction);
+    fileMenu->addAction(saveSceneAction);
     fileMenu->addAction(exitAction);
    
 
-    connect(saveLayoutAction, &QAction::triggered, this, &TrinityIDE::saveLayout);
-    connect(loadLayoutAction, &QAction::triggered, this, &TrinityIDE::loadLayout);
+    connect(saveSceneAction, &QAction::triggered, this, &TrinityIDE::saveScene);
+    connect(loadSceneAction, &QAction::triggered, this, &TrinityIDE::loadScene);
 
     connect(crPlane, &QAction::triggered, this, &TrinityIDE::create_plane);
     connect(crCube, &QAction::triggered, this, &TrinityIDE::create_box);
@@ -313,27 +316,25 @@ void TrinityIDE::act_LocalSpace(int id) {
 
 }
 
-void TrinityIDE::loadLayout() {
+void TrinityIDE::loadScene() {
 
-    w_DockArea->LoadState("layout/ads.state");
+    //w_DockArea->LoadState("layout/ads.state");
+
 
 }
 
-void TrinityIDE::saveLayout() {
+void TrinityIDE::saveScene() {
 
 
-    w_DockArea->SaveState("layout/ads.state");
+    QString fileName = QFileDialog::getSaveFileName(this, "Save Scene", "c:\\content\\", "Scene Files (*.vgraph);;All Files (*)");
+    if (!fileName.isEmpty()) {
 
-    return;
-    
-    QByteArray data = saveState();
+        auto scene = TrinityGlobal::CurrentScene;
 
-    QFile file("layout/layout.dat");
-    if (file.open(QIODevice::WriteOnly)) {
-        QDataStream stream(&file);
-        stream << data;
-        file.close();
+        scene->SaveGraph(fileName.toStdString());
+
     }
+   
 
 }
 

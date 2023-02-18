@@ -10,7 +10,7 @@
 #include "ImportMediaForm.h"
 #include "qmimedata.h"
 #include <stack>
-
+#include "MaterialEditorWidget.h"
 struct ContentItem {
 
 	std::string path;
@@ -34,12 +34,32 @@ public:
 	void Back();
 	void ImportFile();
 	void Refreash();
+	void CreateMaterial();
 
 	void Reload();
 	static ContentBrowserWidget* mThis;
 	static std::string mCurrentPath;
 
 protected:
+
+	void mouseDoubleClickEvent(QMouseEvent* event) override {
+		if (event->button() == Qt::LeftButton) {
+	//		qDebug() << "Left button double-clicked at (" << event->pos().x() << "," << event->pos().y() << ")";
+			if (mCurrentItem->type == "vmat")
+			{
+				int a = 5;
+				MaterialEditorWidget* mat_Edit = new MaterialEditorWidget;
+				Material* mat = new Material;
+				mat->LoadMaterial(mCurrentItem->path);
+				mat_Edit->SetMaterial(mat);
+				mat_Edit->show();
+
+
+
+			}
+		}
+		QWidget::mouseDoubleClickEvent(event);
+	}
 	virtual void resizeEvent(QResizeEvent* event);
 	virtual void paintEvent(QPaintEvent* event);
 	void mouseMoveEvent(QMouseEvent* event) override;
@@ -86,7 +106,7 @@ private slots:
 	{
 		QMenu contextMenu(tr("Context menu"), this);
 
-		QAction action1("Import", this);
+		QAction action1("Import Mesh", this);
 		connect(&action1, &QAction::triggered, [=] { ImportFile(); });
 		contextMenu.addAction(&action1);
 
@@ -94,6 +114,14 @@ private slots:
 		QAction action2("Refreash", this);
 		connect(&action2, &QAction::triggered, [=] { Refreash(); });
 		contextMenu.addAction(&action2);
+
+
+		QAction action3("Material", this);
+		connect(&action3, &QAction::triggered, [=] { CreateMaterial(); });
+		auto crMenu = contextMenu.addMenu("Create");
+
+		crMenu->addAction(&action3);
+
 
 
 		contextMenu.exec(mapToGlobal(pos));

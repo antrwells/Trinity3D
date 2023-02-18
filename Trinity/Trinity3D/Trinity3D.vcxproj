@@ -35,6 +35,7 @@
     <ClInclude Include="NodeCamera.h" />
     <ClInclude Include="NodeEntity.h" />
     <ClInclude Include="NodeLight.h" />
+    <ClInclude Include="NodeProperty.h" />
     <ClInclude Include="PBBox.h" />
     <ClInclude Include="PBCapsule.h" />
     <ClInclude Include="PBConvex.h" />
@@ -73,6 +74,7 @@
     <ClCompile Include="NodeCamera.cpp" />
     <ClCompile Include="NodeEntity.cpp" />
     <ClCompile Include="NodeLight.cpp" />
+    <ClCompile Include="NodeProperty.cpp" />
     <ClCompile Include="PBBox.cpp" />
     <ClCompile Include="PBCapsule.cpp" />
     <ClCompile Include="PBConvex.cpp" />

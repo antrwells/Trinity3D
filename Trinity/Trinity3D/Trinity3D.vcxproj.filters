@@ -168,6 +168,9 @@
     <ClInclude Include="FinalRender.h">
       <Filter>Render</Filter>
     </ClInclude>
+    <ClInclude Include="NodeProperty.h">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TrinityApp.cpp">
@@ -274,6 +277,9 @@
     </ClCompile>
     <ClCompile Include="FinalRender.cpp">
       <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="NodeProperty.cpp">
+      <Filter>SceneGraph</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

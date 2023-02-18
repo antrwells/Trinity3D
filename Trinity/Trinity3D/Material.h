@@ -3,6 +3,7 @@
 #include "Texture2D.h"
 #include "TextureCube.h"
 #include <vector>
+#include "VFile.h"
 
 
 
@@ -28,6 +29,12 @@
 			/// </summary>
 			Material();
 
+			std::string GetPath() {
+				return mMaterialPath;
+			}
+
+		
+
 			/// <summary>
 			/// Sets the rendering type of the material.
 			/// </summary>
@@ -37,6 +44,46 @@
 			TextureCube* GetEnvMap() {
 
 				return mEnvMap;
+
+			}
+
+			void SaveMaterial(std::string path) {
+
+				VFile* file = new VFile(path.c_str(), FileMode::Write);
+
+				file->WriteString(mColorMap->GetPath().c_str());
+				file->WriteString(mNormalMap->GetPath().c_str());
+				file->WriteString(mSpecularMap->GetPath().c_str());
+				file->WriteVec3(mDiffuse);
+				file->WriteVec3(mSpecular);
+				file->WriteVec3(mAmbient);
+				file->WriteBool(mTwoSided);
+
+
+
+				file->Close();
+
+				mMaterialPath = path;
+
+			}
+
+			void LoadMaterial(std::string path) {
+
+				VFile* file = new VFile(path.c_str(), FileMode::Read);
+
+				mColorMap = new Texture2D(file->ReadString());
+				mNormalMap = new Texture2D(file->ReadString());
+				mSpecularMap = new Texture2D(file->ReadString());
+				mDiffuse = file->ReadVec3();
+				mSpecular = file->ReadVec3();
+				mAmbient = file->ReadVec3();
+				mTwoSided = file->ReadBool();
+
+				
+
+				file->Close();
+
+				mMaterialPath = path;
 
 			}
 
@@ -124,7 +171,7 @@
 			float3 mSpecular;
 			float3 mAmbient;
 			float mSpecularStrength = 0.3;
-
+			bool mTwoSided = false;
 
 
 			//Surface Maps
@@ -136,6 +183,7 @@
 
 			Texture2D* mDisplaceMap = nullptr;
 			bool RefractEnv = true;
+			std::string mMaterialPath = "";
 
 		};
 

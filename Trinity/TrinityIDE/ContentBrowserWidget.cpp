@@ -5,6 +5,9 @@
 #include "qfileinfo.h"
 #include "qdrag.h"
 #include "qmimedata.h"
+#include "Texture2D.h"
+#include "Material.h"
+#include "Mesh3D.h"
 
 ContentBrowserWidget* ContentBrowserWidget::mThis = nullptr;
 
@@ -229,7 +232,7 @@ void ContentBrowserWidget::Browse(std::string path) {
 
 		std::string ext = getFileExtension(e.name);
 
-		if (e.folder || ext == "vmesh" || ext == "zs")
+		if (e.folder || ext == "vmesh" || ext == "zs" || ext =="vgraph" || ext =="vmat" || ext =="png")
 		{
 
 			item->name = e.name;
@@ -245,13 +248,18 @@ void ContentBrowserWidget::Browse(std::string path) {
 				auto ss = fileExtension.toStdString();
 				item->type = ss;
 			}
-			if (ext == "vmesh")
+			if (ext == "vmesh" || ext == "vgraph" || ext=="vmat")
 			{
 				item->icon = file3DIcon;
 			}
 			else if (ext == "zs")
 			{
 				item->icon = fileScriptIcon;
+			}
+			else if (ext == "png")
+			{
+				item->icon = QImage(item->path.c_str());
+
 			}
 			else if (e.folder) {
 				//	item->icon = fileIcon;
@@ -310,7 +318,19 @@ void ContentBrowserWidget::mouseMoveEvent(QMouseEvent* event)
 		{
 			mimeData->setProperty("type", "mesh");
 		}
-		else {
+		else if (mCurrentItem->type == "vgraph")
+		{
+			mimeData->setProperty("type", "graph");
+		}
+		else if (mCurrentItem->type == "vmat")
+		{
+			mimeData->setProperty("type", "material");
+		}
+		else if (mCurrentItem->type == "png")
+		{
+			mimeData->setProperty("type", "texture");
+		}else
+		{
 			mimeData->setProperty("type", "script");
 		}
 		
@@ -437,6 +457,17 @@ void ContentBrowserWidget::ImportFile() {
 
 }
 
+void ContentBrowserWidget::CreateMaterial() {
+
+	QString fileName = QFileDialog::getSaveFileName(this, "Create Material", mCurrentPath.c_str(), "Material (*.vmat);;All Files (*)");
+	if (!fileName.isEmpty()) {
+
+		Material *new_mat = new Material;
+		new_mat->SaveMaterial(fileName.toStdString());
+		Refreash();
+	}
+
+}
 
 
 

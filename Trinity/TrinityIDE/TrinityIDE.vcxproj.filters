@@ -88,6 +88,9 @@
     <ClCompile Include="PropEditorSurface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MaterialEditorWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QSceneGraph.h">
@@ -126,6 +129,9 @@
     <QtMoc Include="PropEditorSurface.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="MaterialEditorWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="QSceneGraph.ui">
@@ -162,6 +168,9 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="PropEditorSurface.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="MaterialEditorWidget.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

@@ -28,8 +28,8 @@ private slots:
     void act_play();
     void act_pause();
     void act_stop();
-    void saveLayout();
-    void loadLayout();
+    void saveScene();
+    void loadScene();
 
 //create primitives
     void create_plane();
@@ -54,8 +54,8 @@ private:
     QAction* openProjAction;
     QAction* saveProjAction;
     QAction* exitAction;
-    QAction* saveLayoutAction;
-    QAction* loadLayoutAction;
+    QAction* saveSceneAction;
+    QAction* loadSceneAction;
     std::string mProjectPath;
     ToolBarWidget* w_Toolbar;
     DockArea* w_DockArea;

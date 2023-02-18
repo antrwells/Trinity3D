@@ -5,7 +5,7 @@
 #include "MeshRenderer.h"
 
 #include "VFile.h"
-
+#include "NodeProperty.h"
 
 
 
@@ -219,8 +219,57 @@
 
 			void RemoveLight(Node3D* node);
 
-			void LoadGraph(std::string path);
+			void LoadGraph(std::string path)
+			{
+				VFile* file = new VFile(path.c_str(), FileMode::Read);
 
+				//Node3D* root = new Node3D;
+				mLights.resize(0);
+			
+
+				mRootNode = ReadNodeHeader(file);
+				ReadNode(file, mRootNode);
+				mProperties.resize(0);
+
+				int pc = file->ReadInt();
+				for (int i = 0; i < pc; i++) {
+
+
+					PropertyType type = (PropertyType)file->ReadInt();
+					std::string name(file->ReadString());
+
+					NodeProperty* prop = new NodeProperty(name);
+					prop->SetType(type);
+					switch (type) {
+					case PropertyType::Int:
+						prop->SetInt(file->ReadInt());
+						break;
+					case PropertyType::Float:
+						prop->SetFloat(file->ReadFloat());
+						break;
+					case PropertyType::Float2:
+
+					{float x, y;
+					x = file->ReadFloat();
+					y = file->ReadFloat();
+					prop->SetFloat2(float2(x, y));
+					}
+					break;
+					case PropertyType::Float3:
+						prop->SetFloat3(file->ReadVec3());
+						break;
+					case PropertyType::Bool:
+						prop->SetBool(file->ReadBool());
+						break;
+					case PropertyType::String:
+						prop->SetString(file->ReadString());
+						break;
+					}
+					mProperties.push_back(prop);
+				}
+
+				file->Close();
+			}
 
 
 
@@ -242,7 +291,45 @@
 
 			}
 
-			void SaveGraph(std::string path);
+			void SaveGraph(std::string path)
+			{
+
+				VFile* file = new VFile(path.c_str(), FileMode::Write);
+				SaveNodeHeader(file, mRootNode);
+				SaveNode(file, mRootNode);
+
+				file->WriteInt((int)mProperties.size());
+				for (int i = 0; i < mProperties.size(); i++) {
+
+					auto prop = mProperties[i];
+					file->WriteInt((int)prop->GetType());
+					file->WriteString(prop->GetName().c_str());
+					switch (prop->GetType()) {
+					case PropertyType::Int:
+						file->WriteInt(prop->GetInt());
+						break;
+					case PropertyType::Float:
+						file->WriteFloat(prop->GetFloat());
+						break;
+					case PropertyType::Float2:
+						file->WriteFloat(prop->GetFloat2().x);
+						file->WriteFloat(prop->GetFloat2().y);
+						break;
+					case PropertyType::Float3:
+						file->WriteVec3(prop->GetFloat3());
+						break;
+					case PropertyType::Bool:
+						file->WriteBool(prop->GetBool());
+						break;
+					case PropertyType::String:
+						file->WriteString(prop->GetString().c_str());
+						break;
+					}
+				}
+				//SaveProperties - > Global 
+				file->Close();
+
+			}
 	
 
 
@@ -302,13 +389,12 @@
 
 			void SaveNode(VFile* file, Node3D* node)
 			{
-
 				switch (node->GetType())
 				{
 				case NodeType::Actor:
 				{
-
 					/*
+
 					auto ent = (NodeActor*)node;
 
 					file->WriteInt((int)ent->GetMeshes().size());
@@ -336,12 +422,12 @@
 					}
 					*/
 				}
-
+				
 
 				break;
 				case NodeType::Node:
 				{
-				//	node->WriteScripts(file);
+					node->WriteScripts(file);
 
 					file->WriteInt((int)node->ChildrenCount());
 					for (int i = 0; i < node->ChildrenCount(); i++) {
@@ -367,8 +453,8 @@
 
 					}
 
-				//	ent->WriteScripts(file);
-				//	file->WriteInt((int)ent->GetPhysicsType());
+					ent->WriteScripts(file);
+					file->WriteInt((int)ent->GetPhysicsType());
 
 					file->WriteInt((int)node->ChildrenCount());
 					for (int i = 0; i < node->ChildrenCount(); i++) {
@@ -390,7 +476,7 @@
 					file->WriteFloat(l->GetRange());
 					file->WriteBool(l->GetCastShadows());
 
-					//node->WriteScripts(file);
+					node->WriteScripts(file);
 
 					file->WriteInt((int)node->ChildrenCount());
 					for (int i = 0; i < node->ChildrenCount(); i++) {
@@ -404,6 +490,7 @@
 				}
 				break;
 				}
+
 
 
 			}
@@ -463,7 +550,7 @@
 				switch (node->GetType()) {
 				case NodeType::Node:
 				{
-			//		node->ReadScripts(file);
+					node->ReadScripts(file);
 
 					int cc = file->ReadInt();
 					for (int i = 0; i < cc; i++) {
@@ -523,8 +610,8 @@
 
 					}
 
-					//node->ReadScripts(file);
-				//	ent->SetPhysicsType((PhysicsType)file->ReadInt());
+					node->ReadScripts(file);
+					ent->SetPhysicsType((PhysicsType)file->ReadInt());
 
 
 
@@ -547,8 +634,7 @@
 					l->SetRange(file->ReadFloat());
 					l->SetCastShadows(file->ReadBool());
 
-					//l->ReadScripts(file);
-
+					l->ReadScripts(file);
 
 
 					int cc = file->ReadInt();
@@ -589,7 +675,7 @@
 			//std::vector<NodeBillboard*> mBillboards;
 
 			//std::vector<NodeBillboard*> mParticles;
-
+			std::vector<NodeProperty*> mProperties;
 			NodeCamera* mCam;
 			//RayPicker* mRayPick = nullptr;
 			MeshRenderer* mRenderer;

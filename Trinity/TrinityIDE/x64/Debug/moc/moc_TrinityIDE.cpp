@@ -50,8 +50,8 @@ static constexpr auto qt_meta_stringdata_TrinityIDE = QtMocHelpers::stringData(
     "act_play",
     "act_pause",
     "act_stop",
-    "saveLayout",
-    "loadLayout",
+    "saveScene",
+    "loadScene",
     "create_plane",
     "create_box",
     "create_sphere",
@@ -76,8 +76,8 @@ struct qt_meta_stringdata_TrinityIDE_t {
     char stringdata8[9];
     char stringdata9[10];
     char stringdata10[9];
-    char stringdata11[11];
-    char stringdata12[11];
+    char stringdata11[10];
+    char stringdata12[10];
     char stringdata13[13];
     char stringdata14[11];
     char stringdata15[14];
@@ -103,17 +103,17 @@ Q_CONSTINIT static const qt_meta_stringdata_TrinityIDE_t qt_meta_stringdata_Trin
         QT_MOC_LITERAL(74, 8),  // "act_play"
         QT_MOC_LITERAL(83, 9),  // "act_pause"
         QT_MOC_LITERAL(93, 8),  // "act_stop"
-        QT_MOC_LITERAL(102, 10),  // "saveLayout"
-        QT_MOC_LITERAL(113, 10),  // "loadLayout"
-        QT_MOC_LITERAL(124, 12),  // "create_plane"
-        QT_MOC_LITERAL(137, 10),  // "create_box"
-        QT_MOC_LITERAL(148, 13),  // "create_sphere"
-        QT_MOC_LITERAL(162, 15),  // "create_cylinder"
-        QT_MOC_LITERAL(178, 11),  // "create_cone"
-        QT_MOC_LITERAL(190, 12),  // "create_torus"
-        QT_MOC_LITERAL(203, 17),  // "create_pointlight"
-        QT_MOC_LITERAL(221, 16),  // "create_spotlight"
-        QT_MOC_LITERAL(238, 15)   // "create_dirlight"
+        QT_MOC_LITERAL(102, 9),  // "saveScene"
+        QT_MOC_LITERAL(112, 9),  // "loadScene"
+        QT_MOC_LITERAL(122, 12),  // "create_plane"
+        QT_MOC_LITERAL(135, 10),  // "create_box"
+        QT_MOC_LITERAL(146, 13),  // "create_sphere"
+        QT_MOC_LITERAL(160, 15),  // "create_cylinder"
+        QT_MOC_LITERAL(176, 11),  // "create_cone"
+        QT_MOC_LITERAL(188, 12),  // "create_torus"
+        QT_MOC_LITERAL(201, 17),  // "create_pointlight"
+        QT_MOC_LITERAL(219, 16),  // "create_spotlight"
+        QT_MOC_LITERAL(236, 15)   // "create_dirlight"
     },
     "TrinityIDE",
     "ViewportReady",
@@ -126,8 +126,8 @@ Q_CONSTINIT static const qt_meta_stringdata_TrinityIDE_t qt_meta_stringdata_Trin
     "act_play",
     "act_pause",
     "act_stop",
-    "saveLayout",
-    "loadLayout",
+    "saveScene",
+    "loadScene",
     "create_plane",
     "create_box",
     "create_sphere",
@@ -226,9 +226,9 @@ Q_CONSTINIT const QMetaObject TrinityIDE::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'act_stop'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'saveLayout'
+        // method 'saveScene'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'loadLayout'
+        // method 'loadScene'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'create_plane'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
@@ -266,8 +266,8 @@ void TrinityIDE::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 5: _t->act_play(); break;
         case 6: _t->act_pause(); break;
         case 7: _t->act_stop(); break;
-        case 8: _t->saveLayout(); break;
-        case 9: _t->loadLayout(); break;
+        case 8: _t->saveScene(); break;
+        case 9: _t->loadScene(); break;
         case 10: _t->create_plane(); break;
         case 11: _t->create_box(); break;
         case 12: _t->create_sphere(); break;
