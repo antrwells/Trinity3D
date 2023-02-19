@@ -30,6 +30,7 @@ ZContextVar* sys_console(const std::vector<ZContextVar*>& args)
     for (int i = 0; i < args.size(); i++) {
         out = out + args[i]->GetStringVal() + " ";
     }
+   
 
     ConsoleOutputWidget::LogMessage(out);
     return nullptr;
@@ -42,6 +43,8 @@ TrinityIDE::TrinityIDE(QWidget *parent)
     //ui.setupUi(this);
     resize(1200, 800);
     menu = menuBar();
+    mThis = this;
+    TrinityGlobal::MainWindow = (QWidget*)this;
     fileMenu = menu->addMenu("Project");
 
     newProjAction = new QAction("New", this);
@@ -415,3 +418,6 @@ void TrinityIDE::create_dirlight() {
 	l->SetLightType(LightType::DirectionalLight);
 	TrinityGlobal::CurrentScene->AddLight(l);
 }
+
+
+TrinityIDE* TrinityIDE::mThis = nullptr;

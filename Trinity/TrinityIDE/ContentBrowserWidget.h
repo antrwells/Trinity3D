@@ -11,6 +11,8 @@
 #include "qmimedata.h"
 #include <stack>
 #include "MaterialEditorWidget.h"
+#include "TrinityGlobal.h"
+
 struct ContentItem {
 
 	std::string path;
@@ -49,6 +51,7 @@ protected:
 			{
 				int a = 5;
 				MaterialEditorWidget* mat_Edit = new MaterialEditorWidget;
+		
 				Material* mat = new Material;
 				mat->LoadMaterial(mCurrentItem->path);
 				mat_Edit->SetMaterial(mat);

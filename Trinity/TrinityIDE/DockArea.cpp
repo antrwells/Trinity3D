@@ -16,6 +16,8 @@ DockArea::DockArea(QWidget *parent)
 
 	acceptDrops();
 
+	mThis = this;
+
 	m_DockManager = new ads::CDockManager(this);
 	m_DockManager->setGeometry(0, 0, width(), height());
 
@@ -25,7 +27,7 @@ DockArea::DockArea(QWidget *parent)
 	
 	//   connect(this, &SceneViewport::ViewportReady, this, &TrinityIDE::ViewportReady);
 	auto w1 = m_DockManager->addDockWidget(ads::CenterDockWidgetArea, w_SceneView);
-
+	//
 	w_SceneGraph = new QSceneGraph(NULL);
 	
 	//w_SceneGraph->resize(50, w_SceneGraph->height());
@@ -47,12 +49,12 @@ DockArea::DockArea(QWidget *parent)
 
 
 
-
+	/*
 	QSplitter* splitter = qobject_cast<QSplitter*>(w1->parentWidget());
 	QList<int> splitterSizes;
 	splitterSizes << 150 << width() - 300 << 200;
 	splitter->setSizes(splitterSizes);
-
+	*/
 
 	w_ContentBrowser->Browse("c:\\content\\");
 	
@@ -102,3 +104,5 @@ void DockArea::LoadState(std::string path) {
 	
 
 }
+
+DockArea* DockArea::mThis = nullptr;

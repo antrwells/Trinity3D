@@ -1,16 +1,16 @@
 ﻿  CubeRenderer.cpp
-C:\Trinity\Trinity3D\Node3D.h(271,20): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Trinity\Trinity3D\Node3D.h(360,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(291,20): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(380,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Trinity\Trinity3D\Node3D.h(369,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(389,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Trinity\Trinity3D\Node3D.h(379,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(399,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
@@ -18,94 +18,106 @@ C:\Trinity\Trinity3D\Node3D.h(379,32): warning C4244: '=': conversion from 'doub
 C:\Trinity\Trinity3D\Material.h(173,28): warning C4305: 'initializing': truncation from 'double' to 'float'
   Importer.cpp
 C:\Trinity\Trinity3D\Material.h(173,28): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Trinity\Trinity3D\Node3D.h(271,20): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Trinity\Trinity3D\Node3D.h(360,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(291,20): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(380,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Trinity\Trinity3D\Node3D.h(369,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(389,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Trinity\Trinity3D\Node3D.h(379,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(399,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-  Material.cpp
-C:\Trinity\Trinity3D\Material.h(173,28): warning C4305: 'initializing': truncation from 'double' to 'float'
-  Mesh3D.cpp
-C:\Trinity\Trinity3D\Material.h(173,28): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Trinity\Trinity3D\Mesh3D.cpp(45,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
   MeshRenderer.cpp
-C:\Trinity\Trinity3D\Node3D.h(271,20): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Trinity\Trinity3D\Node3D.h(360,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(291,20): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(380,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Trinity\Trinity3D\Node3D.h(369,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(389,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Trinity\Trinity3D\Node3D.h(379,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(399,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
 C:\Trinity\Trinity3D\Material.h(173,28): warning C4305: 'initializing': truncation from 'double' to 'float'
   Node3D.cpp
-C:\Trinity\Trinity3D\Node3D.h(271,20): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Trinity\Trinity3D\Node3D.h(360,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(291,20): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(380,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Trinity\Trinity3D\Node3D.h(369,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(389,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Trinity\Trinity3D\Node3D.h(379,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(399,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
 C:\Trinity\Trinity3D\Material.h(173,28): warning C4305: 'initializing': truncation from 'double' to 'float'
+  NodeCamera.cpp
+C:\Trinity\Trinity3D\Node3D.h(291,20): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(380,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Trinity\Trinity3D\Node3D.h(389,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Trinity\Trinity3D\Node3D.h(399,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
   NodeEntity.cpp
-C:\Trinity\Trinity3D\Node3D.h(271,20): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Trinity\Trinity3D\Node3D.h(360,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(291,20): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(380,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Trinity\Trinity3D\Node3D.h(369,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(389,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Trinity\Trinity3D\Node3D.h(379,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(399,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
 C:\Trinity\Trinity3D\Material.h(173,28): warning C4305: 'initializing': truncation from 'double' to 'float'
   NodeLight.cpp
-C:\Trinity\Trinity3D\Node3D.h(271,20): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Trinity\Trinity3D\Node3D.h(360,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(291,20): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(380,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Trinity\Trinity3D\Node3D.h(369,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(389,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Trinity\Trinity3D\Node3D.h(379,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(399,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
@@ -113,53 +125,53 @@ C:\Trinity\Trinity3D\Node3D.h(379,32): warning C4244: '=': conversion from 'doub
 C:\Trinity\Trinity3D\Material.h(173,28): warning C4305: 'initializing': truncation from 'double' to 'float'
   PBConvex.cpp
 C:\Trinity\Trinity3D\Material.h(173,28): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Trinity\Trinity3D\Node3D.h(271,20): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Trinity\Trinity3D\Node3D.h(360,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(291,20): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(380,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Trinity\Trinity3D\Node3D.h(369,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(389,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Trinity\Trinity3D\Node3D.h(379,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(399,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
   PBTriangles.cpp
 C:\Trinity\Trinity3D\Material.h(173,28): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Trinity\Trinity3D\Node3D.h(271,20): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Trinity\Trinity3D\Node3D.h(360,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(291,20): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(380,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Trinity\Trinity3D\Node3D.h(369,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(389,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Trinity\Trinity3D\Node3D.h(379,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(399,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
   RayPicker.cpp
-C:\Trinity\Trinity3D\Node3D.h(271,20): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Trinity\Trinity3D\Node3D.h(360,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(291,20): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(380,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Trinity\Trinity3D\Node3D.h(369,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(389,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Trinity\Trinity3D\Node3D.h(379,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(399,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
@@ -167,18 +179,18 @@ C:\Trinity\Trinity3D\Node3D.h(379,32): warning C4244: '=': conversion from 'doub
 C:\Trinity\Trinity3D\Material.h(173,28): warning C4305: 'initializing': truncation from 'double' to 'float'
 C:\Trinity\Trinity3D\RayPicker.cpp(241,24): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   SceneGraph.cpp
-C:\Trinity\Trinity3D\Node3D.h(271,20): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Trinity\Trinity3D\Node3D.h(360,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(291,20): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(380,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Trinity\Trinity3D\Node3D.h(369,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(389,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Trinity\Trinity3D\Node3D.h(379,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+C:\Trinity\Trinity3D\Node3D.h(399,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float

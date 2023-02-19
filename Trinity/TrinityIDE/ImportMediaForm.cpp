@@ -36,6 +36,10 @@ Import3DForm::Import3DForm(QWidget *parent)
 
     connect(cancel, &QPushButton::clicked, this, &Import3DForm::onCancel);
     connect(import, &QPushButton::clicked, this, &Import3DForm::onImport);
+
+    //setWindowFlags(windowFlags() | Qt::WindowStaysOnTopHint);
+
+
     /*
     * 
     QPushButton* button1 = new QPushButton("Button 1", centralWidget);
@@ -103,6 +107,8 @@ void Import3DForm::onImport() {
         newFileName = std::filesystem::path(originalFilePath).filename().string();
 
         newFileName = fn + newFileName;
+
+        node->SaveMaterials("c:\\content\\materials\\");
 
         scene->SaveNodeToFile(newFileName,node);
 

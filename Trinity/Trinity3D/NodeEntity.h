@@ -179,6 +179,48 @@
 
             }
 
+            void SaveMaterials(std::string path) {
+
+                int a = 5;
+
+
+                for (int i = 0; i < mMeshes.size(); i++) {
+
+                    std::string out = path + mName + "_Mesh" + std::to_string(i) + ".vmat";
+                    auto mat = mMeshes[i]->GetMaterial();
+                    mat->SaveMaterial(out);
+                    mMeshes[i]->SetMaterialPath(out);
+
+                }
+                for (int i = 0; i < mChildren.size(); i++) {
+
+                    mChildren[i]->SaveMaterials(path);
+
+                }
+
+
+            }
+
+            void ReloadMaterials() {
+
+                for (int i = 0; i < mMeshes.size(); i++) {
+
+                    auto mp = mMeshes[i]->GetMaterial()->GetPath();
+
+                    Material* mat = new Material;
+                    mat->LoadMaterial(mp);
+                    mMeshes[i]->SetMaterial(mat);
+                    
+
+                }
+
+                for (int i = 0; i < mChildren.size(); i++) {
+
+                    mChildren[i]->ReloadMaterials();
+
+                }
+
+            }
 
         protected:
             PhysicsBody* mBody = nullptr;

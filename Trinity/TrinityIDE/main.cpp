@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
     
 
 
-  qApp->setStyleSheet(styleSheet);
+  //qApp->setStyleSheet(styleSheet);
    
     TrinityIDE w;
 

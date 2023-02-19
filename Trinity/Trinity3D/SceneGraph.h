@@ -653,6 +653,9 @@
 				}
 			}
 
+			void ReloadMaterials() {
+				mRootNode->ReloadMaterials();
+			}
 
 		private:
 			static SceneGraph* mMainScene;

@@ -57,7 +57,27 @@ const double pi = 3.14159265358979323846;
 
 
 			float4x4 GetRotation4x4();
+	
+			virtual void SaveMaterials(std::string path) {
 
+				
+				for (int i = 0; i < mChildren.size(); i++) {
+
+					mChildren[i]->SaveMaterials(path);
+
+				}
+
+			}
+
+			virtual void ReloadMaterials() {
+
+				for (int i = 0; i < mChildren.size(); i++) {
+
+					mChildren[i]->ReloadMaterials();
+
+				}
+
+			}
 
 			/// <summary>
 			/// Updates a node and all it's children. Custom implentations of nodes may rely on this to function correctly.

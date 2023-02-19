@@ -11,6 +11,7 @@
 #include "qmimedata.h"
 #include <stack>
 #include "Material.h"
+#include "TrinityGlobal.h"
 #include "qlabel.h"
 
 class MaterialEditorWidget : public ads::CDockWidget
@@ -22,6 +23,7 @@ public:
 	~MaterialEditorWidget();
 	void SetMaterial(Material* mat);
 protected:
+	virtual void paintEvent(QPaintEvent* event);
 	void dragEnterEvent(QDragEnterEvent* event)
 	{
 		if (event->mimeData()->hasText()) {
@@ -84,7 +86,8 @@ protected:
 					QPixmap pix(tex->GetPath().c_str());
 					mEditMat->SetColorMap(tex);
 					img_Color->setPixmap(pix.scaled(128, 128));
-
+					mEditMat->SaveMaterial(mEditMat->GetPath());
+					TrinityGlobal::CurrentScene->ReloadMaterials();
 
 				}
 				if (img_Over == 1) {
@@ -93,6 +96,8 @@ protected:
 					QPixmap pix(tex->GetPath().c_str());
 					mEditMat->SetNormalMap(tex);
 					img_Norm->setPixmap(pix.scaled(128, 128));
+					mEditMat->SaveMaterial(mEditMat->GetPath());
+					TrinityGlobal::CurrentScene->ReloadMaterials();
 				}
 				if (img_Over == 2)
 				{
@@ -101,6 +106,8 @@ protected:
 					QPixmap pix(tex->GetPath().c_str());
 					mEditMat->SetSpecularMap(tex);
 					img_Spec->setPixmap(pix.scaled(128, 128));
+					mEditMat->SaveMaterial(mEditMat->GetPath());
+					TrinityGlobal::CurrentScene->ReloadMaterials();
 				}
 				img_Over = -1;
 
@@ -109,7 +116,7 @@ protected:
 			
 		}
 	}
-
+	void resizeEvent(QResizeEvent* event) override;
 private:
 	Ui::MaterialEditorWidgetClass ui;
 	Material* mEditMat = nullptr;

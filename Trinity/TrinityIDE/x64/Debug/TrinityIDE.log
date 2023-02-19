@@ -1,2 +1,18 @@
-﻿  MaterialEditorWidget.cpp
+﻿  moc MaterialEditorWidget.h
+  ContentBrowserWidget.cpp
+  DockArea.cpp
+  ImportMediaForm.cpp
+  MaterialEditorWidget.cpp
+  TrinityIDE.cpp
+  main.cpp
+  moc_ContentBrowserWidget.cpp
+  moc_DockArea.cpp
+  moc_MaterialEditorWidget.cpp
+  moc_NodeEditorWidget.cpp
+  moc_PropEditor.cpp
+  moc_PropEditorSurface.cpp
+  moc_QSceneGraph.cpp
+  moc_SceneGraphWidget.cpp
+  moc_SceneViewport.cpp
+  moc_TrinityIDE.cpp
   TrinityIDE.vcxproj -> C:\Trinity\Trinity3D\x64\Debug\TrinityIDE.exe

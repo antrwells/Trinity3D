@@ -309,12 +309,9 @@ class Node3D;
 
 				mMaterial = new Material;
 
-				mMaterial->SetDiffuse(file->ReadVec3());
-				mMaterial->SetSpecular(file->ReadVec3());
+				std::string mat_path = file->ReadString();
 
-				mMaterial->SetColorMap(new Texture2D(file->ReadString()));
-				mMaterial->SetNormalMap(new Texture2D(file->ReadString()));
-				mMaterial->SetSpecularMap(new Texture2D(file->ReadString()));
+				mMaterial->LoadMaterial(mat_path.c_str());
 
 				CreateBuffers();
 
@@ -351,21 +348,36 @@ class Node3D;
 
 				auto mat = mMaterial;
 
-				file->WriteVec3(mat->GetDiffuse());
-				file->WriteVec3(mat->GetSpecular());
+				file->WriteString(mMaterialPath.c_str());
 
-				auto c_path = mat->GetColorMap()->GetPath();
-				auto n_path = mat->GetNormalMap()->GetPath();
-				auto s_path = mat->GetSpecularMap()->GetPath();
+				//file->WriteVec3(mat->GetDiffuse());
+				//file->WriteVec3(mat->GetSpecular());
 
-				file->WriteString(c_path.c_str());
-				file->WriteString(n_path.c_str());
-				file->WriteString(s_path.c_str());
+				//auto c_path = mat->GetColorMap()->GetPath();
+				//auto n_path = mat->GetNormalMap()->GetPath();
+				//auto s_path = mat->GetSpecularMap()->GetPath();
+
+				//file->WriteString(c_path.c_str());
+				//file->WriteString(n_path.c_str());
+				//file->WriteString(s_path.c_str());
 
 
 
 
 			}
+
+			std::string GetMaterialPath() {
+				return mMaterialPath;
+			}
+
+			void SetMaterialPath(std::string path)
+			{
+
+				mMaterialPath = path;
+
+			}
+
+
 
 		private:
 
@@ -377,6 +389,7 @@ class Node3D;
 			Node3D* mOwner;
 
 			const char* mName;
+			std::string mMaterialPath = "";
 
 			//Material
 			Material* mMaterial;

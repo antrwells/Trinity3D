@@ -18,6 +18,9 @@ class TrinityIDE : public QMainWindow
 public:
     TrinityIDE(QWidget *parent = nullptr);
     ~TrinityIDE();
+    TrinityIDE* GetWindow() {
+        return mThis;
+    }
 
 private slots:
     void ViewportReady();
@@ -46,6 +49,9 @@ private slots:
 
 protected:
     void resizeEvent(QResizeEvent* event) override;
+public:
+    static TrinityIDE* mThis;
+
 
 private:
     QMenuBar* menu;

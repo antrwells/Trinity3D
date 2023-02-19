@@ -27,6 +27,12 @@ public:
 	void SaveState(std::string path);
 	void LoadState(std::string path);
 
+public:
+	static DockArea* mThis;
+	ads::CDockManager* GetManager() {
+		return m_DockManager;
+	}
+
 protected:
 	void resizeEvent(QResizeEvent* event) override;
 

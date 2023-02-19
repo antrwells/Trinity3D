@@ -1,12 +1,25 @@
-class IDE
+class TestClass
 
-    method void InitIDE()
+	method int OtherTest()
 
-        if 
+		return 25
 
-        console("Welcome to Trinity3D - The future is 3D")        
+	end 
 
+	method void TestClass(int a,int b)
 
-    end 
+		if a > 250
+
+		list nodes = Node3D.GetNodes()
+		
+		foreach item in nodes
+
+			item.PrintDebug()
+
+		end 
+
+		end 
+
+	end 
 
 end 
