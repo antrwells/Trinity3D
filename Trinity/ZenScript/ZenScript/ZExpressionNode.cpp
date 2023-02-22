@@ -224,32 +224,50 @@ int evaluateInt(std::vector<ExpressionElement> mElements) {
             else if (tok.mType == EVar)
             {
                 int depth = 0;
-                auto var = GetVar(mElements[0].mNameHash[0], mElements[0].mNameHash[1]);
-                switch (var->GetType()) {
-                case VarType::VarExpr:
-                    values.push((int)var->GetExpr()->Exec({})->GetIntVal());
-                    break;
-                case VarType::VarFloat:
-                    values.push((int)var->GetFloatVal());
-                    break;
-                case VarType::VarInteger:
-                    values.push(var->GetIntVal());
-                    break;
-                case VarType::VarBool:
-                    values.push(var->GetIntVal());
-                    break;
-                case VarType::VarVar:
+                auto var = GetVar(tok.mNameHash[0], tok.mNameHash[1]);
+                if (var != nullptr) {
+                    switch (var->GetType()) {
+                    case VarType::VarExpr:
+                        values.push((int)var->GetExpr()->Exec({})->GetIntVal());
+                        break;
+                    case VarType::VarFloat:
+                        if (var->GetArray()) {
+                            auto ip = tok.mAccess->Exec({})->GetIntVal();
+                            float* f = (float*)var->GetMem(ip * sizeof(float));
+                            values.push((int)f[0]);
+                        }
+                        else {
+                            values.push((int)var->GetFloatVal());
+                        }
+                        break;
+                    case VarType::VarInteger:
 
-                    switch (var->GetCurrentType()) {
-                    case VarInteger:
+                        if (var->GetArray()) {
+                            auto ip = tok.mAccess->Exec({})->GetIntVal();
+                            int* f = (int*)var->GetMem(ip * sizeof(int));
+                            values.push(f[0]);
+
+                        }
+                        else {
+                            values.push(var->GetIntVal());
+                        }
+                        break;
+                    case VarType::VarBool:
                         values.push(var->GetIntVal());
                         break;
-                    case VarFloat:
-                        values.push((int)var->GetFloatVal());
+                    case VarType::VarVar:
+
+                        switch (var->GetCurrentType()) {
+                        case VarInteger:
+                            values.push(var->GetIntVal());
+                            break;
+                        case VarFloat:
+                            values.push((int)var->GetFloatVal());
+                            break;
+                        }
+
                         break;
                     }
-
-                    break;
                 }
 
 
@@ -521,10 +539,22 @@ float GetValue(ExpressionElement tok)
             return var->GetExpr()->Exec({})->GetFloatVal();
             break;
         case VarType::VarFloat:
+
+            if (var->GetArray()) {
+                auto ip = tok.mAccess->Exec({})->GetIntVal();
+                float* f = (float*)var->GetMem(ip * sizeof(float));
+                return (float)f[0];
+            }
+
             return var->GetFloatVal();
 
             break;
         case VarType::VarInteger:
+            if (var->GetArray()) {
+                auto ip = tok.mAccess->Exec({})->GetIntVal();
+                int* f = (int*)var->GetMem(ip * sizeof(int));
+                return (float)f[0];
+            }
             return (float)var->GetIntVal();
             break;
 
@@ -855,6 +885,33 @@ ZContextVar* Expression::Evaluate(VarType recv) {
                 return var->GetExpr()->Exec({});
             }
             if (var != nullptr) {
+                if (var->GetArray()) {
+                    
+                    switch (var->GetType())
+                    {
+                    case VarType::VarInteger:
+                    {
+                        int acc = mElements[0].mAccess->Exec({})->GetIntVal();
+
+                        int* rv = (int*)var->GetMem(acc * sizeof(int));
+
+                        return VMakeInt(rv[0]);
+                    }
+                        break;
+                    case VarType::VarFloat:
+                    {
+                        int acc = mElements[0].mAccess->Exec({})->GetIntVal();
+
+                        float* rv = (float*)var->GetMem(acc * sizeof(float));
+
+                        return VMakeFloat(rv[0]);
+                    }
+                        break;
+                    }
+                    //var->GetMem()
+                    int a = 5;
+
+                }
                 return var;
             }
             int aa = 5;
@@ -926,7 +983,7 @@ ZContextVar* Expression::Evaluate(VarType recv) {
         }
         if (mElements[0].mType == EFloat)
         {
-            return VMakeInt(mElements[0].mValFloat);
+            return VMakeFloat(mElements[0].mValFloat);
         }
         if (mElements[0].mType == EStatement)
         {
@@ -1149,8 +1206,20 @@ ZContextVar* Expression::Evaluate(VarType recv) {
             return VMakeString(mElements[0].mValString);
         }
 
-        VMakeFloat(evaluateFloat(mElements));
-        
+
+      //  switch(mElements[0].ge)
+
+        auto gt = GetVar(mElements[0].mNameHash[0], mElements[0].mNameHash[1]);
+
+        switch (gt->GetType()) {
+        case VarType::VarFloat:
+
+            return VMakeFloat(evaluateFloat(mElements));
+            break;
+        case VarType::VarInteger:
+            return VMakeInt(evaluateInt(mElements));
+            break;
+        }
         int bb = 0;
 
         break;

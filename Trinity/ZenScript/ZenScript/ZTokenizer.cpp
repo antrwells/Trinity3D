@@ -113,6 +113,8 @@ ZTokenStream* ZTokenizer::Tokenize() {
 	is_op.push_back("!"[0]);
 	is_op.push_back("|"[0]);
 	is_op.push_back("&"[0]);
+	is_op.push_back("["[0]);
+	is_op.push_back("]"[0]);
 
 
 	is_num.push_back("0"[0]);
@@ -277,7 +279,7 @@ ZTokenStream* ZTokenizer::Tokenize() {
 		}
 
 		if (s_tok > 0) {
-			tokens.push_back(Token(TokenType::TokenEndOfLine, ";",0,0));
+			tokens.push_back(Token(TokenType::TokenEndOfLine, ";",i,0));
 		}
 	}
 
@@ -305,6 +307,8 @@ ZTokenStream* ZTokenizer::Tokenize() {
 	token_map.insert(std::make_pair("/", TokenType::TokenDivide));;
 	token_map.insert(std::make_pair("*", TokenType::TokenMultiply));;
 	token_map.insert(std::make_pair("=", TokenType::TokenEquals));;
+	token_map.insert(std::make_pair("[", TokenType::TokenLeftArray));;
+	token_map.insert(std::make_pair("]", TokenType::TokenRightArray));;
 	token_map.insert(std::make_pair("if", TokenType::TokenIf));
 	token_map.insert(std::make_pair("else", TokenType::TokenElse));
 	token_map.insert(std::make_pair("elseif", TokenType::TokenElseIf));
@@ -334,9 +338,13 @@ ZTokenStream* ZTokenizer::Tokenize() {
 	token_map.insert(std::make_pair("remove", TokenType::TokenListRemove));
 	token_map.insert(std::make_pair("enum", TokenType::TokenEnum));
 	token_map.insert(std::make_pair("expr", TokenType::TokenExpr));
-
-
+	token_map.insert(std::make_pair("mem", TokenType::TokenMem));
+	token_map.insert(std::make_pair("transient", TokenType::TokenTransient));
+	token_map.insert(std::make_pair("starttransient", TokenType::TokenStartTransient));
+	token_map.insert(std::make_pair("stoptransient", TokenType::TokenStopTransient));
 	std::vector<Token> new_tokens;
+
+
 
 	for (int i = 0; i < tokens.size(); i++) {
 

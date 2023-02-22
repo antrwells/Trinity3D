@@ -13,6 +13,65 @@
 #include "Material.h"
 #include "TrinityGlobal.h"
 #include "qlabel.h"
+#include "qspinbox.h"
+
+
+
+struct vec3Ed
+{
+	std::string name;
+	QDoubleSpinBox* x, * y, * z;
+	float3* real_val;
+	Node3D* is_NodeRot = nullptr;
+	Material* mat;
+	//ZContextVar* var = nullptr;
+	bool block = false;
+	vec3Ed()
+	{
+
+	}
+	vec3Ed(const std::string& name, QDoubleSpinBox* x, QDoubleSpinBox* y, QDoubleSpinBox* z, float3* real) :
+		name(name), x(x), y(y), z(z)
+	{
+		real_val = real;
+		x->setValue(real[0].x);
+		y->setValue(real[0].y);
+		z->setValue(real[0].z);
+
+		QObject::connect(x, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),
+			[this](double value) { changed(value); });
+		QObject::connect(y, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),
+			[this](double value) { changed(value); });
+		QObject::connect(z, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),
+			[this](double value) { changed(value); });
+
+
+
+	}
+
+
+	void changed(double v) {
+		//int a = 5;
+		
+	
+
+		//mEditMat->SaveMaterial(mEditMat->GetPath());
+		//TrinityGlobal::CurrentScene->ReloadMaterials();
+		
+		real_val[0] = float3(x->value(), y->value(), z->value());
+		mat->SaveMaterial(mat->GetPath());
+		TrinityGlobal::CurrentScene->ReloadMaterials();
+
+		//MaterialEditorWidget::mThis->UpdateMaterials();
+//		if (is_NodeRot != nullptr) {
+
+		//	if (!block) {
+			//	is_NodeRot->SetRotationEular(real_val[0]);
+	//		}
+
+		//}
+	};
+};
 
 class MaterialEditorWidget : public ads::CDockWidget
 {
@@ -22,6 +81,9 @@ public:
 	MaterialEditorWidget(QWidget *parent = nullptr);
 	~MaterialEditorWidget();
 	void SetMaterial(Material* mat);
+	vec3Ed* AddVec3Editor(std::string name, float3* cur);
+	
+	static MaterialEditorWidget* mThis;
 protected:
 	virtual void paintEvent(QPaintEvent* event);
 	void dragEnterEvent(QDragEnterEvent* event)
@@ -122,6 +184,7 @@ private:
 	Material* mEditMat = nullptr;
 	QLabel* img_Color, * img_Norm, * img_Spec;
 	int img_Over = -1;
-
+	vec3Ed* ldiff, * lspec;
+	int edit_y = 25;
 };
 

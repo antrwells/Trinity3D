@@ -1,18 +1,88 @@
-﻿  moc MaterialEditorWidget.h
+﻿  ConsoleOutputWidget.cpp
   ContentBrowserWidget.cpp
   DockArea.cpp
   ImportMediaForm.cpp
   MaterialEditorWidget.cpp
+  NodeEditorWidget.cpp
+  PropEditor.cpp
+  PropEditorSurface.cpp
+  QDirect3D12Widget.cpp
+  QSceneGraph.cpp
+  SceneGraphWidget.cpp
+  SceneViewport.cpp
+  ToolBarWidget.cpp
+  TrinityGlobal.cpp
   TrinityIDE.cpp
   main.cpp
-  moc_ContentBrowserWidget.cpp
-  moc_DockArea.cpp
-  moc_MaterialEditorWidget.cpp
-  moc_NodeEditorWidget.cpp
-  moc_PropEditor.cpp
-  moc_PropEditorSurface.cpp
+  qrc_Resource.cpp
+  qrc_TrinityIDE.cpp
+  moc_TrinityIDE.cpp
   moc_QSceneGraph.cpp
   moc_SceneGraphWidget.cpp
   moc_SceneViewport.cpp
-  moc_TrinityIDE.cpp
+  moc_ContentBrowserWidget.cpp
+  moc_ConsoleOutputWidget.cpp
+  moc_ToolBarWidget.cpp
+  moc_DockArea.cpp
+  moc_ImportMediaForm.cpp
+  moc_NodeEditorWidget.cpp
+  moc_PropEditor.cpp
+  moc_PropEditorSurface.cpp
+  moc_MaterialEditorWidget.cpp
+  moc_QDirect3D12Widget.cpp
+ZenScript.lib(ZContextVar.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZClassNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZSystemFunction.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZSystemFunctions.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZScriptContext.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZScriptNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZContextScope.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZMethodNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZVarsNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZExpressionNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZProgramNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZSource.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZTokenizer.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZParseCodeBody.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZParser.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZClassStatementNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZTokenStream.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZParseNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZParseStatement.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZParseVars.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZCodeBodyNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZParseClassStatement.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZParseAssign.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZParseIf.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZParseFor.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZParseReturn.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZParseWhile.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZIncNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZParseForEach.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ParseListAdd.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZParseStartTransient.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZParseScript.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZParametersNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZStatementNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZParseParameters.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZParseExpression.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZParseNew.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZAssignNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZIfnode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZForNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZReturnNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZWhileNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZForEachNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZListAddNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZStartTransientNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZParseClass.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZParseEnum.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZParseTransient.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZNewNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZParseMethod.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZEnumNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZParseSignature.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZParseSigParam.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZSignatureNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
+ZenScript.lib(ZSigParamNode.obj) : warning LNK4204: '' is missing debugging information for referencing module; linking object as if no debug info
   TrinityIDE.vcxproj -> C:\Trinity\Trinity3D\x64\Debug\TrinityIDE.exe

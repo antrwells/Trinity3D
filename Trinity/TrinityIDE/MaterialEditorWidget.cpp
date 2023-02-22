@@ -16,7 +16,7 @@ MaterialEditorWidget::MaterialEditorWidget(QWidget *parent)
 	
 	setAutoFillBackground(true);
 	setMinimumSize(400, 580);
-	
+	mThis = this;
 	//setMinimumSize(200, 200);
 	//update();
 
@@ -67,6 +67,10 @@ void MaterialEditorWidget::SetMaterial(Material* mat) {
 
 	img_Spec->setGeometry(10, 375, 128, 128);
 	img_Spec->setPixmap(pix_s.scaled(128, 128));
+
+	AddVec3Editor("Diffuse", mat->GetDiffusePtr());
+	AddVec3Editor("Specular", mat->GetSpecularPtr());
+
 	auto man = DockArea::mThis->GetManager();
 
 ///	man->addDockWidget(ads::OuterDockAreas, this);
@@ -116,3 +120,95 @@ void MaterialEditorWidget::resizeEvent(QResizeEvent* event) {
 	}
 	resize(w, h);
 }
+
+
+vec3Ed* MaterialEditorWidget::AddVec3Editor(std::string name, float3* cur) {
+
+
+	//auto row = new QHBoxLayout();
+
+
+	auto name_lab = new QLabel(name.c_str(), this);
+	name_lab->setGeometry(210, edit_y, 80, 20);
+
+	name_lab->setStyleSheet("background-color: #1E1E1E; color: #FFFFFF;");
+
+
+	auto x_lab = new QLabel("X:", this);
+
+	QDoubleSpinBox* x_spinbox = new QDoubleSpinBox(this);
+	x_spinbox->setRange(-10000, 10000);
+
+	x_spinbox->setSingleStep(0.1);
+
+	x_lab->setGeometry(275, edit_y, 40, 20);
+	x_spinbox->setGeometry(290, edit_y, 80, 20);
+
+	x_lab->setStyleSheet("background-color: #1E1E1E; color: #FFFFFF;");
+	x_spinbox->setStyleSheet("background-color: #1E1E1E; color: #FFFFFF;");
+
+
+
+	auto y_lab = new QLabel("Y:", this);
+	QDoubleSpinBox* y_spinbox = new QDoubleSpinBox(this);
+	y_spinbox->setRange(-10000, 10000);
+
+
+	y_spinbox->setSingleStep(0.1);
+
+	y_lab->setGeometry(375, edit_y, 40, 20);
+	y_spinbox->setGeometry(390, edit_y, 80, 20);
+
+	y_lab->setStyleSheet("background-color: #1E1E1E; color: #FFFFFF;");
+	y_spinbox->setStyleSheet("background-color: #1E1E1E; color: #FFFFFF;");
+
+
+
+	//
+	auto z_lab = new QLabel("Z:", this);
+	QDoubleSpinBox* z_spinbox = new QDoubleSpinBox(this);
+	z_spinbox->setRange(-10000, 10000);
+
+
+	z_spinbox->setSingleStep(0.1);
+
+	z_lab->setGeometry(475, edit_y, 40, 20);
+	z_spinbox->setGeometry(490, edit_y, 80, 20);
+
+	z_lab->setStyleSheet("background-color: #1E1E1E; color: #FFFFFF;");
+	z_spinbox->setStyleSheet("background-color: #1E1E1E; color: #FFFFFF;");
+
+
+	edit_y += 25;
+
+	//	nlayout->addWidget(x_spinbox);
+		//x_spinbox->setValue(cur.x);
+
+
+
+	vec3Ed* c = new vec3Ed(name.c_str(), x_spinbox, y_spinbox, z_spinbox, cur);
+	c->mat = mEditMat;
+
+	return c;
+	/*
+	nlayout->addWidget(new QLabel("Y:"));
+	QDoubleSpinBox* y_spinbox = new QDoubleSpinBox();
+	y_spinbox->setRange(-1000, 1000);
+	y_spinbox->setSingleStep(0.1);
+	nlayout->addWidget(y_spinbox);
+	y_spinbox->setValue(cur.y);
+
+	nlayout->addWidget(new QLabel("Z:"));
+	QDoubleSpinBox* z_spinbox = new QDoubleSpinBox();
+	z_spinbox->setRange(-1000, 1000);
+	z_spinbox->setSingleStep(0.1);
+	nlayout->addWidget(z_spinbox);
+	z_spinbox->setValue(cur.z);
+
+	lay->addLayout(nlayout);
+	update();
+	nlayout->update();
+	*/
+}
+
+MaterialEditorWidget* MaterialEditorWidget::mThis = nullptr;

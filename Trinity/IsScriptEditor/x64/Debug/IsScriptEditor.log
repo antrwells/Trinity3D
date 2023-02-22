@@ -1,2 +1,80 @@
-﻿  IsCodePage.cpp
+﻿  uic CodeComplete.ui
+  uic ConsoleOutputWidget.ui
+  uic DockArea.ui
+  uic IsCodePage.ui
+  uic IsScriptEditor.ui
+  rcc IsScriptEditor.qrc
+  moc IsScriptEditor.h
+  moc DockArea.h
+  moc IsCodePage.h
+  moc ConsoleOutputWidget.h
+  moc CodeComplete.h
+   RCC: Warning: No resources in 'C:\Trinity\IsScriptEditor\IsScriptEditor.qrc'.
+  CodeComplete.cpp
+  ConsoleOutputWidget.cpp
+  DockArea.cpp
+  IsCodePage.cpp
+  IsScriptEditor.cpp
+  main.cpp
+  qrc_IsScriptEditor.cpp
+  moc_IsScriptEditor.cpp
+  moc_DockArea.cpp
+  moc_IsCodePage.cpp
+  moc_ConsoleOutputWidget.cpp
+  moc_CodeComplete.cpp
+ZenScript.lib(ZProgramNode.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZProgramNode.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZContextVar.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZContextVar.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZClassNode.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZClassNode.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZMethodNode.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZMethodNode.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZSource.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZSource.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZTokenStream.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZTokenStream.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZTokenizer.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZTokenizer.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZParser.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZParser.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZScriptContext.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZScriptContext.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZScriptNode.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZScriptNode.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZContextScope.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZContextScope.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZVarsNode.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZVarsNode.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZExpressionNode.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZExpressionNode.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZParseScript.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZParseScript.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZSystemFunctions.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZSystemFunctions.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZSystemFunction.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZSystemFunction.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZParseCodeBody.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZParseCodeBody.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZClassStatementNode.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZClassStatementNode.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZParseNode.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZParseNode.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZParseClass.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZParseClass.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZParseEnum.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZParseEnum.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZParseTransient.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZParseTransient.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZParseStatement.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZParseStatement.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZParseVars.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZParseVars.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZCodeBodyNode.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZCodeBodyNode.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZParseClassStatement.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZParseClassStatement.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZParseAssign.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZParseAssign.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZParseIf.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZParseIf.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZParseFor.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZParseFor.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZParseReturn.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZParseReturn.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZParseWhile.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZParseWhile.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZIncNode.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZIncNode.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZParseForEach.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZParseForEach.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ParseListAdd.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ParseListAdd.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZParseStartTransient.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZParseStartTransient.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZParametersNode.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZParametersNode.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZParseMethod.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZParseMethod.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZEnumNode.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZEnumNode.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZStatementNode.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZStatementNode.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZParseParameters.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZParseParameters.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZParseExpression.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZParseExpression.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZParseNew.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZParseNew.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZAssignNode.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZAssignNode.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZIfnode.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZIfnode.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZForNode.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZForNode.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZReturnNode.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZReturnNode.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZWhileNode.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZWhileNode.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZForEachNode.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZForEachNode.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZListAddNode.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZListAddNode.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZStartTransientNode.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZStartTransientNode.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZParseSignature.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZParseSignature.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZNewNode.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZNewNode.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZParseSigParam.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZParseSigParam.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZSignatureNode.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZSignatureNode.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
+ZenScript.lib(ZSigParamNode.obj) : warning LNK4099: PDB 'ZenScript.pdb' was not found with 'ZenScript.lib(ZSigParamNode.obj)' or at 'C:\Trinity\Trinity3D\x64\Debug\ZenScript.pdb'; linking object as if no debug info
   IsScriptEditor.vcxproj -> C:\Trinity\Trinity3D\x64\Debug\IsScriptEditor.exe

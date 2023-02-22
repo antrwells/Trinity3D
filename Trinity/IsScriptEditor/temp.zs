@@ -1,25 +1,30 @@
-class TestClass
+class testClass
 
-	method int OtherTest()
+	int thisVar,otherVar,someVar
 
-		return 25
+end 
+
+class myClass > testClass
+
+	int testVar
+
+	method void Check()
 
 	end 
 
-	method void TestClass(int a,int b)
+end 
 
-		if a > 250
+class otherClass
 
-		list nodes = Node3D.GetNodes()
+	method void Other()
+
+		if a>myClass.otherVar 
+
+			
 		
-		foreach item in nodes
-
-			item.PrintDebug()
-
-		end 
-
 		end 
 
 	end 
+
 
 end 

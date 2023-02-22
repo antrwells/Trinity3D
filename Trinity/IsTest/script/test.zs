@@ -1,20 +1,31 @@
-enum test
+class test
 
-    GUI, GFX, Sound
+    int best,other
+
+    method void test()
+
+        best = 40
+        other = 15
+
+    end 
+
+    method int get()
+
+        return best
+
+    end 
 
 end 
 
 class IDE
 
-    expr t1
 
+    
     method void InitIDE()
 
+        test t1 = new test()
 
-
-        t1 = 20 + 20
-
-        console(t1+30)
+        console(t1.get(),t1.other)
 
 
     end 

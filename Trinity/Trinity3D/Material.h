@@ -65,7 +65,20 @@
 
 				mMaterialPath = path;
 
+
+
 			}
+
+			float3* GetDiffusePtr() {
+				return &mDiffuse;
+			}
+
+			float3* GetSpecularPtr() {
+				return &mSpecular;
+			}
+
+			
+
 
 			void LoadMaterial(std::string path) {
 

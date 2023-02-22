@@ -46,19 +46,21 @@ protected:
 
 	void mouseDoubleClickEvent(QMouseEvent* event) override {
 		if (event->button() == Qt::LeftButton) {
-	//		qDebug() << "Left button double-clicked at (" << event->pos().x() << "," << event->pos().y() << ")";
-			if (mCurrentItem->type == "vmat")
-			{
-				int a = 5;
-				MaterialEditorWidget* mat_Edit = new MaterialEditorWidget;
-		
-				Material* mat = new Material;
-				mat->LoadMaterial(mCurrentItem->path);
-				mat_Edit->SetMaterial(mat);
-				mat_Edit->show();
+			if (mCurrentItem != nullptr) {
+				//		qDebug() << "Left button double-clicked at (" << event->pos().x() << "," << event->pos().y() << ")";
+				if (mCurrentItem->type == "vmat")
+				{
+					int a = 5;
+					MaterialEditorWidget* mat_Edit = new MaterialEditorWidget;
+
+					Material* mat = new Material;
+					mat->LoadMaterial(mCurrentItem->path);
+					mat_Edit->SetMaterial(mat);
+					mat_Edit->show();
 
 
 
+				}
 			}
 		}
 		QWidget::mouseDoubleClickEvent(event);
